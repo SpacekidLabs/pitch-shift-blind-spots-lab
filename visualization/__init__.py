@@ -9,6 +9,7 @@ from .modulation_trap_plot import save_modulation_trap_plot
 from .observer_state_plot import save_observer_state_plot
 from .octave_preference_plot import save_octave_preference_map
 from .preflight_risk_plot import save_preflight_risk_plot
+from .selectivity_frontier_plot import save_selectivity_frontier_plot
 
 __all__ = [
     "save_adaptive_selector_plot",
@@ -21,5 +22,6 @@ __all__ = [
     "save_observer_state_plot",
     "save_octave_preference_map",
     "save_preflight_risk_plot",
+    "save_selectivity_frontier_plot",
     "save_stress_heatmap",
 ]

@@ -45,3 +45,5 @@
 - Separate coherent pitch micro-motion from broad unstable pitch motion
 - Measure adaptive-selector conservatism after adding preflight guards
 - Recover algorithm selectivity without reintroducing catastrophic failures
+- Map safety/selectivity frontiers for adaptive routing policies
+- Choose adaptive policies from Pareto tradeoffs instead of single-score rankings

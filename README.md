@@ -478,6 +478,48 @@ Current result:
 
 This is the first prototype that uses a discovered blind spot to change routing behavior. It is deliberately conservative: on this grid, v1 selects Phase Vocoder for `140` of `144` cases. The next challenge is recovering selectivity without giving up safety.
 
+## Experiment 14
+
+`experiments/14_selectivity_recovery_frontier.py` searches source-only selector policies over the Experiment 11 subtle-modulation grid.
+
+It asks:
+
+```text
+Can adaptive selection recover algorithm diversity without catastrophic failures?
+```
+
+The policy simulator varies:
+
+- preflight high-risk threshold
+- micro-modulation risk bonus
+- micro-modulation RMS threshold
+- micro-modulation peak-strength threshold
+
+For each policy, it simulates routing to:
+
+- Phase Vocoder for high-risk cases
+- PSOLA for low-risk light shifts
+- Rubber Band for low-risk large shifts
+
+Outputs:
+
+- `artifacts/14_policy_frontier.csv`
+- `artifacts/14_best_policy_cases.csv`
+- `artifacts/14_selectivity_summary.csv`
+- `artifacts/14_selectivity_frontier.png`
+
+Current result:
+
+- policies searched: `1176`
+- zero-catastrophic policies: `990`
+- most selective safe policy: `thr0.50_bonus0.06_rms5_str0.30`
+- Phase Vocoder selections in most selective safe policy: `49 / 144`
+- PSOLA selections: `67 / 144`
+- Rubber Band selections: `28 / 144`
+- catastrophic failures: `0`
+
+This shows that Experiment 13's safety does not require routing everything to Phase Vocoder. There is a safety/selectivity frontier: more Phase Vocoder lowers average stress, but a much more diverse policy can still avoid catastrophic failures.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.
