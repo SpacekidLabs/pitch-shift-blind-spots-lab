@@ -14,6 +14,7 @@ SELECTIVE_V2_THRESHOLD = 0.50
 SELECTIVE_V2_MICRO_BONUS = 0.06
 SELECTIVE_V2_MICRO_RMS_CENTS = 5.0
 SELECTIVE_V2_MICRO_STRENGTH = 0.30
+NOISE_FALLBACK_DRY_MIX = 0.40
 
 
 @dataclass(frozen=True)
@@ -146,3 +147,40 @@ def pitch_shift_preflight_adaptive_v2(y: np.ndarray, sr: int, n_steps: float) ->
     analysis = analyze_selective_preflight_adaptive_state(y, sr=sr, n_steps=n_steps)
     shifted = get_algorithm(analysis.selected_algorithm).pitch_shift(y, sr=sr, n_steps=n_steps)
     return shifted, analysis
+
+
+def analyze_guarded_preflight_adaptive_state(y: np.ndarray, sr: int, n_steps: float) -> PreflightAdaptiveAnalysis:
+    base = analyze_selective_preflight_adaptive_state(y, sr=sr, n_steps=n_steps)
+    reason_parts = [] if base.preflight_reasons == "stable_source" else base.preflight_reasons.split("|")
+    noise_like = "noise_like_spectrum" in reason_parts or "untracked_pitch" in reason_parts
+    large_shift = abs(n_steps) >= 12
+    if noise_like and large_shift and base.selected_algorithm == "phase_vocoder":
+        return PreflightAdaptiveAnalysis(
+            selected_algorithm=base.selected_algorithm,
+            selected_algorithm_label=base.selected_algorithm_label,
+            safe_mode=True,
+            guard="noise_fallback_dry_guard",
+            dry_mix=NOISE_FALLBACK_DRY_MIX,
+            preflight_risk_score=base.preflight_risk_score,
+            preflight_risk_level=base.preflight_risk_level,
+            preflight_reasons=base.preflight_reasons,
+            pitch_valid_fraction=base.pitch_valid_fraction,
+            pitch_iqr_cents=base.pitch_iqr_cents,
+            pitch_modulation_rms_cents=base.pitch_modulation_rms_cents,
+            pitch_modulation_peak_rate_hz=base.pitch_modulation_peak_rate_hz,
+            pitch_modulation_peak_strength=base.pitch_modulation_peak_strength,
+            spectral_flatness=base.spectral_flatness,
+        )
+    return base
+
+
+def pitch_shift_preflight_adaptive_v3(y: np.ndarray, sr: int, n_steps: float) -> tuple[np.ndarray, PreflightAdaptiveAnalysis]:
+    analysis = analyze_guarded_preflight_adaptive_state(y, sr=sr, n_steps=n_steps)
+    shifted = get_algorithm(analysis.selected_algorithm).pitch_shift(y, sr=sr, n_steps=n_steps)
+    if analysis.dry_mix <= 0.0:
+        return shifted, analysis
+
+    length = min(len(y), len(shifted))
+    guarded = shifted.copy()
+    guarded[:length] = (1.0 - analysis.dry_mix) * shifted[:length] + analysis.dry_mix * y[:length]
+    return guarded, analysis

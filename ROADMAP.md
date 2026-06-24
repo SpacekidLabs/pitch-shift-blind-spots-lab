@@ -53,3 +53,5 @@
 - Add fallback-specific guards for cases where the safe algorithm has its own blind spot
 - Add noise-specific dry/wet fallback guards for unpitched material
 - Treat fallback guards as separate from algorithm selection
+- Combine adaptive routing with fallback guards in a v3 selector
+- Validate that guarded adaptive selectors avoid inherited fallback catastrophes

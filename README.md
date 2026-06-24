@@ -619,6 +619,44 @@ Current result:
 
 This suggests that fallback failure needs its own guard layer. Routing to the safest observer is not enough when the fallback observer has a blind spot on unpitched/noise-like material.
 
+## Experiment 18
+
+`experiments/18_adaptive_v3_fallback_guards.py` combines the selective `Preflight Adaptive v2` router with the noise fallback guard from Experiment 17.
+
+Question:
+
+```text
+Can fallback guards remove safe-mode fallback failures?
+```
+
+It compares:
+
+- fixed Phase Vocoder
+- fixed PSOLA
+- fixed WSOLA
+- fixed Rubber Band
+- `Preflight Adaptive v2`
+- `Preflight Adaptive v3`
+
+Outputs:
+
+- `artifacts/18_results.csv`
+- `artifacts/18_selector_decisions.csv`
+- `artifacts/18_algorithm_summary.csv`
+- `artifacts/18_signal_summary.csv`
+- `artifacts/18_adaptive_v3_map.png`
+
+Current result:
+
+- `Preflight Adaptive v3` catastrophic cases: `0`
+- `Preflight Adaptive v2` catastrophic cases: `1`
+- Phase Vocoder catastrophic cases: `1`
+- PSOLA catastrophic cases: `2`
+- Rubber Band catastrophic cases: `6`
+- WSOLA catastrophic cases: `18`
+
+The v3 selector keeps the v2 routing policy, then applies a dry/wet fallback guard for large-shift unpitched or noise-like cases routed to Phase Vocoder. This removes the remaining broad-atlas adaptive catastrophe without turning the selector into a single fixed algorithm.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.
