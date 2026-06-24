@@ -1,0 +1,5 @@
+algorithm_label,case_count,dominant_observer_bias,dominant_count,subharmonic_count,fundamental_count,octave_count,upper_partial_count,mixed_count
+PSOLA,12,octave_seeking,5,2,4,5,1,0
+Phase Vocoder,12,subharmonic_seeking,6,6,4,1,0,0
+Rubber Band,12,subharmonic_seeking,5,5,4,1,0,1
+WSOLA,12,subharmonic_seeking,5,5,4,1,0,2

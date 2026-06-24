@@ -1,0 +1,13 @@
+case_id,case_family,case_label,belief_set,belief_count,variance_inferred_state,state_std_hz
+octave_pure_110,pure_tones,110,mixed|subharmonic_seeking|untracked,3,368319.75679857493,606.8935300351907
+octave_pure_880,pure_tones,880,octave_seeking|upper_partial_seeking,2,138684.64023416134,372.40386710419824
+octave_detuned_octave_875,detuned_octaves,440 + 875,fundamental_seeking|octave_seeking,2,35898.62908509778,189.46933547436583
+octave_mix_440_880,octave_mixtures,440 + 880,fundamental_seeking|octave_seeking,2,35890.08895286401,189.446797156521
+octave_pure_440,pure_tones,440,fundamental_seeking|octave_seeking,2,35889.12214779111,189.44424548608256
+octave_missing_440,missing_fundamental,880 + 1320 + 1760,octave_seeking|subharmonic_seeking,2,35095.387590670616,187.3376299376893
+octave_detuned_octave_885,detuned_octaves,440 + 885,fundamental_seeking|octave_seeking,2,34638.59053855584,186.11445547983595
+octave_mix_220_440_880,octave_mixtures,220 + 440 + 880,fundamental_seeking|subharmonic_seeking,2,8948.05027696372,94.59413447441507
+octave_mix_220_440,octave_mixtures,220 + 440,fundamental_seeking|subharmonic_seeking,2,8900.350766159965,94.34167035917885
+octave_subharmonic_440_220,subharmonics,440 + 220,fundamental_seeking|subharmonic_seeking,2,8900.350766159965,94.34167035917885
+octave_pure_220,pure_tones,220,fundamental_seeking|mixed|subharmonic_seeking,3,8324.580892246293,91.23914122922406
+octave_subharmonic_440_110,subharmonics,440 + 110,subharmonic_seeking,1,2256.930188972182,47.50715934437863

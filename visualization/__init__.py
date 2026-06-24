@@ -5,6 +5,7 @@ from .disagreement_heatmap import save_disagreement_heatmap
 from .discovery_heatmap import save_discovery_heatmap
 from .heatmap import save_stress_heatmap
 from .observer_state_plot import save_observer_state_plot
+from .octave_preference_plot import save_octave_preference_map
 
 __all__ = [
     "save_ambiguity_plot",
@@ -13,5 +14,6 @@ __all__ = [
     "save_disagreement_heatmap",
     "save_discovery_heatmap",
     "save_observer_state_plot",
+    "save_octave_preference_map",
     "save_stress_heatmap",
 ]

@@ -201,3 +201,34 @@ def build_attractor_basin_sweep(sr: int = 22050, duration: float = 2.0) -> list[
             )
         )
     return cases
+
+
+def build_octave_ambiguity_cases(sr: int = 22050, duration: float = 2.0) -> list[AmbiguityCase]:
+    cases: list[AmbiguityCase] = []
+    specs = [
+        ("pure_110", "pure_tones", "110", [110.0]),
+        ("pure_220", "pure_tones", "220", [220.0]),
+        ("pure_440", "pure_tones", "440", [440.0]),
+        ("pure_880", "pure_tones", "880", [880.0]),
+        ("mix_220_440", "octave_mixtures", "220 + 440", [220.0, 440.0]),
+        ("mix_440_880", "octave_mixtures", "440 + 880", [440.0, 880.0]),
+        ("mix_220_440_880", "octave_mixtures", "220 + 440 + 880", [220.0, 440.0, 880.0]),
+        ("missing_440", "missing_fundamental", "880 + 1320 + 1760", [880.0, 1320.0, 1760.0]),
+        ("subharmonic_440_220", "subharmonics", "440 + 220", [440.0, 220.0]),
+        ("subharmonic_440_110", "subharmonics", "440 + 110", [440.0, 110.0]),
+        ("detuned_octave_875", "detuned_octaves", "440 + 875", [440.0, 875.0]),
+        ("detuned_octave_885", "detuned_octaves", "440 + 885", [440.0, 885.0]),
+    ]
+    for case_id, family, label, freqs in specs:
+        cases.append(
+            AmbiguityCase(
+                case_id=f"octave_{case_id}",
+                family=family,
+                label=label,
+                ambiguity_amount=float(freqs[0]),
+                ambiguity_units="Hz",
+                params={"frequencies_hz": ",".join(f"{freq:g}" for freq in freqs)},
+                audio=_sum_oscillators(freqs, sr=sr, duration=duration),
+            )
+        )
+    return cases

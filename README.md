@@ -46,6 +46,8 @@ Experiment 06 asks what pitch trajectory each observer appears to infer over tim
 
 Experiment 07 maps attractor branches across a fine ambiguity sweep and treats state disagreement as the phenomenon itself.
 
+Experiment 08 tests the Observer Bias Hypothesis directly: every pitch shifter carries an implicit pitch prior.
+
 ## Repository Layout
 
 - `signals/` synthetic signal generators
@@ -256,6 +258,43 @@ Outputs:
 - `artifacts/07_attractor_basin_map.png`
 
 This experiment focuses on where observer branches switch, split, or collapse. True hysteresis is not claimed yet because the current algorithm wrappers are stateless batch processors.
+
+## Experiment 08
+
+`experiments/08_octave_preference_map.py` investigates octave ambiguity directly.
+
+Signals:
+
+- pure tones: `110`, `220`, `440`, `880`
+- octave mixtures: `220 + 440`, `440 + 880`, `220 + 440 + 880`
+- missing fundamental: `880 + 1320 + 1760`
+- subharmonics: `440 + 220`, `440 + 110`
+- detuned octaves: `440 + 875`, `440 + 885`
+
+For each algorithm, it asks:
+
+```text
+what_pitch_does_this_observer_believe()
+```
+
+It classifies inferred state as:
+
+- `subharmonic_seeking`
+- `fundamental_seeking`
+- `octave_seeking`
+- `upper_partial_seeking`
+- `mixed`
+- `untracked`
+
+Outputs:
+
+- `artifacts/08_pitch_trajectories.csv`
+- `artifacts/08_octave_preference_map.csv`
+- `artifacts/08_algorithm_bias_summary.csv`
+- `artifacts/08_case_belief_summary.csv`
+- `artifacts/08_octave_preference_map.png`
+
+This experiment treats state disagreement as the phenomenon itself, and stress as only one symptom of observer bias.
 
 ## Roadmap
 

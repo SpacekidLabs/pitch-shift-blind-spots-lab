@@ -25,6 +25,7 @@
 - Zoom in on critical ambiguity zones and measure peak width
 - Map observer-state pitch trajectories over time
 - Map attractor basins and branch switches across ambiguity
+- Build octave preference maps to identify observer priors
 - Group failure modes by signal structure
 - Separate transient loss, timbral smear, and harmonic drift
 - Track which structures survive across representations
