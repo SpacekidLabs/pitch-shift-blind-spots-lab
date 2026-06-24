@@ -1,0 +1,22 @@
+case_id,sweep_family,case_label,ambiguity_amount,ambiguity_units,parameter_summary,mean_algorithm_disagreement,max_algorithm_disagreement,mean_algorithm_spread,mean_composite_stress,peak_shift_semitones
+beating_rate_0_5hz,beating_rate,0.5 Hz,0.5,Hz beat rate,"{""beat_rate_hz"": 0.5, ""frequencies_hz"": ""440,440.5""}",0.05221171280272735,0.07867097945791092,0.5336910462918905,0.3216503597972057,-12
+beating_rate_1_0hz,beating_rate,1 Hz,1.0,Hz beat rate,"{""beat_rate_hz"": 1.0, ""frequencies_hz"": ""440,441""}",0.05041715110606926,0.07756546484555663,0.5231094315391107,0.31824785606429074,-12
+beating_rate_2_0hz,beating_rate,2 Hz,2.0,Hz beat rate,"{""beat_rate_hz"": 2.0, ""frequencies_hz"": ""440,442""}",0.04943490220801799,0.07285520450435728,0.5287411200458654,0.31847881381831844,-12
+beating_rate_5_0hz,beating_rate,5 Hz,5.0,Hz beat rate,"{""beat_rate_hz"": 5.0, ""frequencies_hz"": ""440,445""}",0.049992055888476175,0.07737439694785285,0.5227943943273827,0.323192640467333,-12
+beating_rate_10_0hz,beating_rate,10 Hz,10.0,Hz beat rate,"{""beat_rate_hz"": 10.0, ""frequencies_hz"": ""440,450""}",0.04442985725286058,0.051600791221375744,0.48885129398731764,0.31997305844077745,7
+three_oscillators_07hz,three_oscillators,440 + 443 + 447,7.0,Hz spread,"{""frequencies_hz"": ""440,443,447"", ""spread_hz"": 7.0}",0.04746047108424315,0.06994388561363635,0.5178372630400853,0.31537006981577864,-12
+three_oscillators_20hz,three_oscillators,440 + 450 + 460,20.0,Hz spread,"{""frequencies_hz"": ""440,450,460"", ""spread_hz"": 20.0}",0.03981246537877994,0.05603830920260776,0.49658108346670954,0.31982292339112045,-12
+three_oscillators_80hz,three_oscillators,440 + 480 + 520,80.0,Hz spread,"{""frequencies_hz"": ""440,480,520"", ""spread_hz"": 80.0}",0.03323163735990726,0.04681230165264855,0.433633314070066,0.3136514743194527,-12
+two_oscillators_00hz,two_oscillators,440 + 440,0.0,Hz separation,"{""frequencies_hz"": ""440,440"", ""separation_hz"": 0.0}",0.04157762984869916,0.05777134236981646,0.48271317412119175,0.305840911691624,-12
+two_oscillators_01hz,two_oscillators,440 + 441,1.0,Hz separation,"{""frequencies_hz"": ""440,441"", ""separation_hz"": 1.0}",0.040861879272458504,0.06425825882218834,0.46718436757820664,0.2909949797299986,-12
+two_oscillators_02hz,two_oscillators,440 + 442,2.0,Hz separation,"{""frequencies_hz"": ""440,442"", ""separation_hz"": 2.0}",0.04405609615564919,0.0702771021662553,0.49249175207653717,0.3092535841859608,-12
+two_oscillators_05hz,two_oscillators,440 + 445,5.0,Hz separation,"{""frequencies_hz"": ""440,445"", ""separation_hz"": 5.0}",0.030599593728309775,0.04033092436842328,0.411208747217518,0.27609469535490877,3
+two_oscillators_10hz,two_oscillators,440 + 450,10.0,Hz separation,"{""frequencies_hz"": ""440,450"", ""separation_hz"": 10.0}",0.04349581233983843,0.05679327007342877,0.49287901297915476,0.31713726999594766,-12
+two_oscillators_20hz,two_oscillators,440 + 460,20.0,Hz separation,"{""frequencies_hz"": ""440,460"", ""separation_hz"": 20.0}",0.03925219432791824,0.061000972729540484,0.46449467525043664,0.3259654636116094,-12
+two_oscillators_40hz,two_oscillators,440 + 480,40.0,Hz separation,"{""frequencies_hz"": ""440,480"", ""separation_hz"": 40.0}",0.032164010132148445,0.04699807005938596,0.4423870776049298,0.3301320292639549,-12
+vibrato_depth_00st,vibrato_depth,0 semitones,0.0,semitones,"{""base_hz"": 440.0, ""depth_semitones"": 0.0, ""rate_hz"": 5.5}",0.04459704103364774,0.06673817656759874,0.4952641232997511,0.31316571012369654,-12
+vibrato_depth_01st,vibrato_depth,1 semitones,1.0,semitones,"{""base_hz"": 440.0, ""depth_semitones"": 1.0, ""rate_hz"": 5.5}",0.03891775439851226,0.06982288007518168,0.4499069874580029,0.3302769776944937,-12
+vibrato_depth_02st,vibrato_depth,2 semitones,2.0,semitones,"{""base_hz"": 440.0, ""depth_semitones"": 2.0, ""rate_hz"": 5.5}",0.02884099532027223,0.035238284869338055,0.41626473249542356,0.3452273107578832,3
+vibrato_depth_04st,vibrato_depth,4 semitones,4.0,semitones,"{""base_hz"": 440.0, ""depth_semitones"": 4.0, ""rate_hz"": 5.5}",0.037573111471305924,0.04582115744229456,0.4463544965838604,0.3592386080136795,7
+vibrato_depth_08st,vibrato_depth,8 semitones,8.0,semitones,"{""base_hz"": 440.0, ""depth_semitones"": 8.0, ""rate_hz"": 5.5}",0.03744824326149649,0.05373365511492295,0.47217708744132597,0.3626826549160627,-12
+vibrato_depth_12st,vibrato_depth,12 semitones,12.0,semitones,"{""base_hz"": 440.0, ""depth_semitones"": 12.0, ""rate_hz"": 5.5}",0.03091047516313365,0.05578384067064782,0.4279004521598084,0.3752303990740361,-12

@@ -1,0 +1,5 @@
+sweep_family,ambiguity_units,pearson_correlation,nondecreasing_steps,step_count,peak_case_id,peak_disagreement
+beating_rate,Hz beat rate,-0.8885370092291474,1,4,beating_rate_0_5hz,0.07867097945791092
+two_oscillators,Hz separation,-0.3995513849800226,4,6,two_oscillators_02hz,0.0702771021662553
+three_oscillators,Hz spread,-0.8905865386335637,0,2,three_oscillators_07hz,0.06994388561363635
+vibrato_depth,semitones,-0.16460654565874538,4,5,vibrato_depth_01st,0.06982288007518168

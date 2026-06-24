@@ -36,6 +36,10 @@ It asks:
 
 Experiment 03 turns that disagreement score into a search objective and asks what generated signal maximizes it.
 
+Experiment 04 tests the Ambiguity Hypothesis directly:
+
+- Does algorithm disagreement increase as pitch ambiguity increases?
+
 ## Repository Layout
 
 - `signals/` synthetic signal generators
@@ -131,6 +135,33 @@ Outputs:
 - `artifacts/03_heatmap.png`
 
 This experiment asks what signal maximizes disagreement between pitch shifters, leaving room for structures that were not anticipated by the hand-designed atlas.
+
+## Experiment 04
+
+`experiments/04_ambiguity_sweep.py` tests whether the discovery result generalizes to controlled ambiguity sweeps.
+
+Sweep families:
+
+- two oscillators: `440 + 440` through `440 + 480`
+- three oscillators: close, medium, and wide competing pitch sets
+- vibrato depth: `0`, `1`, `2`, `4`, `8`, `12` semitones
+- beating rate: `0.5`, `1`, `2`, `5`, `10` Hz
+
+Question:
+
+```text
+Does algorithm disagreement increase as pitch ambiguity increases?
+```
+
+Outputs:
+
+- `artifacts/04_results.csv`
+- `artifacts/04_disagreement_landscape.csv`
+- `artifacts/04_ambiguity_summary.csv`
+- `artifacts/04_family_trends.csv`
+- `artifacts/04_ambiguity_plot.png`
+
+This experiment treats pitch ambiguity as the independent variable and algorithm disagreement as the measured response.
 
 ## Roadmap
 
