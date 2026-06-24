@@ -1,0 +1,12 @@
+signal_family,signal_name,signal_label,adaptive_states,selected_algorithms,adaptive_mean_stress,adaptive_max_stress,adaptive_catastrophic_count,best_fixed_algorithm_label,best_fixed_mean_stress
+noise,pink_noise,noise / pink_noise,modulated_pitch,Phase Vocoder|Rubber Band,0.16190959085991385,0.3803216123052699,0,Phase Vocoder,0.1329553460410905
+noise,white_noise,noise / white_noise,noise_like,Phase Vocoder,0.17402209686352316,0.3602572544145359,0,Phase Vocoder,0.18377599176969164
+modulated,fm_tone,modulated / fm_tone,modulated_pitch,Phase Vocoder|Rubber Band,0.2554099088171198,0.3581011114080154,0,Phase Vocoder,0.04906660115471491
+modulated,vibrato_tone,modulated / vibrato_tone,octave_ambiguous|stable_periodic,PSOLA|Phase Vocoder|Rubber Band,0.15669433530530855,0.3232849023723723,0,Phase Vocoder,0.05067474693405689
+harmonic,square,harmonic / square,detuned_competing|octave_ambiguous|stable_periodic,PSOLA|Phase Vocoder,0.2201254571786751,0.3048181466481741,0,Phase Vocoder,0.19856819717639895
+harmonic,sine,harmonic / sine,octave_ambiguous|stable_periodic,PSOLA|Phase Vocoder|Rubber Band,0.14282531177788557,0.2776227558090221,0,Phase Vocoder,0.046285611449535614
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,modulated_pitch,Phase Vocoder|Rubber Band,0.13271572844715546,0.2528198414854456,0,Phase Vocoder,0.1105129690357751
+inharmonic,bell_resonator,inharmonic / bell_resonator,transient_like,Phase Vocoder,0.06850656875337954,0.20984270877489464,0,Phase Vocoder,0.08314357704141477
+harmonic,saw,harmonic / saw,detuned_competing|octave_ambiguous,Phase Vocoder,0.13019631237606302,0.15272043892628415,0,PSOLA,0.16592073141621758
+transient,impulse_train,transient / impulse_train,noise_like,Phase Vocoder,0.05489937137144284,0.1188760943846497,0,Phase Vocoder,0.08733744955389808
+transient,click_sequence,transient / click_sequence,noise_like,Phase Vocoder,0.019404642796410826,0.031127472649977644,0,Phase Vocoder,0.024477335374408164

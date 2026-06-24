@@ -1,3 +1,4 @@
+from .adaptive_selector_plot import save_adaptive_selector_plot
 from .ambiguity_plot import save_ambiguity_plot
 from .attractor_basin_plot import save_attractor_basin_plot
 from .critical_ambiguity_plot import save_critical_ambiguity_plot
@@ -8,6 +9,7 @@ from .observer_state_plot import save_observer_state_plot
 from .octave_preference_plot import save_octave_preference_map
 
 __all__ = [
+    "save_adaptive_selector_plot",
     "save_ambiguity_plot",
     "save_attractor_basin_plot",
     "save_critical_ambiguity_plot",

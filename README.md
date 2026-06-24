@@ -296,6 +296,63 @@ Outputs:
 
 This experiment treats state disagreement as the phenomenon itself, and stress as only one symptom of observer bias.
 
+## Experiment 09
+
+`experiments/09_adaptive_selector_prototype.py` is the first adaptive pitch-shifter prototype.
+
+Instead of using one strategy everywhere, it follows this v0 architecture:
+
+```text
+input audio
+observer analysis
+state classifier
+adaptive algorithm selector
+pitch shift
+artifact guard
+output
+```
+
+Signal states:
+
+- `stable_periodic`
+- `octave_ambiguous`
+- `subharmonic_ambiguous`
+- `detuned_competing`
+- `noise_like`
+- `transient_like`
+- `modulated_pitch`
+- `untracked`
+
+The selector includes an observer disagreement detector:
+
+```text
+state_disagreement = variance(inferred pitch across observers)
+```
+
+When disagreement is high, it enters safe mode:
+
+- avoid PSOLA
+- prefer a conservative Phase Vocoder or Rubber Band fallback
+- optionally blend a small amount of dry signal as an artifact guard
+
+Experiment 09 compares:
+
+- fixed Phase Vocoder
+- fixed PSOLA
+- fixed WSOLA
+- fixed Rubber Band
+- `Adaptive Selector v0`
+
+Outputs:
+
+- `artifacts/09_results.csv`
+- `artifacts/09_selector_decisions.csv`
+- `artifacts/09_algorithm_summary.csv`
+- `artifacts/09_signal_summary.csv`
+- `artifacts/09_adaptive_selector_map.png`
+
+The success criterion is not winning every row. The goal is avoiding catastrophic failures. In the current atlas run, `Adaptive Selector v0` has zero catastrophic cases under the fixed-algorithm stress threshold, while still not being the lowest-mean-stress method overall.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.

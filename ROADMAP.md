@@ -35,3 +35,5 @@
 - Search for pre-flight indicators of failure
 - Test whether simple signal descriptors predict distortion
 - Build a compact blind-spot classifier for future experiments
+- Prototype adaptive pitch-shifting rules that avoid known blind spots
+- Track catastrophic-failure avoidance separately from average quality
