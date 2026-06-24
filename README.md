@@ -34,6 +34,8 @@ It asks:
 
 - Which structures maximize disagreement between pitch-shifting algorithms?
 
+Experiment 03 turns that disagreement score into a search objective and asks what generated signal maximizes it.
+
 ## Repository Layout
 
 - `signals/` synthetic signal generators
@@ -98,6 +100,38 @@ Outputs:
 
 The signals with the highest disagreement are the blind spot candidates for deeper analysis.
 
+## Experiment 03
+
+`experiments/03_blind_spot_discovery.py` moves from hand-designed atlas entries to generated candidate signals.
+
+Candidate families:
+
+- detuned oscillators
+- beating oscillators
+- chirps
+- glissandi
+- chaotic oscillators
+- quasi-periodic signals
+- modal banks
+- noise mixtures
+
+Objective:
+
+```text
+maximize variance(composite_stress across algorithms)
+```
+
+Outputs:
+
+- `artifacts/03_candidates.csv`
+- `artifacts/03_results.csv`
+- `artifacts/03_disagreement_landscape.csv`
+- `artifacts/03_discovery_summary.csv`
+- `artifacts/03_best_signal.csv`
+- `artifacts/03_heatmap.png`
+
+This experiment asks what signal maximizes disagreement between pitch shifters, leaving room for structures that were not anticipated by the hand-designed atlas.
+
 ## Roadmap
 
-See [`ROADMAP.md`](ROADMAP.md) for the next steps, including comparisons against WSOLA, PSOLA, Rubber Band, and neural pitch shifters.
+See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.
