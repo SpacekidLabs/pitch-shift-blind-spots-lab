@@ -1,0 +1,4 @@
+case_id,case_label,mean_cross_observer_std_hz,max_cross_observer_std_hz,collapsed_frame_fraction_std_lt_5hz,divergent_frame_fraction_std_gt_20hz,valid_frame_count,case_state_behavior
+critical_beating_rate_0_5hz,0.5 Hz,228.3750904678868,314.54783421891096,0.0,1.0,87,persistent_divergence
+critical_two_oscillators_2_0hz,440 + 442,227.095572872161,319.7301855107177,0.0,1.0,87,persistent_divergence
+critical_vibrato_depth_1_0st,1 semitones,225.19992601044,327.16255777277837,0.0,1.0,87,persistent_divergence

@@ -42,6 +42,8 @@ Experiment 04 tests the Ambiguity Hypothesis directly:
 
 Experiment 05 zooms in around the observed ambiguity peaks and asks whether disagreement behaves like a critical boundary between one pitch and obviously multiple pitches.
 
+Experiment 06 asks what pitch trajectory each observer appears to infer over time.
+
 ## Repository Layout
 
 - `signals/` synthetic signal generators
@@ -190,6 +192,35 @@ Outputs:
 - `artifacts/05_critical_ambiguity_plot.png`
 
 This experiment tests whether the most interesting signals live near the boundary between a single pitch interpretation and clearly competing pitch interpretations.
+
+## Experiment 06
+
+`experiments/06_observer_state_space.py` moves from scalar disagreement to observer trajectories.
+
+For the critical ambiguity peak cases, it estimates framewise pitch from each algorithm output:
+
+- Phase Vocoder: `f(t)`
+- PSOLA: `f(t)`
+- WSOLA: `f(t)`
+- Rubber Band: `f(t)`
+
+Because these local algorithm implementations do not expose private internal state, Experiment 06 uses an explicit proxy: framewise autocorrelation `f0(t)` estimated from each observer's output and mapped back through the requested pitch shift.
+
+Questions:
+
+- Do observers lock to different trajectories?
+- Do they jump between attractors?
+- Do they oscillate?
+- Do they collapse onto the same solution?
+
+Outputs:
+
+- `artifacts/06_pitch_trajectories.csv`
+- `artifacts/06_trajectory_summary.csv`
+- `artifacts/06_case_state_summary.csv`
+- `artifacts/06_observer_state_space.png`
+
+This experiment starts treating pitch shifters as observers with inferred state trajectories, not just processors with error scores.
 
 ## Roadmap
 

@@ -3,11 +3,13 @@ from .critical_ambiguity_plot import save_critical_ambiguity_plot
 from .disagreement_heatmap import save_disagreement_heatmap
 from .discovery_heatmap import save_discovery_heatmap
 from .heatmap import save_stress_heatmap
+from .observer_state_plot import save_observer_state_plot
 
 __all__ = [
     "save_ambiguity_plot",
     "save_critical_ambiguity_plot",
     "save_disagreement_heatmap",
     "save_discovery_heatmap",
+    "save_observer_state_plot",
     "save_stress_heatmap",
 ]
