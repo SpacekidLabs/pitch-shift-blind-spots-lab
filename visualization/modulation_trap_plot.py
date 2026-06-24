@@ -30,6 +30,9 @@ def save_modulation_trap_plot(
     cases: pd.DataFrame,
     output_path: str | Path,
     shift: int = 3,
+    title: str = "Exp11 Subtle Modulation Trap",
+    subtitle: str | None = None,
+    miss_note: str = "missed = catastrophic fixed-algorithm stress not flagged by source-only preflight",
 ) -> None:
     output_path = Path(output_path)
     frame = cases[cases["shift_semitones"] == shift].copy()
@@ -48,8 +51,8 @@ def save_modulation_trap_plot(
     image = Image.new("RGB", (width, height), "white")
     draw = ImageDraw.Draw(image)
 
-    draw.text((margin, 18), "Exp11 Subtle Modulation Trap", fill=(15, 15, 15), font=title_font)
-    draw.text((margin, 42), f"Vibrato depth/rate risk at {shift:+d} semitones.", fill=(60, 60, 60), font=font)
+    draw.text((margin, 18), title, fill=(15, 15, 15), font=title_font)
+    draw.text((margin, 42), subtitle or f"Vibrato depth/rate risk at {shift:+d} semitones.", fill=(60, 60, 60), font=font)
 
     for col_index, depth in enumerate(depths):
         x = margin + left_margin + col_index * cell_w
@@ -76,7 +79,7 @@ def save_modulation_trap_plot(
         y = legend_y + 26
         draw.rectangle([x, y, x + 14, y + 14], fill=color, outline=(90, 90, 90))
         draw.text((x + 22, y - 1), outcome, fill=(35, 35, 35), font=small_font)
-    draw.text((margin, legend_y + 58), "missed = catastrophic fixed-algorithm stress not flagged by source-only preflight", fill=(35, 35, 35), font=small_font)
+    draw.text((margin, legend_y + 58), miss_note, fill=(35, 35, 35), font=small_font)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     image.save(output_path)

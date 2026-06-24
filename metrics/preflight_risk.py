@@ -97,3 +97,26 @@ def preflight_risk_score(features: dict[str, float], shift: int) -> tuple[float,
         reasons.append("moderate_shift")
 
     return min(score, 1.0), "|".join(reasons) if reasons else "stable_source"
+
+
+def modulation_aware_preflight_risk_score(features: dict[str, float], shift: int) -> tuple[float, str]:
+    score, reasons_text = preflight_risk_score(features, shift)
+    reasons = [] if reasons_text == "stable_source" else reasons_text.split("|")
+
+    pitch_valid = _finite(features["pitch_valid_fraction"])
+    flatness = _finite(features["spectral_flatness"])
+    modulation_rms = _finite(features.get("pitch_modulation_rms_cents", np.nan))
+    modulation_strength = _finite(features.get("pitch_modulation_peak_strength", np.nan))
+    modulation_rate = _finite(features.get("pitch_modulation_peak_rate_hz", np.nan))
+
+    if (
+        pitch_valid > 0.95
+        and flatness < 0.02
+        and modulation_rms > 0.70
+        and modulation_strength > 0.35
+        and 1.0 <= modulation_rate <= 12.0
+    ):
+        score += 0.10
+        reasons.append("micro_modulation_trap")
+
+    return min(score, 1.0), "|".join(reasons) if reasons else "stable_source"

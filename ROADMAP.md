@@ -41,3 +41,5 @@
 - Add better subtle-modulation descriptors for low-depth vibrato failures
 - Detect small modulation traps that masquerade as stable periodicity
 - Add WSOLA-specific preflight warnings for period-tracking fragility
+- Add micro-modulation-aware preflight scoring to adaptive selection
+- Separate coherent pitch micro-motion from broad unstable pitch motion

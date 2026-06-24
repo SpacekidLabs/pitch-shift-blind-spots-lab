@@ -419,6 +419,34 @@ Current result:
 
 The missed cases cluster at `+3 semitones`, and the worst fixed observer is consistently WSOLA. This suggests a new blind spot class: small modulation that is too subtle for coarse preflight risk but still hostile to period-based time-domain shifting.
 
+## Experiment 12
+
+`experiments/12_micro_modulation_preflight.py` tests a repair for Experiment 11.
+
+It adds three micro-modulation descriptors to the source feature set:
+
+- `pitch_modulation_rms_cents`
+- `pitch_modulation_peak_rate_hz`
+- `pitch_modulation_peak_strength`
+
+The new modulation-aware preflight rule asks whether a signal looks stable and periodic overall, but still has a coherent low-amplitude pitch modulation peak.
+
+Outputs:
+
+- `artifacts/12_micro_modulation_predictions.csv`
+- `artifacts/12_micro_modulation_summary.csv`
+- `artifacts/12_micro_modulation_preflight_map.png`
+
+Current result on the Experiment 11 grid:
+
+- baseline recall: `0.790`
+- modulation-aware recall: `1.000`
+- baseline false negatives: `17`
+- modulation-aware false negatives: `0`
+- modulation-aware precision: `0.579`
+
+This suggests that the subtle modulation trap is detectable before pitch shifting, but only with a descriptor designed for coherent micro-motion. Broad pitch stability metrics alone miss it.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.

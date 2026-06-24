@@ -12,6 +12,9 @@ class SignalFeatures:
     pitch_valid_fraction: float
     median_pitch_hz: float
     pitch_iqr_cents: float
+    pitch_modulation_rms_cents: float
+    pitch_modulation_peak_rate_hz: float
+    pitch_modulation_peak_strength: float
     spectral_flatness: float
     spectral_centroid_hz: float
     spectral_bandwidth_hz: float
@@ -36,9 +39,14 @@ def _stft_magnitude(y: np.ndarray, n_fft: int = 1024, hop_length: int = 256) -> 
     return np.abs(np.fft.rfft(frames * window, axis=1).T)
 
 
-def pitch_summary(y: np.ndarray, sr: int) -> tuple[float, float, float]:
+def _pitch_track(y: np.ndarray, sr: int) -> tuple[np.ndarray, np.ndarray]:
     frames = framewise_autocorrelation_f0(y, sr=sr, fmin=55.0, fmax=1200.0, confidence_threshold=0.14)
+    times = np.array([frame["time_seconds"] for frame in frames], dtype=np.float64)
     values = np.array([frame["f0_hz"] for frame in frames], dtype=np.float64)
+    return times, values
+
+
+def _pitch_summary_from_values(values: np.ndarray) -> tuple[float, float, float]:
     clean = values[np.isfinite(values)]
     valid_fraction = float(clean.size / max(values.size, 1))
     if clean.size == 0:
@@ -47,6 +55,48 @@ def pitch_summary(y: np.ndarray, sr: int) -> tuple[float, float, float]:
     log_values = 1200.0 * np.log2(np.maximum(clean, 1e-9) / max(median, 1e-9))
     iqr_cents = float(np.percentile(log_values, 75) - np.percentile(log_values, 25))
     return valid_fraction, median, iqr_cents
+
+
+def pitch_summary(y: np.ndarray, sr: int) -> tuple[float, float, float]:
+    _, values = _pitch_track(y, sr=sr)
+    return _pitch_summary_from_values(values)
+
+
+def _pitch_modulation_from_values(times: np.ndarray, values: np.ndarray) -> tuple[float, float, float]:
+    clean_mask = np.isfinite(values)
+    clean = values[clean_mask]
+    if clean.size < 8 or times.size < 8:
+        return np.nan, np.nan, 0.0
+
+    median = float(np.median(clean))
+    if median <= 0.0:
+        return np.nan, np.nan, 0.0
+
+    filled = values.copy()
+    if not np.all(clean_mask):
+        filled[~clean_mask] = np.interp(times[~clean_mask], times[clean_mask], clean)
+    cents = 1200.0 * np.log2(np.maximum(filled, 1e-9) / median)
+    cents = cents - np.mean(cents)
+    modulation_rms = float(np.sqrt(np.mean(cents**2)))
+    if modulation_rms <= 1e-9:
+        return modulation_rms, 0.0, 0.0
+
+    dt = float(np.median(np.diff(times)))
+    if dt <= 0.0:
+        return modulation_rms, 0.0, 0.0
+
+    spectrum = np.abs(np.fft.rfft(cents * np.hanning(cents.size)))
+    freqs = np.fft.rfftfreq(cents.size, d=dt)
+    band = (freqs >= 1.0) & (freqs <= 12.0)
+    if not np.any(band):
+        return modulation_rms, 0.0, 0.0
+
+    band_spectrum = spectrum[band]
+    band_freqs = freqs[band]
+    peak_index = int(np.argmax(band_spectrum))
+    total = float(np.sum(band_spectrum))
+    peak_strength = float(band_spectrum[peak_index] / max(total, 1e-12))
+    return modulation_rms, float(band_freqs[peak_index]), peak_strength
 
 
 def spectral_flatness(y: np.ndarray) -> float:
@@ -110,12 +160,17 @@ def _zero_crossing_rate(y: np.ndarray) -> float:
 
 
 def compute_signal_features(y: np.ndarray, sr: int) -> SignalFeatures:
-    valid_fraction, median_pitch, iqr_cents = pitch_summary(y, sr=sr)
+    pitch_times, pitch_values = _pitch_track(y, sr=sr)
+    valid_fraction, median_pitch, iqr_cents = _pitch_summary_from_values(pitch_values)
+    modulation_rms, modulation_rate, modulation_strength = _pitch_modulation_from_values(pitch_times, pitch_values)
     centroid, bandwidth = _spectral_moments(y, sr=sr)
     return SignalFeatures(
         pitch_valid_fraction=valid_fraction,
         median_pitch_hz=median_pitch,
         pitch_iqr_cents=iqr_cents,
+        pitch_modulation_rms_cents=modulation_rms,
+        pitch_modulation_peak_rate_hz=modulation_rate,
+        pitch_modulation_peak_strength=modulation_strength,
         spectral_flatness=spectral_flatness(y),
         spectral_centroid_hz=centroid,
         spectral_bandwidth_hz=bandwidth,
