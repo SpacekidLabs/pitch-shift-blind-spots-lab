@@ -51,3 +51,5 @@
 - Compare conservative and selective adaptive modes as separate product behaviors
 - Test adaptive selectors on the full stress atlas after narrow-grid tuning
 - Add fallback-specific guards for cases where the safe algorithm has its own blind spot
+- Add noise-specific dry/wet fallback guards for unpitched material
+- Treat fallback guards as separate from algorithm selection

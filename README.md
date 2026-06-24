@@ -587,6 +587,38 @@ Current result:
 
 The remaining v2 catastrophic case is inherited from the Phase Vocoder fallback on `white_noise` at `-12` semitones. This is an important limitation: adaptive routing can avoid choosing the wrong observer, but it cannot eliminate blind spots in the fallback observer itself.
 
+## Experiment 17
+
+`experiments/17_noise_fallback_guard.py` tests a fallback-specific guard for the remaining broad-atlas failure from Experiment 16.
+
+Question:
+
+```text
+Can a dry/wet guard remove the Phase Vocoder fallback failure on noise?
+```
+
+It sweeps Phase Vocoder dry/wet blending on noise-like atlas signals:
+
+- dry mix: `0.00`, `0.05`, `0.10`, `0.15`, `0.20`, `0.30`, `0.40`
+- signals: `white_noise`, `pink_noise`
+- shifts: `+3`, `+7`, `+12`, `-12`
+
+Outputs:
+
+- `artifacts/17_noise_guard_results.csv`
+- `artifacts/17_noise_guard_dry_mix_summary.csv`
+- `artifacts/17_noise_guard_summary.csv`
+- `artifacts/17_noise_guard_map.png`
+
+Current result:
+
+- best dry mix: `0.40`
+- catastrophic cases at `0.00` dry: `5`
+- catastrophic cases at `0.40` dry: `0`
+- mean stress at `0.40` dry: `0.109`
+
+This suggests that fallback failure needs its own guard layer. Routing to the safest observer is not enough when the fallback observer has a blind spot on unpitched/noise-like material.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.
