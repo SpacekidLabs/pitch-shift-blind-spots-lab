@@ -40,6 +40,8 @@ Experiment 04 tests the Ambiguity Hypothesis directly:
 
 - Does algorithm disagreement increase as pitch ambiguity increases?
 
+Experiment 05 zooms in around the observed ambiguity peaks and asks whether disagreement behaves like a critical boundary between one pitch and obviously multiple pitches.
+
 ## Repository Layout
 
 - `signals/` synthetic signal generators
@@ -162,6 +164,32 @@ Outputs:
 - `artifacts/04_ambiguity_plot.png`
 
 This experiment treats pitch ambiguity as the independent variable and algorithm disagreement as the measured response.
+
+## Experiment 05
+
+`experiments/05_critical_ambiguity_zoom.py` focuses tightly around the Experiment 04 peaks.
+
+Fine sweeps:
+
+- two oscillators: `440 + 440.0` through `440 + 443`
+- vibrato depth: `0` through `2` semitones
+- beating rate: `0.1` through `5` Hz
+
+Additional measurements:
+
+- `peak_disagreement_location`
+- `peak_width` above 90% of peak disagreement
+- `half_max_width` above 50% of peak disagreement
+
+Outputs:
+
+- `artifacts/05_results.csv`
+- `artifacts/05_disagreement_landscape.csv`
+- `artifacts/05_ambiguity_summary.csv`
+- `artifacts/05_peak_metrics.csv`
+- `artifacts/05_critical_ambiguity_plot.png`
+
+This experiment tests whether the most interesting signals live near the boundary between a single pitch interpretation and clearly competing pitch interpretations.
 
 ## Roadmap
 

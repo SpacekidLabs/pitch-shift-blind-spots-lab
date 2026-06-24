@@ -1,0 +1,4 @@
+sweep_family,ambiguity_units,peak_case_id,peak_disagreement_location,peak_disagreement,peak_shift_semitones,peak_width,peak_width_threshold,half_max_width,half_max_threshold
+critical_beating_rate,Hz beat rate,critical_beating_rate_0_5hz,0.5,0.07811422535839496,-12,1.7610564663301345,0.07030280282255547,4.9,0.03905711267919748
+critical_two_oscillators,Hz separation,critical_two_oscillators_2_0hz,2.0,0.0698350657817573,-12,1.781534974953155,0.06285155920358157,2.730701763415185,0.03491753289087865
+critical_vibrato_depth,semitones,critical_vibrato_depth_1_0st,1.0,0.0694224331722557,-12,0.26456456465440314,0.062480189855030135,2.0,0.03471121658612785

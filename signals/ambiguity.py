@@ -129,3 +129,54 @@ def build_ambiguity_sweep(sr: int = 22050, duration: float = 2.0) -> list[Ambigu
 
     return cases
 
+
+def build_critical_ambiguity_sweep(sr: int = 22050, duration: float = 2.0) -> list[AmbiguityCase]:
+    cases: list[AmbiguityCase] = []
+
+    for separation in [0.0, 0.2, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0]:
+        second = 440.0 + separation
+        safe_value = str(separation).replace(".", "_")
+        case_id = f"critical_two_oscillators_{safe_value}hz"
+        cases.append(
+            AmbiguityCase(
+                case_id=case_id,
+                family="critical_two_oscillators",
+                label=f"440 + {second:g}",
+                ambiguity_amount=separation,
+                ambiguity_units="Hz separation",
+                params={"frequencies_hz": f"440,{second:g}", "separation_hz": separation},
+                audio=_sum_oscillators([440.0, second], sr=sr, duration=duration),
+            )
+        )
+
+    for depth in [0.0, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 2.0]:
+        safe_value = str(depth).replace(".", "_")
+        case_id = f"critical_vibrato_depth_{safe_value}st"
+        cases.append(
+            AmbiguityCase(
+                case_id=case_id,
+                family="critical_vibrato_depth",
+                label=f"{depth:g} semitones",
+                ambiguity_amount=depth,
+                ambiguity_units="semitones",
+                params={"base_hz": 440.0, "depth_semitones": depth, "rate_hz": 5.5},
+                audio=_vibrato(440.0, depth, sr=sr, duration=duration),
+            )
+        )
+
+    for rate in [0.1, 0.25, 0.5, 1.0, 2.0, 3.0, 4.0, 5.0]:
+        safe_value = str(rate).replace(".", "_")
+        case_id = f"critical_beating_rate_{safe_value}hz"
+        cases.append(
+            AmbiguityCase(
+                case_id=case_id,
+                family="critical_beating_rate",
+                label=f"{rate:g} Hz",
+                ambiguity_amount=rate,
+                ambiguity_units="Hz beat rate",
+                params={"frequencies_hz": f"440,{440 + rate:g}", "beat_rate_hz": rate},
+                audio=_sum_oscillators([440.0, 440.0 + rate], sr=sr, duration=duration, phases=[0.0, np.pi / 3.0]),
+            )
+        )
+
+    return cases

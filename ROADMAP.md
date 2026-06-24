@@ -22,6 +22,7 @@
 - Add Blind Spot Discovery with generated candidate signals
 - Search directly for signals that maximize algorithm disagreement
 - Test the Ambiguity Hypothesis with controlled oscillator and modulation sweeps
+- Zoom in on critical ambiguity zones and measure peak width
 - Group failure modes by signal structure
 - Separate transient loss, timbral smear, and harmonic drift
 - Track which structures survive across representations
