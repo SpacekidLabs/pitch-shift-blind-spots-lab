@@ -387,6 +387,38 @@ Current result:
 
 The predictor is intentionally conservative. It catches almost every catastrophic fixed-algorithm case, but over-flags many strange signals. The one miss is revealing: low-depth `vibrato_tone` at `+3 semitones` looks stable in source-only features, but still breaks a fixed observer. That suggests subtle modulation needs a better preflight descriptor.
 
+## Experiment 11
+
+`experiments/11_subtle_modulation_trap.py` zooms in on the false negative from Experiment 10.
+
+It sweeps vibrato tones across:
+
+- depths: `0`, `0.025`, `0.05`, `0.1`, `0.2`, `0.35`, `0.5`, `0.75`, `1.0` semitones
+- rates: `2`, `4`, `5.5`, `8` Hz
+- shifts: `+3`, `+7`, `+12`, `-12` semitones
+
+It compares fixed Phase Vocoder, PSOLA, WSOLA, and Rubber Band, then asks:
+
+```text
+Where does subtle modulation masquerade as stable periodicity?
+```
+
+Outputs:
+
+- `artifacts/11_results.csv`
+- `artifacts/11_modulation_cases.csv`
+- `artifacts/11_modulation_trap_summary.csv`
+- `artifacts/11_subtle_modulation_trap_map.png`
+
+Current result:
+
+- recall: `0.790`
+- missed cases: `17`
+- missed depths: `0.025` to `0.75` semitones
+- missed rates: `2`, `4`, `5.5`, `8` Hz
+
+The missed cases cluster at `+3 semitones`, and the worst fixed observer is consistently WSOLA. This suggests a new blind spot class: small modulation that is too subtle for coarse preflight risk but still hostile to period-based time-domain shifting.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.

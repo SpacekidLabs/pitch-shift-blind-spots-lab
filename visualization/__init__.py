@@ -5,6 +5,7 @@ from .critical_ambiguity_plot import save_critical_ambiguity_plot
 from .disagreement_heatmap import save_disagreement_heatmap
 from .discovery_heatmap import save_discovery_heatmap
 from .heatmap import save_stress_heatmap
+from .modulation_trap_plot import save_modulation_trap_plot
 from .observer_state_plot import save_observer_state_plot
 from .octave_preference_plot import save_octave_preference_map
 from .preflight_risk_plot import save_preflight_risk_plot
@@ -16,6 +17,7 @@ __all__ = [
     "save_critical_ambiguity_plot",
     "save_disagreement_heatmap",
     "save_discovery_heatmap",
+    "save_modulation_trap_plot",
     "save_observer_state_plot",
     "save_octave_preference_map",
     "save_preflight_risk_plot",

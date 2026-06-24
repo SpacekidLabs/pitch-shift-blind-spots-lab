@@ -10,6 +10,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
+from metrics.preflight_risk import HIGH_RISK_THRESHOLD, preflight_risk_score, risk_level
 from metrics.signal_features import compute_signal_features
 from signals.library import SIGNAL_SPECS, build_signal_atlas
 from visualization.preflight_risk_plot import save_preflight_risk_plot
@@ -19,98 +20,6 @@ SR = 22050
 DURATION = 2.0
 SHIFT_STEPS = [3, 7, 12, -12]
 FIXED_ALGORITHMS = {"phase_vocoder", "psola", "wsola", "rubber_band"}
-
-
-def _risk_level(score: float) -> str:
-    if score >= 0.32:
-        return "high"
-    if score >= 0.18:
-        return "medium"
-    return "low"
-
-
-def _finite(value: float, fallback: float = 0.0) -> float:
-    return float(value) if np.isfinite(value) else fallback
-
-
-def _preflight_risk_score(features: dict[str, float], shift: int) -> tuple[float, str]:
-    score = 0.0
-    reasons = []
-
-    pitch_valid = _finite(features["pitch_valid_fraction"])
-    if pitch_valid < 0.20:
-        score += 0.30
-        reasons.append("untracked_pitch")
-    elif pitch_valid < 0.65:
-        score += 0.15
-        reasons.append("partial_pitch_tracking")
-
-    pitch_iqr = _finite(features["pitch_iqr_cents"])
-    if pitch_iqr > 300.0:
-        score += 0.30
-        reasons.append("unstable_pitch")
-    elif pitch_iqr > 150.0:
-        score += 0.25
-        reasons.append("strong_pitch_motion")
-    elif pitch_iqr > 80.0:
-        score += 0.15
-        reasons.append("pitch_motion")
-
-    flatness = _finite(features["spectral_flatness"])
-    if pitch_valid > 0.95 and flatness < 0.02:
-        score += 0.25
-        reasons.append("periodic_representation_bias")
-    if flatness > 0.45:
-        score += 0.30
-        reasons.append("noise_like_spectrum")
-    elif flatness > 0.12:
-        score += 0.15
-        reasons.append("diffuse_spectrum")
-
-    transient = _finite(features["transient_score"])
-    if transient > 120.0:
-        score += 0.22
-        reasons.append("sparse_transients")
-    elif transient > 18.0:
-        score += 0.12
-        reasons.append("transient_energy")
-
-    bandwidth = _finite(features["spectral_bandwidth_hz"])
-    centroid = _finite(features["spectral_centroid_hz"])
-    if bandwidth > 2500.0:
-        score += 0.20
-        reasons.append("broadband_structure")
-    elif bandwidth > 1400.0:
-        score += 0.12
-        reasons.append("wide_harmonic_structure")
-    elif bandwidth > 800.0 and flatness < 0.02:
-        score += 0.20
-        reasons.append("sharp_harmonic_structure")
-    if centroid > 2600.0:
-        score += 0.08
-        reasons.append("high_centroid")
-
-    crest = _finite(features["crest_factor"])
-    if crest > 12.0:
-        score += 0.12
-        reasons.append("high_crest_factor")
-    elif crest > 5.0:
-        score += 0.06
-        reasons.append("peaky_waveform")
-
-    zero_crossing = _finite(features["zero_crossing_rate"])
-    if zero_crossing > 0.22:
-        score += 0.08
-        reasons.append("dense_zero_crossings")
-
-    if abs(shift) >= 12:
-        score += 0.20
-        reasons.append("large_shift")
-    elif abs(shift) >= 7:
-        score += 0.08
-        reasons.append("moderate_shift")
-
-    return min(score, 1.0), "|".join(reasons) if reasons else "stable_source"
 
 
 def _load_fixed_results() -> tuple[pd.DataFrame, float]:
@@ -129,7 +38,7 @@ def _build_predictions(features: pd.DataFrame, fixed_results: pd.DataFrame, thre
         feature_dict = feature_row.to_dict()
         signal_rows = fixed_results[fixed_results["signal_name"] == feature_row["signal_name"]]
         for shift in SHIFT_STEPS:
-            risk_score, reasons = _preflight_risk_score(feature_dict, shift)
+            risk_score, reasons = preflight_risk_score(feature_dict, shift)
             fixed_shift = signal_rows[signal_rows["shift_semitones"] == shift]
             worst = fixed_shift.sort_values("composite_stress", ascending=False).iloc[0]
             safest = fixed_shift.sort_values("composite_stress", ascending=True).iloc[0]
@@ -141,8 +50,8 @@ def _build_predictions(features: pd.DataFrame, fixed_results: pd.DataFrame, thre
                     "signal_label": feature_row["signal_label"],
                     "shift_semitones": shift,
                     "preflight_risk_score": risk_score,
-                    "preflight_risk_level": _risk_level(risk_score),
-                    "preflight_high_risk": risk_score >= 0.32,
+                    "preflight_risk_level": risk_level(risk_score),
+                    "preflight_high_risk": risk_score >= HIGH_RISK_THRESHOLD,
                     "preflight_reasons": reasons,
                     "catastrophic_threshold": threshold,
                     "catastrophic_fixed_count": catastrophic_count,

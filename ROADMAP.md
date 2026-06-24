@@ -39,3 +39,5 @@
 - Track catastrophic-failure avoidance separately from average quality
 - Replace expensive observer probes with source-only preflight risk features
 - Add better subtle-modulation descriptors for low-depth vibrato failures
+- Detect small modulation traps that masquerade as stable periodicity
+- Add WSOLA-specific preflight warnings for period-tracking fragility
