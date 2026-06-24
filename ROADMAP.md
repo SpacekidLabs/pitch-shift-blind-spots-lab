@@ -37,3 +37,5 @@
 - Build a compact blind-spot classifier for future experiments
 - Prototype adaptive pitch-shifting rules that avoid known blind spots
 - Track catastrophic-failure avoidance separately from average quality
+- Replace expensive observer probes with source-only preflight risk features
+- Add better subtle-modulation descriptors for low-depth vibrato failures

@@ -7,6 +7,7 @@ from .discovery_heatmap import save_discovery_heatmap
 from .heatmap import save_stress_heatmap
 from .observer_state_plot import save_observer_state_plot
 from .octave_preference_plot import save_octave_preference_map
+from .preflight_risk_plot import save_preflight_risk_plot
 
 __all__ = [
     "save_adaptive_selector_plot",
@@ -17,5 +18,6 @@ __all__ = [
     "save_discovery_heatmap",
     "save_observer_state_plot",
     "save_octave_preference_map",
+    "save_preflight_risk_plot",
     "save_stress_heatmap",
 ]

@@ -353,6 +353,40 @@ Outputs:
 
 The success criterion is not winning every row. The goal is avoiding catastrophic failures. In the current atlas run, `Adaptive Selector v0` has zero catastrophic cases under the fixed-algorithm stress threshold, while still not being the lowest-mean-stress method overall.
 
+## Experiment 10
+
+`experiments/10_preflight_failure_prediction.py` asks whether catastrophic pitch-shift risk can be predicted before processing.
+
+Experiment 09 used observer probes from all pitch shifters before selecting an algorithm. That is useful for research, but expensive for a real adaptive shifter. Experiment 10 uses only source-audio features plus shift size:
+
+- pitch tracking validity
+- pitch stability
+- spectral flatness
+- spectral centroid
+- spectral bandwidth
+- transient score
+- crest factor
+- zero-crossing rate
+- shift amount
+
+It predicts whether any fixed algorithm is likely to cross the catastrophic stress threshold.
+
+Outputs:
+
+- `artifacts/10_preflight_features.csv`
+- `artifacts/10_preflight_risk_predictions.csv`
+- `artifacts/10_preflight_evaluation.csv`
+- `artifacts/10_preflight_signal_summary.csv`
+- `artifacts/10_preflight_risk_map.png`
+
+Current result:
+
+- recall: `0.947`
+- precision: `0.429`
+- false negatives: `1`
+
+The predictor is intentionally conservative. It catches almost every catastrophic fixed-algorithm case, but over-flags many strange signals. The one miss is revealing: low-depth `vibrato_tone` at `+3 semitones` looks stable in source-only features, but still breaks a fixed observer. That suggests subtle modulation needs a better preflight descriptor.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.

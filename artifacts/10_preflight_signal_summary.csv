@@ -1,0 +1,12 @@
+signal_family,signal_name,signal_label,actual_catastrophic_cases,predicted_high_risk_cases,caught_catastrophic_cases,signal_recall,mean_preflight_risk_score,max_preflight_risk_score,dominant_reasons
+inharmonic,bell_resonator,inharmonic / bell_resonator,1,4,1,1.0,0.985,1.0,broadband_structure|dense_zero_crossings|diffuse_spectrum|high_centroid|large_shift|moderate_shift|partial_pitch_tracking|peaky_waveform|sparse_transients
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,0,4,0,0.0,0.965,1.0,high_crest_factor|large_shift|moderate_shift|periodic_representation_bias|sparse_transients|unstable_pitch
+noise,white_noise,noise / white_noise,2,4,2,1.0,0.99,1.0,broadband_structure|dense_zero_crossings|high_centroid|large_shift|moderate_shift|noise_like_spectrum|untracked_pitch
+transient,impulse_train,transient / impulse_train,0,4,0,0.0,1.0,1.0,high_centroid|high_crest_factor|large_shift|moderate_shift|noise_like_spectrum|sparse_transients|untracked_pitch
+transient,click_sequence,transient / click_sequence,0,4,0,0.0,0.96,1.0,large_shift|moderate_shift|noise_like_spectrum|peaky_waveform|sparse_transients|untracked_pitch
+noise,pink_noise,noise / pink_noise,1,4,1,1.0,0.8,0.8800000000000001,broadband_structure|diffuse_spectrum|high_centroid|large_shift|moderate_shift|strong_pitch_motion
+harmonic,square,harmonic / square,4,4,4,1.0,0.65,0.73,broadband_structure|high_centroid|large_shift|moderate_shift|periodic_representation_bias
+modulated,fm_tone,modulated / fm_tone,2,4,2,1.0,0.62,0.7,large_shift|moderate_shift|periodic_representation_bias|strong_pitch_motion
+harmonic,saw,harmonic / saw,4,4,4,1.0,0.57,0.65,large_shift|moderate_shift|periodic_representation_bias|sharp_harmonic_structure
+harmonic,sine,harmonic / sine,2,3,2,1.0,0.37,0.45,large_shift|moderate_shift|periodic_representation_bias
+modulated,vibrato_tone,modulated / vibrato_tone,3,3,2,0.6666666666666666,0.37,0.45,large_shift|moderate_shift|periodic_representation_bias
