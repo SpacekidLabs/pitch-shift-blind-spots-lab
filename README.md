@@ -652,10 +652,51 @@ Current result:
 - `Preflight Adaptive v2` catastrophic cases: `1`
 - Phase Vocoder catastrophic cases: `1`
 - PSOLA catastrophic cases: `2`
-- Rubber Band catastrophic cases: `6`
-- WSOLA catastrophic cases: `18`
+- Rubber Band catastrophic cases: `7`
+- WSOLA catastrophic cases: `17`
 
 The v3 selector keeps the v2 routing policy, then applies a dry/wet fallback guard for large-shift unpitched or noise-like cases routed to Phase Vocoder. This removes the remaining broad-atlas adaptive catastrophe without turning the selector into a single fixed algorithm.
+
+## Experiment 19
+
+`experiments/19_guard_audit.py` audits whether the v3 fallback guard is useful or just over-conservative.
+
+Question:
+
+```text
+Does the fallback guard avoid catastrophes without suppressing the shift?
+```
+
+It reuses the v3 guard-triggered cases from Experiment 18 and sweeps:
+
+- dry mix: `0.00`, `0.10`, `0.20`, `0.30`, `0.40`, `0.50`, `0.60`, `0.70`, `0.85`, `1.00`
+
+It measures:
+
+- composite stress
+- catastrophic count
+- shift retention
+- dry/source similarity
+- peak preservation
+- guard audit score
+
+Outputs:
+
+- `artifacts/19_guard_audit_results.csv`
+- `artifacts/19_guard_audit_summary.csv`
+- `artifacts/19_guard_audit_case_summary.csv`
+- `artifacts/19_guard_audit_plot.png`
+
+Current result:
+
+- best compromise dry mix: `0.10`
+- catastrophic cases at `0.00` dry: `1`
+- catastrophic cases at `0.10` dry: `0`
+- mean stress at `0.10` dry: `0.101`
+- mean shift retention at `0.10` dry: `0.920`
+- guard audit score at `0.10` dry: `0.819`
+
+This refines the guard from Experiment 17. A heavy guard can reduce metrics by drifting toward the dry signal, but the more interesting behavior is the smallest guard that removes catastrophe while preserving the pitch-shift action. For the current atlas, that boundary is around `0.10` dry mix.
 
 ## Roadmap
 

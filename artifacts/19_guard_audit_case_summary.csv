@@ -1,0 +1,7 @@
+case_label,signal_family,signal_name,shift_semitones,best_dry_mix,best_composite_stress,best_shift_retention,best_dry_similarity,best_peak_preservation
+noise / white_noise +12,noise,white_noise,12,0.1,0.10043922563479969,1.0179185534464574,0.0,0.751947064768945
+noise / white_noise -12,noise,white_noise,-12,0.1,0.3440691093708616,0.8953696760138651,0.0,0.5427535990416151
+transient / impulse_train +12,transient,impulse_train,12,0.0,0.009582272528796138,1.0,0.0,0.9619908541133363
+transient / impulse_train -12,transient,impulse_train,-12,0.1,0.11207684585937365,0.8913994324288543,0.0,0.6118690496046475
+transient / click_sequence +12,transient,click_sequence,12,0.0,0.03192120989056547,1.0,0.0,0.6696090754496942
+transient / click_sequence -12,transient,click_sequence,-12,0.0,0.027652524238251517,1.0,0.0,0.2991939394932993

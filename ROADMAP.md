@@ -55,3 +55,5 @@
 - Treat fallback guards as separate from algorithm selection
 - Combine adaptive routing with fallback guards in a v3 selector
 - Validate that guarded adaptive selectors avoid inherited fallback catastrophes
+- Audit fallback guards for over-conservative dry blending
+- Prefer the smallest effective guard that prevents catastrophe while retaining shift behavior
