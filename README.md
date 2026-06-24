@@ -23,16 +23,16 @@ The goal is to map where representations break:
 
 Experiment 01 creates a synthetic stress atlas and runs it through a single pitch-shifting path based on a phase vocoder.
 
-Experiment 02 runs the same atlas through four algorithm families:
+Experiment 02 runs the same atlas through four algorithm families and measures where they disagree:
 
 - Phase Vocoder
 - WSOLA
 - Rubber Band
 - PSOLA
 
-It asks a more interesting question than "which one wins?":
+It asks:
 
-- Do these algorithms fail on the same structures?
+- Which structures maximize disagreement between pitch-shifting algorithms?
 
 ## Repository Layout
 
@@ -74,7 +74,15 @@ Outputs:
 
 ## Experiment 02
 
-`experiments/02_algorithm_comparison.py` reuses the exact same synthetic atlas and metrics, then compares:
+`experiments/02_algorithm_disagreement_landscape.py` reuses the exact same synthetic atlas and metrics, then computes:
+
+```text
+algorithm_disagreement = variance(composite_stress across algorithms)
+```
+
+The point is not to crown the best pitch shifter. The point is to find the signals that expose incompatible assumptions across representations.
+
+Algorithms:
 
 - Phase Vocoder
 - WSOLA
@@ -84,9 +92,11 @@ Outputs:
 Outputs:
 
 - `artifacts/02_results.csv`
+- `artifacts/02_disagreement_landscape.csv`
+- `artifacts/02_disagreement_summary.csv`
 - `artifacts/02_heatmap.png`
 
-The comparison figure is arranged by algorithm and metric so the blind spots are easier to compare side by side.
+The signals with the highest disagreement are the blind spot candidates for deeper analysis.
 
 ## Roadmap
 

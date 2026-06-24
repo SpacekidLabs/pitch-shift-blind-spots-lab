@@ -6,15 +6,16 @@
 - Map distortion under a single phase-vocoder pipeline
 - Identify which structures are fragile under pitch shift
 
-## Phase 2: Algorithm Comparison
+## Phase 2: Algorithm Disagreement Landscape
 
 - Reuse the stress atlas across multiple algorithm families
 - Add WSOLA
 - Add PSOLA
 - Add Rubber Band
 - Add a neural pitch shifter
-- Compare failure shapes across methods
-- Ask whether the same signal structures break every family
+- Compute disagreement as variance of composite stress across algorithms
+- Rank signals by disagreement instead of algorithm performance
+- Use high-disagreement signals as blind spot candidates
 
 ## Phase 3: Blind Spot Taxonomy
 

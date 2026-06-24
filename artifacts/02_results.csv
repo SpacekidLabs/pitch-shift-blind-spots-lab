@@ -1,177 +1,177 @@
-signal_family,signal_name,signal_label,algorithm,algorithm_label,implementation,shift_semitones,rms_error,spectral_distance,spectral_centroid_difference
-harmonic,saw,harmonic / saw,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.5795772719572991,0.7499225880332745,502.2338983159349
-harmonic,saw,harmonic / saw,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.4824536802198902,0.8956925980537976,310.89751098580183
-harmonic,saw,harmonic / saw,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.4835360442843951,0.8637156866805997,666.5285608896255
-harmonic,saw,harmonic / saw,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.4786545091954336,0.7209688146921078,1226.613388107646
-harmonic,sine,harmonic / sine,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.8871163912181584,0.4734428227057045,110.39297935538906
-harmonic,sine,harmonic / sine,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.656937951760593,0.3355213268479526,48.50482749480613
-harmonic,sine,harmonic / sine,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.6558912929173847,0.4135466005078451,120.95591754866206
-harmonic,sine,harmonic / sine,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.6462370717358121,0.41977981369512296,228.6409506290908
-harmonic,square,harmonic / square,phase_vocoder,Phase Vocoder,local phase vocoder,-12,1.253861479939483,1.1203287089033085,1707.4653124308663
-harmonic,square,harmonic / square,phase_vocoder,Phase Vocoder,local phase vocoder,3,1.037411313657616,0.9725105060616916,168.87059376193994
-harmonic,square,harmonic / square,phase_vocoder,Phase Vocoder,local phase vocoder,7,1.0360443343529675,1.0028411654225309,241.1546959940324
-harmonic,square,harmonic / square,phase_vocoder,Phase Vocoder,local phase vocoder,12,1.0353915279528232,0.9917365664719014,506.87453151443196
-inharmonic,bell_resonator,inharmonic / bell_resonator,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.10193964014468132,0.2753245090912441,2263.885533767095
-inharmonic,bell_resonator,inharmonic / bell_resonator,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.09311557228130384,0.2609770172660812,205.78764260767593
-inharmonic,bell_resonator,inharmonic / bell_resonator,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.09280600315707227,0.2665856980156342,108.29201650511658
-inharmonic,bell_resonator,inharmonic / bell_resonator,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.0931700838681044,0.2615753872501699,235.5784578310202
-inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.10099672758884098,0.3127077600308007,817.5956548974077
-inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.09690930388653933,0.27363528820744143,246.86806528949631
-inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.09704271036893113,0.2806621848958386,869.279968039105
-inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.09724620025961983,0.31532286971175266,1751.0577928747502
-modulated,fm_tone,modulated / fm_tone,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.7517675417950697,0.4595166060719012,90.49720077361376
-modulated,fm_tone,modulated / fm_tone,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.7686922749837479,0.3189800487689746,39.51036123574788
-modulated,fm_tone,modulated / fm_tone,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.7718918378104944,0.4650604427501373,98.11996863137037
-modulated,fm_tone,modulated / fm_tone,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.845715068843548,0.5306306279288109,185.06778809920584
-modulated,vibrato_tone,modulated / vibrato_tone,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.8464311644180282,0.4719868107882539,110.83853217015526
-modulated,vibrato_tone,modulated / vibrato_tone,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.6843675392623606,0.3459836338393653,45.832118851770325
-modulated,vibrato_tone,modulated / vibrato_tone,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.6799555808841794,0.44920585799996565,114.74046344584411
-modulated,vibrato_tone,modulated / vibrato_tone,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.7010099637968117,0.4926229082000781,226.322608182214
-noise,pink_noise,noise / pink_noise,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.24050667345517507,0.7683704634676063,1701.1076163375415
-noise,pink_noise,noise / pink_noise,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.21360344687931498,0.60705408507311,270.74120225322935
-noise,pink_noise,noise / pink_noise,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.27601820257178206,0.6121499480039768,127.09634048969282
-noise,pink_noise,noise / pink_noise,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.2666556201857299,0.6074447549026454,292.8737116405034
-noise,white_noise,noise / white_noise,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.2382796828515766,1.1367982523121154,2471.2711482261243
-noise,white_noise,noise / white_noise,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.2389966156403345,0.8116528431572739,263.1478947289417
-noise,white_noise,noise / white_noise,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.24095091691245993,0.8177423191058084,73.52350497450597
-noise,white_noise,noise / white_noise,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.250365419852364,0.7825103604947405,82.27883485513804
-transient,click_sequence,transient / click_sequence,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.08943885017858422,0.3360734551127561,86.39302775143344
-transient,click_sequence,transient / click_sequence,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.09632324048719003,0.219616847106497,97.82008991214859
-transient,click_sequence,transient / click_sequence,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.09855735009298286,0.23197760581446056,158.35750335906948
-transient,click_sequence,transient / click_sequence,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.09996808147926635,0.2706163673807263,227.81600431615
-transient,impulse_train,transient / impulse_train,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.0228977898628095,0.41069422256621096,1990.122461121574
-transient,impulse_train,transient / impulse_train,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.023296110499582592,0.29381479008952466,500.5376637446561
-transient,impulse_train,transient / impulse_train,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.0237066208247287,0.2711043539487292,194.49582721184652
-transient,impulse_train,transient / impulse_train,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.023637316192103405,0.2773870306177653,3.2669869201981365
-harmonic,saw,harmonic / saw,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.5140425601511004,0.6084239116294462,1149.8231001527831
-harmonic,saw,harmonic / saw,psola,PSOLA,local pitch-synchronous overlap-add,3,0.48682142824530994,0.8611344741266238,456.800194541705
-harmonic,saw,harmonic / saw,psola,PSOLA,local pitch-synchronous overlap-add,7,0.4607517884772314,0.788554224034966,484.8622713992127
-harmonic,saw,harmonic / saw,psola,PSOLA,local pitch-synchronous overlap-add,12,0.4572800584681837,0.7972197634154633,861.2058746307995
-harmonic,sine,harmonic / sine,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.7479910040017748,0.3957540560819043,214.99076767852594
-harmonic,sine,harmonic / sine,psola,PSOLA,local pitch-synchronous overlap-add,3,0.6958645879355826,0.490083143547397,766.396639419815
-harmonic,sine,harmonic / sine,psola,PSOLA,local pitch-synchronous overlap-add,7,0.6497438047447877,0.45226250319643185,871.4056829568286
-harmonic,sine,harmonic / sine,psola,PSOLA,local pitch-synchronous overlap-add,12,0.6363001150822565,0.37061838822861176,163.04731757910548
-harmonic,square,harmonic / square,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.781990532855476,0.7430726135006336,454.4632240164327
-harmonic,square,harmonic / square,psola,PSOLA,local pitch-synchronous overlap-add,3,0.9775270034945174,1.0407158996445354,599.4182686887501
-harmonic,square,harmonic / square,psola,PSOLA,local pitch-synchronous overlap-add,7,0.8901516677882833,1.0713811937991875,1101.207289102461
-harmonic,square,harmonic / square,psola,PSOLA,local pitch-synchronous overlap-add,12,0.9001169008745827,1.1728083601557915,2570.087472810794
-inharmonic,bell_resonator,inharmonic / bell_resonator,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.09609260845930814,0.3425646501384232,1017.5249954622449
-inharmonic,bell_resonator,inharmonic / bell_resonator,psola,PSOLA,local pitch-synchronous overlap-add,3,0.07692061176709684,0.24193155696198204,1531.4041136129156
-inharmonic,bell_resonator,inharmonic / bell_resonator,psola,PSOLA,local pitch-synchronous overlap-add,7,0.07425836453645358,0.2275195519683004,2482.7223139081534
-inharmonic,bell_resonator,inharmonic / bell_resonator,psola,PSOLA,local pitch-synchronous overlap-add,12,0.06992017609055552,0.21848567457850487,3201.6334530477275
-inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.09628517293751546,0.3958872213021121,1432.0490562917569
-inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,psola,PSOLA,local pitch-synchronous overlap-add,3,0.07992761118808643,0.24682918676033777,816.4214961463454
-inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,psola,PSOLA,local pitch-synchronous overlap-add,7,0.07554255951738333,0.23493442651715143,1215.0313451277086
-inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,psola,PSOLA,local pitch-synchronous overlap-add,12,0.0732705126248087,0.2226286186474241,1272.3051603842018
-modulated,fm_tone,modulated / fm_tone,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.7512820314112465,0.5025203066693883,179.8490221245527
-modulated,fm_tone,modulated / fm_tone,psola,PSOLA,local pitch-synchronous overlap-add,3,0.725245940614281,0.49786744147946094,836.9379078658193
-modulated,fm_tone,modulated / fm_tone,psola,PSOLA,local pitch-synchronous overlap-add,7,0.6500003765811201,0.4216551456838065,167.9000665641164
-modulated,fm_tone,modulated / fm_tone,psola,PSOLA,local pitch-synchronous overlap-add,12,0.6372784153879674,0.41739425448800277,538.3678234132227
-modulated,vibrato_tone,modulated / vibrato_tone,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.7385939294096908,0.43218769786520694,216.93444697214125
-modulated,vibrato_tone,modulated / vibrato_tone,psola,PSOLA,local pitch-synchronous overlap-add,3,0.6942195296669267,0.4951014661436938,790.6670168020439
-modulated,vibrato_tone,modulated / vibrato_tone,psola,PSOLA,local pitch-synchronous overlap-add,7,0.6497725515138332,0.4710457391599008,910.4538788645834
-modulated,vibrato_tone,modulated / vibrato_tone,psola,PSOLA,local pitch-synchronous overlap-add,12,0.635810345117844,0.3759971010721797,358.98937791741713
-noise,pink_noise,noise / pink_noise,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.26360527390963623,0.6608035780239838,325.8256384753267
-noise,pink_noise,noise / pink_noise,psola,PSOLA,local pitch-synchronous overlap-add,3,0.24119717412988606,0.7864667745415014,779.3983831827461
-noise,pink_noise,noise / pink_noise,psola,PSOLA,local pitch-synchronous overlap-add,7,0.2503966061568911,0.9213896314390565,1304.2425785520106
-noise,pink_noise,noise / pink_noise,psola,PSOLA,local pitch-synchronous overlap-add,12,0.23249267991945347,1.0410307105238652,1885.0118536852485
-noise,white_noise,noise / white_noise,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.2345474350014985,0.8849286258972804,130.13328541873597
-noise,white_noise,noise / white_noise,psola,PSOLA,local pitch-synchronous overlap-add,3,0.22343110906197983,1.0583621450991745,841.9573540900494
-noise,white_noise,noise / white_noise,psola,PSOLA,local pitch-synchronous overlap-add,7,0.21743001923342176,1.2627178860723645,1766.5388077182392
-noise,white_noise,noise / white_noise,psola,PSOLA,local pitch-synchronous overlap-add,12,0.21360666107087586,1.4276357513043347,2638.7749892914862
-transient,click_sequence,transient / click_sequence,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.07525745500565878,0.3463253367268263,300.0156778832519
-transient,click_sequence,transient / click_sequence,psola,PSOLA,local pitch-synchronous overlap-add,3,0.08857107489224353,0.3482331694371922,1207.0674614173865
-transient,click_sequence,transient / click_sequence,psola,PSOLA,local pitch-synchronous overlap-add,7,0.08620952315724757,0.35952223746768197,1152.1631371516835
-transient,click_sequence,transient / click_sequence,psola,PSOLA,local pitch-synchronous overlap-add,12,0.08740611647161829,0.37987974010355613,809.0391830761815
-transient,impulse_train,transient / impulse_train,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.02551608431522965,0.33004509984162095,2726.422781036163
-transient,impulse_train,transient / impulse_train,psola,PSOLA,local pitch-synchronous overlap-add,3,0.026772005666461242,0.32483473718772105,1077.155172413794
-transient,impulse_train,transient / impulse_train,psola,PSOLA,local pitch-synchronous overlap-add,7,0.0245097544807562,0.3586127320281325,1776.2479292143864
-transient,impulse_train,transient / impulse_train,psola,PSOLA,local pitch-synchronous overlap-add,12,0.026935296621378287,0.3965586483611432,2726.6884019326026
-harmonic,saw,harmonic / saw,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,168.5392213630737,1.6292168002383196,541.0312081264118
-harmonic,saw,harmonic / saw,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,100.30596638991814,1.9461645502571645,330.65162755121264
-harmonic,saw,harmonic / saw,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,113.68109620586945,2.0473559723181087,643.7577931563943
-harmonic,saw,harmonic / saw,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,59.58080237058617,1.8705435581648449,1177.7797054620198
-harmonic,sine,harmonic / sine,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,251.8599506125386,1.9310220934202988,218.74112933960322
-harmonic,sine,harmonic / sine,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,88.70385473112793,1.92092023872056,276.89056180843744
-harmonic,sine,harmonic / sine,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,177.54711869567237,1.987056993752296,344.26854006006243
-harmonic,sine,harmonic / sine,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,16.45785260538132,1.6109065765517965,458.41343105790884
-harmonic,square,harmonic / square,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,250.60412156408864,2.0399266070265165,1528.0131688328097
-harmonic,square,harmonic / square,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,219.05348583504062,2.1060882273115826,369.22336503881945
-harmonic,square,harmonic / square,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,162.60185857730076,2.102167953423429,378.82974901883006
-harmonic,square,harmonic / square,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,67.88689766955841,1.9497887623551682,309.19940854638395
-inharmonic,bell_resonator,inharmonic / bell_resonator,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,37.329986485550464,1.3550692679010088,2222.62842572496
-inharmonic,bell_resonator,inharmonic / bell_resonator,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,21.386980945224764,1.3900829033925244,504.99986743942867
-inharmonic,bell_resonator,inharmonic / bell_resonator,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,16.95752629360915,1.3325254451347643,336.31304109213085
-inharmonic,bell_resonator,inharmonic / bell_resonator,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,12.374836356274638,1.239807524531693,306.3029005101621
-inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,25.86748940610398,1.1959340922804769,798.6859131017852
-inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,14.046623199410009,1.1825175351384205,583.9282975561466
-inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,7.053983965510808,1.039471440722069,1127.0980310519853
-inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,11.651294588848504,1.1444080879358567,2061.050141852031
-modulated,fm_tone,modulated / fm_tone,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,131.0065134476186,1.8533933751257372,210.77920224426953
-modulated,fm_tone,modulated / fm_tone,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,130.1042445882647,1.9673997432760362,251.0657403142238
-modulated,fm_tone,modulated / fm_tone,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,44.65400906523279,1.78557334390496,314.86198125339416
-modulated,fm_tone,modulated / fm_tone,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,79.01752287445991,1.845729336184658,385.08696715300533
-modulated,vibrato_tone,modulated / vibrato_tone,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,262.0378555422654,1.9054413176554854,218.27717409624353
-modulated,vibrato_tone,modulated / vibrato_tone,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,190.79377550198635,1.9821038589159985,276.36735774552494
-modulated,vibrato_tone,modulated / vibrato_tone,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,161.86695658750128,1.9417712310803703,345.75288945157905
-modulated,vibrato_tone,modulated / vibrato_tone,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,72.93349729085416,1.7639922612946235,446.4652732487361
-noise,pink_noise,noise / pink_noise,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,56.84368338538808,1.517485979883961,1431.3659101569913
-noise,pink_noise,noise / pink_noise,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,34.60143797256881,1.6105870671591007,265.01226529023637
-noise,pink_noise,noise / pink_noise,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,28.40113686768198,1.6256870130636039,232.39789314175246
-noise,pink_noise,noise / pink_noise,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,10.71217303841957,1.4334229329399537,586.5624572264965
-noise,white_noise,noise / white_noise,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,138.4375455306783,1.9107895459886253,2358.7117335577996
-noise,white_noise,noise / white_noise,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,78.06201569833917,1.821990345789792,260.4417317273868
-noise,white_noise,noise / white_noise,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,72.81046634722712,1.8071837880554678,63.51416574571867
-noise,white_noise,noise / white_noise,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,30.65825492696682,1.6199477481234825,95.096857797949
-transient,click_sequence,transient / click_sequence,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,104.68576058710651,1.3359886868349404,139.49942069631552
-transient,click_sequence,transient / click_sequence,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,60.57050015792695,1.3739643077009693,210.5787128609802
-transient,click_sequence,transient / click_sequence,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,44.41645475017416,1.3272802763108085,266.3731136102062
-transient,click_sequence,transient / click_sequence,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,22.402443092274336,1.2298786329380664,327.2923879000818
-transient,impulse_train,transient / impulse_train,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,3.447941861039058,0.8365348770261907,2483.390269569975
-transient,impulse_train,transient / impulse_train,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,1.9951356967905705,0.8352346992252421,247.38405515725088
-transient,impulse_train,transient / impulse_train,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,1.461664720419303,0.7908984856571624,210.40204157759348
-transient,impulse_train,transient / impulse_train,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,0.733397976895792,0.686410400357632,78.70825099126851
-harmonic,saw,harmonic / saw,wsola,WSOLA,local waveform-similarity overlap-add,-12,399.2090810006494,1.962911551021291,565.1879048736228
-harmonic,saw,harmonic / saw,wsola,WSOLA,local waveform-similarity overlap-add,3,320.4937882418623,2.246537646230137,295.9268410408002
-harmonic,saw,harmonic / saw,wsola,WSOLA,local waveform-similarity overlap-add,7,230.46547457915284,2.197942280025056,605.0460367477204
-harmonic,saw,harmonic / saw,wsola,WSOLA,local waveform-similarity overlap-add,12,116.7365091347763,1.7597855338964985,1064.1066508465456
-harmonic,sine,harmonic / sine,wsola,WSOLA,local waveform-similarity overlap-add,-12,376.19361996387727,1.9000349220750958,206.70920795704848
-harmonic,sine,harmonic / sine,wsola,WSOLA,local waveform-similarity overlap-add,3,130.2874929495521,1.9140025931271665,259.83027237487755
-harmonic,sine,harmonic / sine,wsola,WSOLA,local waveform-similarity overlap-add,7,291.0404444375513,2.001706240408678,326.4624740260572
-harmonic,sine,harmonic / sine,wsola,WSOLA,local waveform-similarity overlap-add,12,36.42308869454871,1.7282054397073543,431.9022991400889
-harmonic,square,harmonic / square,wsola,WSOLA,local waveform-similarity overlap-add,-12,832.6767899000986,2.2524644383415464,1744.191732960796
-harmonic,square,harmonic / square,wsola,WSOLA,local waveform-similarity overlap-add,3,569.4074942858554,2.3029498435656284,914.8255747561047
-harmonic,square,harmonic / square,wsola,WSOLA,local waveform-similarity overlap-add,7,417.1352425846857,2.274394517016607,728.4105448017785
-harmonic,square,harmonic / square,wsola,WSOLA,local waveform-similarity overlap-add,12,177.0386299312781,2.129394285917286,399.95970834792354
-inharmonic,bell_resonator,inharmonic / bell_resonator,wsola,WSOLA,local waveform-similarity overlap-add,-12,103.80924968628742,1.4852262556880829,2187.7096396288166
-inharmonic,bell_resonator,inharmonic / bell_resonator,wsola,WSOLA,local waveform-similarity overlap-add,3,70.73038201019597,1.480261972923757,533.1382704336181
-inharmonic,bell_resonator,inharmonic / bell_resonator,wsola,WSOLA,local waveform-similarity overlap-add,7,53.999729486184684,1.4692234286123502,336.29963034740985
-inharmonic,bell_resonator,inharmonic / bell_resonator,wsola,WSOLA,local waveform-similarity overlap-add,12,28.53482661618661,1.3391472269948401,283.63468492871806
-inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,wsola,WSOLA,local waveform-similarity overlap-add,-12,33.75207508606681,1.2336051689364793,774.7775022050016
-inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,wsola,WSOLA,local waveform-similarity overlap-add,3,20.602271470260323,1.2926377684797346,575.8134736973444
-inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,wsola,WSOLA,local waveform-similarity overlap-add,7,14.15125718232531,1.15111944071928,1120.4790684286559
-inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,wsola,WSOLA,local waveform-similarity overlap-add,12,22.547130884966997,1.271110323924,2054.97634401991
-modulated,fm_tone,modulated / fm_tone,wsola,WSOLA,local waveform-similarity overlap-add,-12,482.3938270590702,1.923525740493529,197.0204016875352
-modulated,fm_tone,modulated / fm_tone,wsola,WSOLA,local waveform-similarity overlap-add,3,74.83074197313553,1.8046590493718193,232.13920486877956
-modulated,fm_tone,modulated / fm_tone,wsola,WSOLA,local waveform-similarity overlap-add,7,293.5861838912701,2.001599414955259,291.63477296968875
-modulated,fm_tone,modulated / fm_tone,wsola,WSOLA,local waveform-similarity overlap-add,12,26.458421530461337,1.6575340887576833,357.32731862055874
-modulated,vibrato_tone,modulated / vibrato_tone,wsola,WSOLA,local waveform-similarity overlap-add,-12,459.59579498226486,1.9844900997551873,210.88963457570955
-modulated,vibrato_tone,modulated / vibrato_tone,wsola,WSOLA,local waveform-similarity overlap-add,3,301.9263192201108,2.0733361344002863,264.3681738397675
-modulated,vibrato_tone,modulated / vibrato_tone,wsola,WSOLA,local waveform-similarity overlap-add,7,253.08274377661846,2.0418704594403208,331.8589590069609
-modulated,vibrato_tone,modulated / vibrato_tone,wsola,WSOLA,local waveform-similarity overlap-add,12,127.26509259556666,1.9163633792078223,430.62030748745894
-noise,pink_noise,noise / pink_noise,wsola,WSOLA,local waveform-similarity overlap-add,-12,160.71811483941383,1.8166999208518875,1673.3053725419386
-noise,pink_noise,noise / pink_noise,wsola,WSOLA,local waveform-similarity overlap-add,3,112.92009756132279,1.8452399198269678,551.0948866888248
-noise,pink_noise,noise / pink_noise,wsola,WSOLA,local waveform-similarity overlap-add,7,60.38596655924192,1.7116517715136834,350.91057994671263
-noise,pink_noise,noise / pink_noise,wsola,WSOLA,local waveform-similarity overlap-add,12,22.062062117528875,1.542630753180997,159.25729835045078
-noise,white_noise,noise / white_noise,wsola,WSOLA,local waveform-similarity overlap-add,-12,254.0173580044564,1.9685942905656653,2380.592276243027
-noise,white_noise,noise / white_noise,wsola,WSOLA,local waveform-similarity overlap-add,3,106.94711209245865,1.7720302816514781,298.2722438649569
-noise,white_noise,noise / white_noise,wsola,WSOLA,local waveform-similarity overlap-add,7,69.69377897834889,1.651872086605798,126.05577358168885
-noise,white_noise,noise / white_noise,wsola,WSOLA,local waveform-similarity overlap-add,12,25.461455161334154,1.4912076174426707,104.18415334491377
-transient,click_sequence,transient / click_sequence,wsola,WSOLA,local waveform-similarity overlap-add,-12,3.9365045725881522,0.6593476446818348,141.51577669858173
-transient,click_sequence,transient / click_sequence,wsola,WSOLA,local waveform-similarity overlap-add,3,2.59756910166882,0.6804818137181307,110.32191059635723
-transient,click_sequence,transient / click_sequence,wsola,WSOLA,local waveform-similarity overlap-add,7,2.3203909648308914,0.6796357918864708,167.09961921793197
-transient,click_sequence,transient / click_sequence,wsola,WSOLA,local waveform-similarity overlap-add,12,2.0048459773211107,0.6998186318389268,232.43137483344043
-transient,impulse_train,transient / impulse_train,wsola,WSOLA,local waveform-similarity overlap-add,-12,0.024555509569915323,0.33019448413623564,2552.667360953412
-transient,impulse_train,transient / impulse_train,wsola,WSOLA,local waveform-similarity overlap-add,3,0.024897122901897238,0.22017642354425634,261.17827240295463
-transient,impulse_train,transient / impulse_train,wsola,WSOLA,local waveform-similarity overlap-add,7,0.02517330178431594,0.22034944090792372,238.78913633937182
-transient,impulse_train,transient / impulse_train,wsola,WSOLA,local waveform-similarity overlap-add,12,0.025620406253133336,0.22363021694308108,92.08715259340669
+signal_family,signal_name,signal_label,algorithm,algorithm_label,implementation,shift_semitones,rms_error,spectral_distance,spectral_centroid_difference,rms_error_normalized,spectral_distance_normalized,spectral_centroid_difference_normalized,composite_stress
+harmonic,saw,harmonic / saw,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.5795772719572991,0.7499225880332745,502.2338983159349,0.0006685604755700707,0.2549513305920743,0.15600679805771867,0.13720889637512101
+harmonic,saw,harmonic / saw,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.4824536802198902,0.8956925980537976,310.89751098580183,0.0005519170626734303,0.3248829764266752,0.09618363853035015,0.14053951067323292
+harmonic,saw,harmonic / saw,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.4835360442843951,0.8637156866805997,666.5285608896255,0.0005532169593949383,0.30954238585718796,0.207375102569932,0.1724902351288383
+harmonic,saw,harmonic / saw,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.4786545091954336,0.7209688146921078,1226.613388107646,0.0005473543373196483,0.2410610590431823,0.38249100412456266,0.20803313916835486
+harmonic,sine,harmonic / sine,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.8871163912181584,0.4734428227057045,110.39297935538906,0.0010379085590594154,0.12231303944700936,0.03349397061584858,0.052281639540639115
+harmonic,sine,harmonic / sine,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.656937951760593,0.3355213268479526,48.50482749480613,0.0007614690424263846,0.05614663663243362,0.01414404542246855,0.023684050365776185
+harmonic,sine,harmonic / sine,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.6558912929173847,0.4135466005078451,120.95591754866206,0.0007602120269327614,0.09357844995921595,0.03679657471238985,0.043711745566179516
+harmonic,sine,harmonic / sine,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.6462370717358121,0.41977981369512296,228.6409506290908,0.0007486175081620565,0.09656876914052705,0.07046533475626625,0.05592757380165179
+harmonic,square,harmonic / square,phase_vocoder,Phase Vocoder,local phase vocoder,-12,1.253861479939483,1.1203287089033085,1707.4653124308663,0.0014783617800152012,0.43264981367514915,0.5328339774566396,0.322320717637268
+harmonic,square,harmonic / square,phase_vocoder,Phase Vocoder,local phase vocoder,3,1.037411313657616,0.9725105060616916,168.87059376193994,0.0012184096338319812,0.3617355686423625,0.051777558511688894,0.13824384559596112
+harmonic,square,harmonic / square,phase_vocoder,Phase Vocoder,local phase vocoder,7,1.0360443343529675,1.0028411654225309,241.1546959940324,0.0012167679201288435,0.376286386935189,0.07437787745500608,0.15062701077010798
+harmonic,square,harmonic / square,phase_vocoder,Phase Vocoder,local phase vocoder,12,1.0353915279528232,0.9917365664719014,506.87453151443196,0.0012159839132247384,0.3709590711118495,0.15745773660639467,0.1765442638771563
+inharmonic,bell_resonator,inharmonic / bell_resonator,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.10193964014468132,0.2753245090912441,2263.885533767095,9.492761762219374e-05,0.02726783955243433,0.7068041047791421,0.24472229064973286
+inharmonic,bell_resonator,inharmonic / bell_resonator,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.09311557228130384,0.2609770172660812,205.78764260767593,8.433009571424442e-05,0.020384779608959926,0.06332002846837084,0.027929712724348337
+inharmonic,bell_resonator,inharmonic / bell_resonator,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.09280600315707227,0.2665856980156342,108.29201650511658,8.39583096370221e-05,0.02307548585040056,0.03283708439829883,0.01866550951944547
+inharmonic,bell_resonator,inharmonic / bell_resonator,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.0931700838681044,0.2615753872501699,235.5784578310202,8.439556299580892e-05,0.02067184138387134,0.07263441302650246,0.03113021665778987
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.10099672758884098,0.3127077600308007,817.5956548974077,9.379519926112578e-05,0.04520206528571798,0.2546076807024463,0.09996784706247515
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.09690930388653933,0.27363528820744143,246.86806528949631,8.888628843871587e-05,0.026457453406711563,0.07616421724938914,0.03423685231484647
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.09704271036893113,0.2806621848958386,869.279968039105,8.904650684837669e-05,0.029828533990846364,0.27076727769955805,0.10022828606575092
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.09724620025961983,0.31532286971175266,1751.0577928747502,8.929089397322758e-05,0.04645663694967835,0.546463585228467,0.19766983769070623
+modulated,fm_tone,modulated / fm_tone,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.7517675417950697,0.4595166060719012,90.49720077361376,0.0008753574070074297,0.11563208189398494,0.027273364318076698,0.04792693453968969
+modulated,fm_tone,modulated / fm_tone,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.7686922749837479,0.3189800487689746,39.51036123574788,0.0008956836594264091,0.04821113055606116,0.01133183914332117,0.02014621778626958
+modulated,fm_tone,modulated / fm_tone,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.7718918378104944,0.4650604427501373,98.11996863137037,0.0008995262678103532,0.11829167986679631,0.02965669591515475,0.04961596734992047
+modulated,fm_tone,modulated / fm_tone,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.845715068843548,0.5306306279288109,185.06778809920584,0.0009881864322947341,0.1497482940673346,0.05684176691582368,0.06919274913848433
+modulated,vibrato_tone,modulated / vibrato_tone,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.8464311644180282,0.4719868107882539,110.83853217015526,0.0009890464481804048,0.1216145328767774,0.03363327698348495,0.05207895210281425
+modulated,vibrato_tone,modulated / vibrato_tone,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.6843675392623606,0.3459836338393653,45.832118851770325,0.0007944114063085151,0.06116581957022262,0.013308397390468069,0.025089542788999736
+modulated,vibrato_tone,modulated / vibrato_tone,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.6799555808841794,0.44920585799996565,114.74046344584411,0.0007891127360927311,0.11068560777111924,0.034853253279826364,0.048775991262346115
+modulated,vibrato_tone,modulated / vibrato_tone,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.7010099637968117,0.4926229082000781,226.322608182214,0.0008143986119075586,0.13151448592890957,0.06974048271963151,0.06735645575348288
+noise,pink_noise,noise / pink_noise,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.24050667345517507,0.7683704634676063,1701.1076163375415,0.0002613437415645397,0.263801506914988,0.5308461826993295,0.264969677785294
+noise,pink_noise,noise / pink_noise,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.21360344687931498,0.60705408507311,270.74120225322935,0.0002290335262028149,0.18641165258475856,0.0836283828528504,0.09008968965460391
+noise,pink_noise,noise / pink_noise,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.27601820257178206,0.6121499480039768,127.09634048969282,0.0003039923491710067,0.1888563398126244,0.03871643693145112,0.07595892303108216
+noise,pink_noise,noise / pink_noise,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.2666556201857299,0.6074447549026454,292.8737116405034,0.0002927480825258055,0.18659907237126666,0.09054832452359689,0.09248004832579644
+noise,white_noise,noise / white_noise,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.2382796828515766,1.1367982523121154,2471.2711482261243,0.00025866917218499293,0.4405509057897763,0.771645209341536,0.40415159476783247
+noise,white_noise,noise / white_noise,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.2389966156403345,0.8116528431572739,263.1478947289417,0.0002595301935475917,0.284565778296395,0.08125426231203528,0.12202652360065928
+noise,white_noise,noise / white_noise,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.24095091691245993,0.8177423191058084,73.52350497450597,0.00026187726871368806,0.2874871410327444,0.021966375272615954,0.10323846452469136
+noise,white_noise,noise / white_noise,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.250365419852364,0.7825103604947405,82.27883485513804,0.0002731838908637922,0.27058497541375576,0.024703813265840265,0.0985206575234866
+transient,click_sequence,transient / click_sequence,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.08943885017858422,0.3360734551127561,86.39302775143344,7.991442896776286e-05,0.05641151442357924,0.02599015519690632,0.027493861349817777
+transient,click_sequence,transient / click_sequence,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.09632324048719003,0.219616847106497,97.82008991214859,8.818243848989258e-05,0.0005426682525043315,0.029562935952874736,0.01006459554795632
+transient,click_sequence,transient / click_sequence,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.09855735009298286,0.23197760581446056,158.35750335906948,9.086555764295489e-05,0.0064726136513594485,0.04849053980566821,0.01835133967155687
+transient,click_sequence,transient / click_sequence,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.09996808147926635,0.2706163673807263,227.81600431615,9.255981668581864e-05,0.02500915754649437,0.07020740736686999,0.03176970824335006
+transient,impulse_train,transient / impulse_train,phase_vocoder,Phase Vocoder,local phase vocoder,-12,0.0228977898628095,0.41069422256621096,1990.122461121574,0.0,0.09221005131553951,0.6212094502750934,0.237806500530211
+transient,impulse_train,transient / impulse_train,phase_vocoder,Phase Vocoder,local phase vocoder,3,0.023296110499582592,0.29381479008952466,500.5376637446561,4.783747971964793e-07,0.0361383595034994,0.1554764540245246,0.06387176396760706
+transient,impulse_train,transient / impulse_train,phase_vocoder,Phase Vocoder,local phase vocoder,7,0.0237066208247287,0.2711043539487292,194.49582721184652,9.713891565069615e-07,0.02524326402587801,0.059789533912660606,0.028344589775898377
+transient,impulse_train,transient / impulse_train,phase_vocoder,Phase Vocoder,local phase vocoder,12,0.023637316192103405,0.2773870306177653,3.2669869201981365,8.881557346951053e-07,0.028257312797984727,0.0,0.009419400317906473
+harmonic,saw,harmonic / saw,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.5140425601511004,0.6084239116294462,1149.8231001527831,0.0005898546502239466,0.18706881262459835,0.3584817829273939,0.18204681673407208
+harmonic,saw,harmonic / saw,psola,PSOLA,local pitch-synchronous overlap-add,3,0.48682142824530994,0.8611344741266238,456.800194541705,0.0005571626371754006,0.3083040759872562,0.14180151412437397,0.15022091758293518
+harmonic,saw,harmonic / saw,psola,PSOLA,local pitch-synchronous overlap-add,7,0.4607517884772314,0.788554224034966,484.8622713992127,0.0005258535422259865,0.27348445607173333,0.15057539202570286,0.14152856721322074
+harmonic,saw,harmonic / saw,psola,PSOLA,local pitch-synchronous overlap-add,12,0.4572800584681837,0.7972197634154633,861.2058746307995,0.0005216840667188835,0.27764165844029604,0.2682428348335467,0.18213539244685387
+harmonic,sine,harmonic / sine,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.7479910040017748,0.3957540560819043,214.99076767852594,0.0008708218636933597,0.0850426618700465,0.06619747392945736,0.05070365255439907
+harmonic,sine,harmonic / sine,psola,PSOLA,local pitch-synchronous overlap-add,3,0.6958645879355826,0.490083143547397,766.396639419815,0.0008082191225543186,0.13029606025843368,0.23859981668191624,0.12323469868763474
+harmonic,sine,harmonic / sine,psola,PSOLA,local pitch-synchronous overlap-add,7,0.6497438047447877,0.45226250319643185,871.4056829568286,0.000752829021543791,0.11215200150527083,0.2714319028887714,0.128112244471862
+harmonic,sine,harmonic / sine,psola,PSOLA,local pitch-synchronous overlap-add,12,0.6363001150822565,0.37061838822861176,163.04731757910548,0.0007366834299721715,0.07298408670849485,0.04995685527317443,0.04122587513721382
+harmonic,square,harmonic / square,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.781990532855476,0.7430726135006336,454.4632240164327,0.0009116545904431676,0.2516651265716092,0.14107083784008256,0.13121587300071166
+harmonic,square,harmonic / square,psola,PSOLA,local pitch-synchronous overlap-add,3,0.9775270034945174,1.0407158996445354,599.4182686887501,0.0011464898232954198,0.3944563966602343,0.18639242503388023,0.19399843717246998
+harmonic,square,harmonic / square,psola,PSOLA,local pitch-synchronous overlap-add,7,0.8901516677882833,1.0713811937991875,1101.207289102461,0.0010415538630673417,0.4091677525141241,0.34328158258600383,0.2511636296543984
+harmonic,square,harmonic / square,psola,PSOLA,local pitch-synchronous overlap-add,12,0.9001169008745827,1.1728083601557915,2570.087472810794,0.0010535219006646249,0.4578263804078763,0.8025410824790233,0.4204736615958547
+inharmonic,bell_resonator,inharmonic / bell_resonator,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.09609260845930814,0.3425646501384232,1017.5249954622449,8.790545422299944e-05,0.05952559770802412,0.3171175096048562,0.1255770042557011
+inharmonic,bell_resonator,inharmonic / bell_resonator,psola,PSOLA,local pitch-synchronous overlap-add,3,0.07692061176709684,0.24193155696198204,1531.4041136129156,6.48802850934554e-05,0.011247918161562797,0.47778675235515855,0.16303318360060493
+inharmonic,bell_resonator,inharmonic / bell_resonator,psola,PSOLA,local pitch-synchronous overlap-add,7,0.07425836453645358,0.2275195519683004,2482.7223139081534,6.168298156089614e-05,0.004333908696634128,0.7752255262949881,0.259873705991061
+inharmonic,bell_resonator,inharmonic / bell_resonator,psola,PSOLA,local pitch-synchronous overlap-add,12,0.06992017609055552,0.21848567457850487,3201.6334530477275,5.647290749890674e-05,0.0,1.0,0.333352157635833
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.09628517293751546,0.3958872213021121,1432.0490562917569,8.813672015477728e-05,0.08510654649909846,0.44672243925239696,0.17730570749055008
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,psola,PSOLA,local pitch-synchronous overlap-add,3,0.07992761118808643,0.24682918676033777,816.4214961463454,6.84916288336123e-05,0.013597505106362894,0.2542405686896431,0.08930218847494654
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,psola,PSOLA,local pitch-synchronous overlap-add,7,0.07554255951738333,0.23493442651715143,1215.0313451277086,6.32252730136811e-05,0.007891117623115243,0.3788697671266772,0.12894137000760206
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,psola,PSOLA,local pitch-synchronous overlap-add,12,0.0732705126248087,0.2226286186474241,1272.3051603842018,6.049659196852744e-05,0.0019875343172400706,0.3967769756542348,0.13294166885448114
+modulated,fm_tone,modulated / fm_tone,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.7512820314112465,0.5025203066693883,179.8490221245527,0.0008747743191381197,0.13626265988006916,0.05521006960098413,0.0641158346000638
+modulated,fm_tone,modulated / fm_tone,psola,PSOLA,local pitch-synchronous overlap-add,3,0.725245940614281,0.49786744147946094,836.9379078658193,0.0008435055158049835,0.13403049620983046,0.26065522189988466,0.13184307454184005
+modulated,fm_tone,modulated / fm_tone,psola,PSOLA,local pitch-synchronous overlap-add,7,0.6500003765811201,0.4216551456838065,167.9000665641164,0.0007531371589809225,0.0974684401526677,0.05147411386014507,0.049898563723931234
+modulated,fm_tone,modulated / fm_tone,psola,PSOLA,local pitch-synchronous overlap-add,12,0.6372784153879674,0.41739425448800277,538.3678234132227,0.0007378583482845468,0.09542432192833085,0.16730441685155173,0.08782219904272237
+modulated,vibrato_tone,modulated / vibrato_tone,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.7385939294096908,0.43218769786520694,216.93444697214125,0.0008595361726263685,0.10252132248957943,0.06680518393211025,0.056728680864772014
+modulated,vibrato_tone,modulated / vibrato_tone,psola,PSOLA,local pitch-synchronous overlap-add,3,0.6942195296669267,0.4951014661436938,790.6670168020439,0.0008062434418011947,0.1327035483174562,0.24618818331821815,0.12656599169249186
+modulated,vibrato_tone,modulated / vibrato_tone,psola,PSOLA,local pitch-synchronous overlap-add,7,0.6497725515138332,0.4710457391599008,910.4538788645834,0.0007528635458153015,0.1211630635532196,0.2836406964467632,0.1351855411819327
+modulated,vibrato_tone,modulated / vibrato_tone,psola,PSOLA,local pitch-synchronous overlap-add,12,0.635810345117844,0.3759971010721797,358.98937791741713,0.0007360952264351998,0.0755644682394384,0.11122002270987892,0.06250686205858418
+noise,pink_noise,noise / pink_noise,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.26360527390963623,0.6608035780239838,325.8256384753267,0.00028908468011455506,0.21219741266188746,0.10085106099354253,0.10444585277851486
+noise,pink_noise,noise / pink_noise,psola,PSOLA,local pitch-synchronous overlap-add,3,0.24119717412988606,0.7864667745415014,779.3983831827461,0.0002621730185081219,0.27248302389337214,0.24266493676763087,0.17180337789317038
+noise,pink_noise,noise / pink_noise,psola,PSOLA,local pitch-synchronous overlap-add,7,0.2503966061568911,0.9213896314390565,1304.2425785520106,0.0002732213449666585,0.3372108608621968,0.4067625162437963,0.24808219948365326
+noise,pink_noise,noise / pink_noise,psola,PSOLA,local pitch-synchronous overlap-add,12,0.23249267991945347,1.0410307105238652,1885.0118536852485,0.0002517191020694773,0.3946074239045562,0.5883456091394684,0.32773491738203137
+noise,white_noise,noise / white_noise,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.2345474350014985,0.8849286258972804,130.13328541873597,0.00025418682017121767,0.3197190727642066,0.03966596693722315,0.11987974217386697
+noise,white_noise,noise / white_noise,psola,PSOLA,local pitch-synchronous overlap-add,3,0.22343110906197983,1.0583621450991745,841.9573540900494,0.00024083634400717067,0.4029219993398974,0.26222459998003556,0.22179581188798006
+noise,white_noise,noise / white_noise,psola,PSOLA,local pitch-synchronous overlap-add,7,0.21743001923342176,1.2627178860723645,1766.5388077182392,0.00023362915998338714,0.5009595401206967,0.5513038732340604,0.3508323475049135
+noise,white_noise,noise / white_noise,psola,PSOLA,local pitch-synchronous overlap-add,12,0.21360666107087586,1.4276357513043347,2638.7749892914862,0.00022903738638000416,0.5800771702942614,0.8240168943373989,0.46810770067268015
+transient,click_sequence,transient / click_sequence,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.07525745500565878,0.3463253367268263,300.0156778832519,6.288286842706229e-05,0.06132974797568283,0.09278132887703351,0.051391319907047796
+transient,click_sequence,transient / click_sequence,psola,PSOLA,local pitch-synchronous overlap-add,3,0.08857107489224353,0.3482331694371922,1207.0674614173865,7.887224890403742e-05,0.06224501087093947,0.37637978238144426,0.1462345551670959
+transient,click_sequence,transient / click_sequence,psola,PSOLA,local pitch-synchronous overlap-add,7,0.08620952315724757,0.35952223746768197,1152.1631371516835,7.603607440539793e-05,0.0676608238162756,0.3592134179741225,0.14231675928826784
+transient,click_sequence,transient / click_sequence,psola,PSOLA,local pitch-synchronous overlap-add,12,0.08740611647161829,0.37987974010355613,809.0391830761815,7.74731580793097e-05,0.07742712392291942,0.25193241759177903,0.10981233822425925
+transient,impulse_train,transient / impulse_train,psola,PSOLA,local pitch-synchronous overlap-add,-12,0.02551608431522965,0.33004509984162095,2726.422781036163,3.1445171604068017e-06,0.053519473696362306,0.8514208183945434,0.3016478122026887
+transient,impulse_train,transient / impulse_train,psola,PSOLA,local pitch-synchronous overlap-add,3,0.026772005666461242,0.32483473718772105,1077.155172413794,4.652852572193143e-06,0.05101985641753343,0.3357614572522148,0.12892865550744012
+transient,impulse_train,transient / impulse_train,psola,PSOLA,local pitch-synchronous overlap-add,7,0.0245097544807562,0.3586127320281325,1776.2479292143864,1.935935967177695e-06,0.06722449804340735,0.5543395233382533,0.20718865243920928
+transient,impulse_train,transient / impulse_train,psola,PSOLA,local pitch-synchronous overlap-add,12,0.026935296621378287,0.3965586483611432,2726.6884019326026,4.848961611572289e-06,0.08542865664568702,0.8515038673194408,0.31231245764224647
+harmonic,saw,harmonic / saw,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,168.5392213630737,1.6292168002383196,541.0312081264118,0.20238459841475268,0.6767835814348936,0.16813714966731746,0.34910177650565455
+harmonic,saw,harmonic / saw,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,100.30596638991814,1.9461645502571645,330.65162755121264,0.12043787887173986,0.8288359672395655,0.1023599528378624,0.35054459964972257
+harmonic,saw,harmonic / saw,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,113.68109620586945,2.0473559723181087,643.7577931563943,0.13650113149409182,0.8773814992599671,0.20025560329604133,0.40471274468336677
+harmonic,saw,harmonic / saw,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,59.58080237058617,1.8705435581648449,1177.7797054620198,0.07152780422341247,0.7925575829826343,0.3672226841359679,0.4104360237806716
+harmonic,sine,harmonic / sine,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,251.8599506125386,1.9310220934202988,218.74112933960322,0.3024510606495008,0.8215715311018967,0.06737006052977214,0.39713088409372327
+harmonic,sine,harmonic / sine,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,88.70385473112793,1.92092023872056,276.89056180843744,0.10650398416623814,0.8167252714011856,0.08555103919018174,0.33626009825253517
+harmonic,sine,harmonic / sine,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,177.54711869567237,1.987056993752296,344.26854006006243,0.21320289569043047,0.848453691594598,0.1066174113414643,0.3894246662088309
+harmonic,sine,harmonic / sine,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,16.45785260538132,1.6109065765517965,458.41343105790884,0.019738038783277158,0.6679994421059742,0.1423059080183473,0.2766811296358662
+harmonic,square,harmonic / square,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,250.60412156408864,2.0399266070265165,1528.0131688328097,0.3009428360914347,0.8738173385504058,0.47672654089533434,0.550495571845725
+harmonic,square,harmonic / square,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,219.05348583504062,2.1060882273115826,369.22336503881945,0.2630511790319959,0.9055576875904257,0.1144197770938077,0.42767621457207644
+harmonic,square,harmonic / square,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,162.60185857730076,2.102167953423429,378.82974901883006,0.19525394924343184,0.9036769769759283,0.1174233053266564,0.40545141051533884
+harmonic,square,harmonic / square,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,67.88689766955841,1.9497887623551682,309.19940854638395,0.0815032518585898,0.8305746452902248,0.09565271049023914,0.33591020254635123
+inharmonic,bell_resonator,inharmonic / bell_resonator,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,37.329986485550464,1.3550692679010088,2222.62842572496,0.0448050373020397,0.5452641548042484,0.6939046736229345,0.4279912885764075
+inharmonic,bell_resonator,inharmonic / bell_resonator,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,21.386980945224764,1.3900829033925244,504.99986743942867,0.025657819362638064,0.5620615821778882,0.1568716048748195,0.2481970021384486
+inharmonic,bell_resonator,inharmonic / bell_resonator,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,16.95752629360915,1.3325254451347643,336.31304109213085,0.020338136486491493,0.5344489903597577,0.10413004816648584,0.21963905833757835
+inharmonic,bell_resonator,inharmonic / bell_resonator,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,12.374836356274638,1.239807524531693,306.3029005101621,0.014834421220451754,0.48996853251234623,0.0947470894280821,0.19985001438696004
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,25.86748940610398,1.1959340922804769,798.6859131017852,0.031038816801470717,0.4689207098133669,0.24869536827799865,0.2495516316309454
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,14.046623199410009,1.1825175351384205,583.9282975561466,0.016842202435403478,0.46248425609942484,0.18154933675845875,0.22029193176442904
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,7.053983965510808,1.039471440722069,1127.0980310519853,0.008444188206253105,0.39385938043852065,0.35137657176992687,0.2512267134715669
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,11.651294588848504,1.1444080879358567,2061.050141852031,0.013965462611980681,0.44420164526371936,0.643385671005776,0.36718425962715867
+modulated,fm_tone,modulated / fm_tone,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,131.0065134476186,1.8533933751257372,210.77920224426953,0.15730859712406742,0.7843299610861921,0.0648806875390111,0.3355064152497569
+modulated,fm_tone,modulated / fm_tone,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,130.1042445882647,1.9673997432760362,251.0657403142238,0.15622499099683582,0.8390233301766747,0.07747666066986118,0.3575749939477906
+modulated,fm_tone,modulated / fm_tone,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,44.65400906523279,1.78557334390496,314.86198125339416,0.05360103603462317,0.7517940066525248,0.09742316824327651,0.3009394036434749
+modulated,fm_tone,modulated / fm_tone,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,79.01752287445991,1.845729336184658,385.08696715300533,0.09487090114284716,0.7806532181346434,0.11937968468482023,0.3316346013207702
+modulated,vibrato_tone,modulated / vibrato_tone,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,262.0378555422654,1.9054413176554854,218.27717409624353,0.3146745127058317,0.8092994200503341,0.06722500046605735,0.39706631107407436
+modulated,vibrato_tone,modulated / vibrato_tone,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,190.79377550198635,1.9821038589159985,276.36735774552494,0.22911185490125255,0.8460774766852748,0.08538745441387373,0.38685892866680033
+modulated,vibrato_tone,modulated / vibrato_tone,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,161.86695658750128,1.9417712310803703,345.75288945157905,0.19437134724425426,0.8267283180690216,0.10708150743777993,0.3760603909170186
+modulated,vibrato_tone,modulated / vibrato_tone,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,72.93349729085416,1.7639922612946235,446.4652732487361,0.08756411300283534,0.7414407067822646,0.1385702017021042,0.32252500716240134
+noise,pink_noise,noise / pink_noise,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,56.84368338538808,1.517485979883961,1431.3659101569913,0.06824058127143506,0.6231818827265629,0.4465088470508777,0.37931043701629186
+noise,pink_noise,noise / pink_noise,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,34.60143797256881,1.6105870671591007,265.01226529023637,0.04152810730887464,0.6678461607987445,0.0818371756776672,0.2637371479284288
+noise,pink_noise,noise / pink_noise,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,28.40113686768198,1.6256870130636039,232.39789314175246,0.034081674687064516,0.6750902027588616,0.07163997892304631,0.26027061878965746
+noise,pink_noise,noise / pink_noise,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,10.71217303841957,1.4334229329399537,586.5624572264965,0.012837597169535114,0.5828535104788141,0.1823729320838372,0.2593546799107288
+noise,white_noise,noise / white_noise,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,138.4375455306783,1.9107895459886253,2358.7117335577996,0.16623311204373817,0.8118651769545357,0.7364524270695884,0.5715169053559541
+noise,white_noise,noise / white_noise,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,78.06201569833917,1.821990345789792,260.4417317273868,0.09372335690486953,0.7692646844538744,0.08040815445347228,0.3144653986040721
+noise,white_noise,noise / white_noise,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,72.81046634722712,1.8071837880554678,63.51416574571867,0.08741635539935469,0.7621613924162286,0.01883685921034112,0.28947153567530814
+noise,white_noise,noise / white_noise,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,30.65825492696682,1.6199477481234825,95.096857797949,0.03679242651405053,0.6723368501104876,0.028711491272272897,0.24594692263227036
+transient,click_sequence,transient / click_sequence,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,104.68576058710651,1.3359886868349404,139.49942069631552,0.1256979205753683,0.5361104445366645,0.042594379105363386,0.23480091473913203
+transient,click_sequence,transient / click_sequence,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,60.57050015792695,1.3739643077009693,210.5787128609802,0.07271641067408617,0.5543288535796378,0.06481800260737096,0.2306210889536983
+transient,click_sequence,transient / click_sequence,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,44.41645475017416,1.3272802763108085,266.3731136102062,0.05331573824485774,0.5319326751829395,0.08226265797757935,0.22250369046845886
+transient,click_sequence,transient / click_sequence,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,22.402443092274336,1.2298786329380664,327.2923879000818,0.026877368273261704,0.4852052500624247,0.10130965429118019,0.2044640908756222
+transient,impulse_train,transient / impulse_train,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,-12,3.447941861039058,0.8365348770261907,2483.390269569975,0.004113406667079872,0.29650267519254425,0.7754343690492177,0.3586834836362806
+transient,impulse_train,transient / impulse_train,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,3,1.9951356967905705,0.8352346992252421,247.38405515725088,0.002368616691299456,0.29587892841853264,0.07632554643827953,0.12485769718270388
+transient,impulse_train,transient / impulse_train,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,7,1.461664720419303,0.7908984856571624,210.40204157759348,0.0017279291482204635,0.27460909119718885,0.06476276463346842,0.11369992832629257
+transient,impulse_train,transient / impulse_train,rubber_band,Rubber Band,local hybrid spectral/time-domain proxy,12,0.733397976895792,0.686410400357632,78.70825099126851,0.0008532959417655838,0.22448201928388134,0.023587435920816177,0.08297425038215438
+harmonic,saw,harmonic / saw,wsola,WSOLA,local waveform-similarity overlap-add,-12,399.2090810006494,1.962911551021291,565.1879048736228,0.4794143004593534,0.8368701666339663,0.17568997296103434,0.49732481335145134
+harmonic,saw,harmonic / saw,wsola,WSOLA,local waveform-similarity overlap-add,3,320.4937882418623,2.246537646230137,295.9268410408002,0.3848788716279394,0.9729368351949638,0.09150291475977874,0.4831062071942273
+harmonic,saw,harmonic / saw,wsola,WSOLA,local waveform-similarity overlap-add,7,230.46547457915284,2.197942280025056,605.0460367477204,0.2767567400727186,0.949623713804782,0.18815200077936517,0.4715108182189553
+harmonic,saw,harmonic / saw,wsola,WSOLA,local waveform-similarity overlap-add,12,116.7365091347763,1.7597855338964985,1064.1066508465456,0.1401706188499527,0.7394225730763879,0.33168171163662025,0.4037583011876536
+harmonic,sine,harmonic / sine,wsola,WSOLA,local waveform-similarity overlap-add,-12,376.19361996387727,1.9000349220750958,206.70920795704848,0.4517732106201611,0.806705758014389,0.06360816472765583,0.4406957111207353
+harmonic,sine,harmonic / sine,wsola,WSOLA,local waveform-similarity overlap-add,3,130.2874929495521,1.9140025931271665,259.83027237487755,0.15644506846602652,0.8134066028933191,0.08021697581306789,0.35002288239080454
+harmonic,sine,harmonic / sine,wsola,WSOLA,local waveform-similarity overlap-add,7,291.0404444375513,2.001706240408678,326.4624740260572,0.34950601853328084,0.8554815152791377,0.10105017374609136,0.4353459025195033
+harmonic,sine,harmonic / sine,wsola,WSOLA,local waveform-similarity overlap-add,12,36.42308869454871,1.7282054397073543,431.9022991400889,0.04371587192420983,0.7242723514227869,0.13401694795120445,0.3006683904327337
+harmonic,square,harmonic / square,wsola,WSOLA,local waveform-similarity overlap-add,-12,832.6767899000986,2.2524644383415464,1744.191732960796,1.0,0.9757801520528829,0.544316845639158,0.8400323325640137
+harmonic,square,harmonic / square,wsola,WSOLA,local waveform-similarity overlap-add,3,569.4074942858554,2.3029498435656284,914.8255747561047,0.683819053620194,1.0,0.2850075491629294,0.6562755342610411
+harmonic,square,harmonic / square,wsola,WSOLA,local waveform-similarity overlap-add,7,417.1352425846857,2.274394517016607,728.4105448017785,0.500943247545165,0.9863008791545229,0.22672309929498446,0.5713224086648908
+harmonic,square,harmonic / square,wsola,WSOLA,local waveform-similarity overlap-add,12,177.0386299312781,2.129394285917286,399.95970834792354,0.21259221126414915,0.9167385267492143,0.12402979009094825,0.41778684270143723
+inharmonic,bell_resonator,inharmonic / bell_resonator,wsola,WSOLA,local waveform-similarity overlap-add,-12,103.80924968628742,1.4852262556880829,2187.7096396288166,0.12464524922040986,0.6077056156475498,0.6829869797107602,0.47177928152624
+inharmonic,bell_resonator,inharmonic / bell_resonator,wsola,WSOLA,local waveform-similarity overlap-add,3,70.73038201019597,1.480261972923757,533.1382704336181,0.08491821738938335,0.6053240526357287,0.16566934687599125,0.28530387230036774
+inharmonic,bell_resonator,inharmonic / bell_resonator,wsola,WSOLA,local waveform-similarity overlap-add,7,53.999729486184684,1.4692234286123502,336.29963034740985,0.06482505181057369,0.6000284258383775,0.10412585516832161,0.2563264442724243
+inharmonic,bell_resonator,inharmonic / bell_resonator,wsola,WSOLA,local waveform-similarity overlap-add,12,28.53482661618661,1.3391472269948401,283.63468492871806,0.034242233293433136,0.5376257213194908,0.08765965406959116,0.21984253622750505
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,wsola,WSOLA,local waveform-similarity overlap-add,-12,33.75207508606681,1.2336051689364793,774.7775022050016,0.040508040154262036,0.48699301693981056,0.24122017394051828,0.2562404103448636
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,wsola,WSOLA,local waveform-similarity overlap-add,3,20.602271470260323,1.2926377684797346,575.8134736973444,0.02471539961008552,0.515313292443486,0.179012159125832,0.23968028372646785
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,wsola,WSOLA,local waveform-similarity overlap-add,7,14.15125718232531,1.15111944071928,1120.4790684286559,0.016967865671841515,0.44742134694210534,0.3493070895222145,0.2712321007120538
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,wsola,WSOLA,local waveform-similarity overlap-add,12,22.547130884966997,1.271110323924,2054.97634401991,0.02705113530187184,0.5049857248719144,0.6414866397670339,0.39117449998027337
+modulated,fm_tone,modulated / fm_tone,wsola,WSOLA,local waveform-similarity overlap-add,-12,482.3938270590702,1.923525740493529,197.0204016875352,0.5793174497109609,0.817975233771244,0.06057886637422351,0.4859571832854761
+modulated,fm_tone,modulated / fm_tone,wsola,WSOLA,local waveform-similarity overlap-add,3,74.83074197313553,1.8046590493718193,232.13920486877956,0.089842664391664,0.7609501752980782,0.07155909754947247,0.30745064574640485
+modulated,fm_tone,modulated / fm_tone,wsola,WSOLA,local waveform-similarity overlap-add,7,293.5861838912701,2.001599414955259,291.63477296968875,0.3525633986498464,0.8554302668791853,0.09016095844658986,0.4327182079918739
+modulated,fm_tone,modulated / fm_tone,wsola,WSOLA,local waveform-similarity overlap-add,12,26.458421530461337,1.6575340887576833,357.32731862055874,0.031748513987728655,0.6903685060119966,0.11070036390452923,0.2776057946347515
+modulated,vibrato_tone,modulated / vibrato_tone,wsola,WSOLA,local waveform-similarity overlap-add,-12,459.59579498226486,1.9844900997551873,210.88963457570955,0.5519374875288025,0.8472222509033648,0.0649152152682784,0.4880249845668152
+modulated,vibrato_tone,modulated / vibrato_tone,wsola,WSOLA,local waveform-similarity overlap-add,3,301.9263192201108,2.0733361344002863,264.3681738397675,0.3625797276526497,0.8898452117423946,0.08163579429836307,0.4446869112311358
+modulated,vibrato_tone,modulated / vibrato_tone,wsola,WSOLA,local waveform-similarity overlap-add,7,253.08274377661846,2.0418704594403208,331.8589590069609,0.303919609797792,0.8747498815236673,0.10273743661545154,0.42713564264563697
+modulated,vibrato_tone,modulated / vibrato_tone,wsola,WSOLA,local waveform-similarity overlap-add,12,127.26509259556666,1.9163633792078223,430.62030748745894,0.15281522852577759,0.8145391654558135,0.13361612094585437,0.36699017164248177
+noise,pink_noise,noise / pink_noise,wsola,WSOLA,local waveform-similarity overlap-add,-12,160.71811483941383,1.8166999208518875,1673.3053725419386,0.19299161220791655,0.7667266581271973,0.5221535441008311,0.4939572714786484
+noise,pink_noise,noise / pink_noise,wsola,WSOLA,local waveform-similarity overlap-add,3,112.92009756132279,1.8452399198269678,551.0948866888248,0.135587187955537,0.7804184257285317,0.17128365544424856,0.3624297563761058
+noise,pink_noise,noise / pink_noise,wsola,WSOLA,local waveform-similarity overlap-add,7,60.38596655924192,1.7116517715136834,350.91057994671263,0.07249478966152192,0.7163309013177872,0.10869410891724027,0.29917326663218313
+noise,pink_noise,noise / pink_noise,wsola,WSOLA,local waveform-similarity overlap-add,12,22.062062117528875,1.542630753180997,159.25729835045078,0.02646857780465197,0.635244826130025,0.04877186935339535,0.23682842442935745
+noise,white_noise,noise / white_noise,wsola,WSOLA,local waveform-similarity overlap-add,-12,254.0173580044564,1.9685942905656653,2380.592276243027,0.3050420620395864,0.8395964018117749,0.7432935889304803,0.6293106842606139
+noise,white_noise,noise / white_noise,wsola,WSOLA,local waveform-similarity overlap-add,3,106.94711209245865,1.7720302816514781,298.2722438649569,0.1284137566829989,0.7452968634274327,0.09223622748331929,0.32198228253125033
+noise,white_noise,noise / white_noise,wsola,WSOLA,local waveform-similarity overlap-add,7,69.69377897834889,1.651872086605798,126.05577358168885,0.08367327871598093,0.6876522193824997,0.03839109369169916,0.26990553059672656
+noise,white_noise,noise / white_noise,wsola,WSOLA,local waveform-similarity overlap-add,12,25.461455161334154,1.4912076174426707,104.18415334491377,0.030551178121561592,0.6105751117240854,0.03155272152002726,0.22422633712189144
+transient,click_sequence,transient / click_sequence,wsola,WSOLA,local waveform-similarity overlap-add,-12,3.9365045725881522,0.6593476446818348,141.51577669858173,0.004700160318481064,0.211498943787339,0.04322481217912793,0.08647463876164933
+transient,click_sequence,transient / click_sequence,wsola,WSOLA,local waveform-similarity overlap-add,3,2.59756910166882,0.6804818137181307,110.32191059635723,0.0030921266761642033,0.22163784151977894,0.033471750285631735,0.0860672394938583
+transient,click_sequence,transient / click_sequence,wsola,WSOLA,local waveform-similarity overlap-add,7,2.3203909648308914,0.6796357918864708,167.09961921793197,0.002759241500865902,0.2212319713473639,0.05122384630804883,0.09173835305209288
+transient,click_sequence,transient / click_sequence,wsola,WSOLA,local waveform-similarity overlap-add,12,2.0048459773211107,0.6998186318389268,232.43137483344043,0.002380278536181885,0.23091447884868646,0.07165044729558666,0.10164840156015166
+transient,impulse_train,transient / impulse_train,wsola,WSOLA,local waveform-similarity overlap-add,-12,0.024555509569915323,0.33019448413623564,2552.667360953412,1.990886877264914e-06,0.053591139257630885,0.7970945171645508,0.28356254910301965
+transient,impulse_train,transient / impulse_train,wsola,WSOLA,local waveform-similarity overlap-add,3,0.024897122901897238,0.22017642354425634,261.17827240295463,2.4011573812748663e-06,0.0008111192271407736,0.08063844097109563,0.027150653785205894
+transient,impulse_train,transient / impulse_train,wsola,WSOLA,local waveform-similarity overlap-add,7,0.02517330178431594,0.22034944090792372,238.78913633937182,2.7328424728064374e-06,0.0008941225074281215,0.07363826250477659,0.024845039284892508
+transient,impulse_train,transient / impulse_train,wsola,WSOLA,local waveform-similarity overlap-add,12,0.025620406253133336,0.22363021694308108,92.08715259340669,3.269805637278384e-06,0.0024680406797666496,0.027770478028038142,0.010080596171147357
