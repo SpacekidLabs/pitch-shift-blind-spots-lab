@@ -47,3 +47,5 @@
 - Recover algorithm selectivity without reintroducing catastrophic failures
 - Map safety/selectivity frontiers for adaptive routing policies
 - Choose adaptive policies from Pareto tradeoffs instead of single-score rankings
+- Instantiate selective adaptive policies and verify them with rendered outputs
+- Compare conservative and selective adaptive modes as separate product behaviors

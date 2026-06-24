@@ -4,10 +4,16 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from metrics.preflight_risk import HIGH_RISK_THRESHOLD, modulation_aware_preflight_risk_score, risk_level
+from metrics.preflight_risk import HIGH_RISK_THRESHOLD, modulation_aware_preflight_risk_score, preflight_risk_score, risk_level
 from metrics.signal_features import compute_signal_features
 
 from .registry import get_algorithm
+
+
+SELECTIVE_V2_THRESHOLD = 0.50
+SELECTIVE_V2_MICRO_BONUS = 0.06
+SELECTIVE_V2_MICRO_RMS_CENTS = 5.0
+SELECTIVE_V2_MICRO_STRENGTH = 0.30
 
 
 @dataclass(frozen=True)
@@ -86,3 +92,57 @@ def pitch_shift_preflight_adaptive_v1(y: np.ndarray, sr: int, n_steps: float) ->
     guarded = shifted.copy()
     guarded[:length] = (1.0 - analysis.dry_mix) * shifted[:length] + analysis.dry_mix * y[:length]
     return guarded, analysis
+
+
+def _selective_v2_micro_condition(features: dict[str, float]) -> bool:
+    return (
+        float(features["pitch_valid_fraction"]) > 0.95
+        and float(features["spectral_flatness"]) < 0.02
+        and float(features["pitch_modulation_rms_cents"]) > SELECTIVE_V2_MICRO_RMS_CENTS
+        and float(features["pitch_modulation_peak_strength"]) > SELECTIVE_V2_MICRO_STRENGTH
+        and 1.0 <= float(features["pitch_modulation_peak_rate_hz"]) <= 12.0
+    )
+
+
+def analyze_selective_preflight_adaptive_state(y: np.ndarray, sr: int, n_steps: float) -> PreflightAdaptiveAnalysis:
+    features = compute_signal_features(y, sr=sr).as_dict()
+    risk_score, reasons = preflight_risk_score(features, int(n_steps))
+    reason_parts = [] if reasons == "stable_source" else reasons.split("|")
+
+    if _selective_v2_micro_condition(features):
+        risk_score = min(1.0, risk_score + SELECTIVE_V2_MICRO_BONUS)
+        reason_parts.append("selective_micro_modulation_trap")
+
+    high_risk = risk_score >= SELECTIVE_V2_THRESHOLD
+    if high_risk:
+        algorithm = get_algorithm("phase_vocoder")
+        guard = "selective_high_risk_phase_vocoder"
+    elif abs(n_steps) <= 7:
+        algorithm = get_algorithm("psola")
+        guard = "selective_low_risk_psola"
+    else:
+        algorithm = get_algorithm("rubber_band")
+        guard = "selective_low_risk_rubberband"
+
+    return PreflightAdaptiveAnalysis(
+        selected_algorithm=algorithm.name,
+        selected_algorithm_label=algorithm.display_name,
+        safe_mode=high_risk,
+        guard=guard,
+        dry_mix=0.0,
+        preflight_risk_score=risk_score,
+        preflight_risk_level=risk_level(risk_score),
+        preflight_reasons="|".join(reason_parts) if reason_parts else "stable_source",
+        pitch_valid_fraction=float(features["pitch_valid_fraction"]),
+        pitch_iqr_cents=float(features["pitch_iqr_cents"]),
+        pitch_modulation_rms_cents=float(features["pitch_modulation_rms_cents"]),
+        pitch_modulation_peak_rate_hz=float(features["pitch_modulation_peak_rate_hz"]),
+        pitch_modulation_peak_strength=float(features["pitch_modulation_peak_strength"]),
+        spectral_flatness=float(features["spectral_flatness"]),
+    )
+
+
+def pitch_shift_preflight_adaptive_v2(y: np.ndarray, sr: int, n_steps: float) -> tuple[np.ndarray, PreflightAdaptiveAnalysis]:
+    analysis = analyze_selective_preflight_adaptive_state(y, sr=sr, n_steps=n_steps)
+    shifted = get_algorithm(analysis.selected_algorithm).pitch_shift(y, sr=sr, n_steps=n_steps)
+    return shifted, analysis

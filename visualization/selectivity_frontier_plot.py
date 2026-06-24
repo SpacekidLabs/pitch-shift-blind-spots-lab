@@ -33,6 +33,8 @@ def save_selectivity_frontier_plot(
     policies: pd.DataFrame,
     summary: pd.DataFrame,
     output_path: str | Path,
+    title: str = "Exp14 Selectivity Recovery Frontier",
+    subtitle: str = "Safety vs. Phase Vocoder reliance across source-only selector policies.",
 ) -> None:
     output_path = Path(output_path)
     font = _font(11)
@@ -48,8 +50,8 @@ def save_selectivity_frontier_plot(
     image = Image.new("RGB", (width, height), "white")
     draw = ImageDraw.Draw(image)
 
-    draw.text((margin, 22), "Exp14 Selectivity Recovery Frontier", fill=(15, 15, 15), font=title_font)
-    draw.text((margin, 46), "Safety vs. Phase Vocoder reliance across source-only selector policies.", fill=(60, 60, 60), font=font)
+    draw.text((margin, 22), title, fill=(15, 15, 15), font=title_font)
+    draw.text((margin, 46), subtitle, fill=(60, 60, 60), font=font)
 
     x_values = policies["phase_vocoder_count"].to_numpy(dtype=np.float64)
     y_values = policies["mean_selected_stress"].to_numpy(dtype=np.float64)

@@ -1,0 +1,2 @@
+cases,fixed_danger_cases,v2_catastrophic_cases,v2_avoided_fixed_danger_cases,v2_missed_fixed_danger_cases,v2_introduced_catastrophic_cases,v2_avoidance_rate,v2_phase_vocoder_count,v2_psola_count,v2_rubberband_count,v2_mean_stress,v1_mean_stress
+144,81,0,81,0,0,1.0,49,67,28,0.26459652347346574,0.04672797498863441

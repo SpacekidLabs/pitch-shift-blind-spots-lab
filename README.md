@@ -520,6 +520,43 @@ Current result:
 
 This shows that Experiment 13's safety does not require routing everything to Phase Vocoder. There is a safety/selectivity frontier: more Phase Vocoder lowers average stress, but a much more diverse policy can still avoid catastrophic failures.
 
+## Experiment 15
+
+`experiments/15_selective_adaptive_v2.py` instantiates the most selective safe policy from Experiment 14 as `Preflight Adaptive v2`.
+
+The v2 policy uses:
+
+- high-risk threshold: `0.50`
+- micro-modulation bonus: `0.06`
+- micro-modulation RMS threshold: `5` cents
+- micro-modulation peak-strength threshold: `0.30`
+
+Routing:
+
+- high risk: Phase Vocoder
+- low-risk light shifts: PSOLA
+- low-risk large shifts: Rubber Band
+
+Outputs:
+
+- `artifacts/15_results.csv`
+- `artifacts/15_selective_adaptive_v2_cases.csv`
+- `artifacts/15_selective_adaptive_v2_summary.csv`
+- `artifacts/15_selective_adaptive_v2_comparison.png`
+
+Current result:
+
+- fixed danger cases: `81`
+- v2 catastrophic cases: `0`
+- v2 avoided fixed-danger cases: `81`
+- v2 missed fixed-danger cases: `0`
+- v2 introduced catastrophic cases: `0`
+- Phase Vocoder selections: `49 / 144`
+- PSOLA selections: `67 / 144`
+- Rubber Band selections: `28 / 144`
+
+This confirms the frontier result in an instantiated selector. v2 recovers algorithm diversity while preserving catastrophic-failure avoidance on the subtle-modulation grid.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.
