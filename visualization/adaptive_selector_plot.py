@@ -19,6 +19,9 @@ STATE_COLORS = {
     "transient_like": (113, 91, 171),
     "modulated_pitch": (57, 143, 126),
     "untracked": (205, 205, 205),
+    "low": (39, 125, 161),
+    "medium": (218, 143, 46),
+    "high": (180, 74, 90),
 }
 
 
@@ -37,6 +40,10 @@ def save_adaptive_selector_plot(
     decisions: pd.DataFrame,
     summary: pd.DataFrame,
     output_path: str | Path,
+    title: str = "Exp09 Adaptive Selector Prototype",
+    subtitle: str = "State, selected algorithm, and stress.",
+    legend_title: str = "State Legend",
+    legend_items: list[str] | None = None,
 ) -> None:
     output_path = Path(output_path)
     signal_order = list(dict.fromkeys(decisions["signal_label"].tolist()))
@@ -54,8 +61,8 @@ def save_adaptive_selector_plot(
     image = Image.new("RGB", (width, height), "white")
     draw = ImageDraw.Draw(image)
 
-    draw.text((margin, 18), "Exp09 Adaptive Selector Prototype", fill=(15, 15, 15), font=title_font)
-    draw.text((margin, 42), "State, selected algorithm, and stress.", fill=(60, 60, 60), font=font)
+    draw.text((margin, 18), title, fill=(15, 15, 15), font=title_font)
+    draw.text((margin, 42), subtitle, fill=(60, 60, 60), font=font)
 
     for col_index, shift in enumerate(SHIFT_ORDER):
         x = margin + left_margin + col_index * cell_w
@@ -93,8 +100,10 @@ def save_adaptive_selector_plot(
             draw.text((summary_x, y + 16), summary_text, fill=(35, 35, 35), font=small_font)
 
     legend_y = margin + top_margin + len(signal_order) * cell_h + 30
-    draw.text((margin, legend_y), "State Legend", fill=(35, 35, 35), font=font)
-    for index, (state, color) in enumerate(STATE_COLORS.items()):
+    draw.text((margin, legend_y), legend_title, fill=(35, 35, 35), font=font)
+    items = legend_items or list(STATE_COLORS.keys())
+    for index, state in enumerate(items):
+        color = STATE_COLORS.get(state, (205, 205, 205))
         x = margin + (index % 4) * 230
         y = legend_y + 24 + (index // 4) * 22
         draw.rectangle([x, y, x + 14, y + 14], fill=color, outline=(90, 90, 90))

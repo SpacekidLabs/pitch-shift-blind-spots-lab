@@ -49,3 +49,5 @@
 - Choose adaptive policies from Pareto tradeoffs instead of single-score rankings
 - Instantiate selective adaptive policies and verify them with rendered outputs
 - Compare conservative and selective adaptive modes as separate product behaviors
+- Test adaptive selectors on the full stress atlas after narrow-grid tuning
+- Add fallback-specific guards for cases where the safe algorithm has its own blind spot

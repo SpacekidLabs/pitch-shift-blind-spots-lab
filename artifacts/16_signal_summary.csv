@@ -1,0 +1,12 @@
+signal_family,signal_name,signal_label,selected_algorithms,risk_levels,adaptive_mean_stress,adaptive_max_stress,adaptive_catastrophic_count,best_fixed_algorithm_label,best_fixed_mean_stress
+noise,white_noise,noise / white_noise,Phase Vocoder,high,0.18198431010416743,0.40415159476783247,1,Phase Vocoder,0.18198431010416743
+harmonic,sine,harmonic / sine,PSOLA|Rubber Band,high|medium,0.23128973922227158,0.39713088409372327,0,Phase Vocoder,0.043901252318561665
+harmonic,saw,harmonic / saw,PSOLA|Phase Vocoder,high,0.16698829706381235,0.2080331391683549,0,PSOLA,0.1639829234942705
+harmonic,square,harmonic / square,Phase Vocoder,high,0.19693395947012335,0.322320717637268,0,Phase Vocoder,0.19693395947012338
+inharmonic,bell_resonator,inharmonic / bell_resonator,Phase Vocoder,high,0.08061193238782915,0.24472229064973292,0,Phase Vocoder,0.08061193238782915
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,Phase Vocoder,high,0.1080257057834447,0.19766983769070623,0,Phase Vocoder,0.1080257057834447
+noise,pink_noise,noise / pink_noise,Phase Vocoder,high,0.13087458469919416,0.26496967778529407,0,Phase Vocoder,0.13087458469919416
+transient,impulse_train,transient / impulse_train,Phase Vocoder,high,0.08486056364790574,0.23780650053021102,0,Phase Vocoder,0.08486056364790573
+transient,click_sequence,transient / click_sequence,Phase Vocoder,high,0.02191987620317027,0.03176970824335008,0,Phase Vocoder,0.02191987620317027
+modulated,vibrato_tone,modulated / vibrato_tone,PSOLA|Phase Vocoder,high|medium,0.09529673518268042,0.1351855411819327,0,Phase Vocoder,0.048325235476910755
+modulated,fm_tone,modulated / fm_tone,Phase Vocoder,high,0.046720467203591035,0.06919274913848435,0,Phase Vocoder,0.046720467203591035

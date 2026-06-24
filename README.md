@@ -557,6 +557,36 @@ Current result:
 
 This confirms the frontier result in an instantiated selector. v2 recovers algorithm diversity while preserving catastrophic-failure avoidance on the subtle-modulation grid.
 
+## Experiment 16
+
+`experiments/16_selective_adaptive_v2_generalization.py` tests whether `Preflight Adaptive v2` generalizes from the subtle-modulation grid back to the original stress atlas.
+
+It compares:
+
+- fixed Phase Vocoder
+- fixed PSOLA
+- fixed WSOLA
+- fixed Rubber Band
+- `Preflight Adaptive v2`
+
+Outputs:
+
+- `artifacts/16_results.csv`
+- `artifacts/16_selector_decisions.csv`
+- `artifacts/16_algorithm_summary.csv`
+- `artifacts/16_signal_summary.csv`
+- `artifacts/16_selective_adaptive_v2_map.png`
+
+Current result:
+
+- `Preflight Adaptive v2` catastrophic cases: `1`
+- Phase Vocoder catastrophic cases: `1`
+- PSOLA catastrophic cases: `2`
+- Rubber Band catastrophic cases: `7`
+- WSOLA catastrophic cases: `17`
+
+The remaining v2 catastrophic case is inherited from the Phase Vocoder fallback on `white_noise` at `-12` semitones. This is an important limitation: adaptive routing can avoid choosing the wrong observer, but it cannot eliminate blind spots in the fallback observer itself.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.
