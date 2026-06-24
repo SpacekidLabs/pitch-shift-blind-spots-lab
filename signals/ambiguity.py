@@ -180,3 +180,24 @@ def build_critical_ambiguity_sweep(sr: int = 22050, duration: float = 2.0) -> li
         )
 
     return cases
+
+
+def build_attractor_basin_sweep(sr: int = 22050, duration: float = 2.0) -> list[AmbiguityCase]:
+    cases: list[AmbiguityCase] = []
+    for step in range(0, 51):
+        separation = round(step * 0.1, 1)
+        second = 440.0 + separation
+        safe_value = f"{separation:.1f}".replace(".", "_")
+        case_id = f"basin_two_oscillators_{safe_value}hz"
+        cases.append(
+            AmbiguityCase(
+                case_id=case_id,
+                family="basin_two_oscillators",
+                label=f"440 + {second:g}",
+                ambiguity_amount=separation,
+                ambiguity_units="Hz separation",
+                params={"frequencies_hz": f"440,{second:g}", "separation_hz": separation},
+                audio=_sum_oscillators([440.0, second], sr=sr, duration=duration),
+            )
+        )
+    return cases

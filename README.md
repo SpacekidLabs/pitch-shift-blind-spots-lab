@@ -44,6 +44,8 @@ Experiment 05 zooms in around the observed ambiguity peaks and asks whether disa
 
 Experiment 06 asks what pitch trajectory each observer appears to infer over time.
 
+Experiment 07 maps attractor branches across a fine ambiguity sweep and treats state disagreement as the phenomenon itself.
+
 ## Repository Layout
 
 - `signals/` synthetic signal generators
@@ -221,6 +223,39 @@ Outputs:
 - `artifacts/06_observer_state_space.png`
 
 This experiment starts treating pitch shifters as observers with inferred state trajectories, not just processors with error scores.
+
+## Experiment 07
+
+`experiments/07_attractor_basin_mapping.py` maps observer attractor branches for:
+
+```text
+440 + delta
+delta = 0.0, 0.1, 0.2, ..., 5.0 Hz
+```
+
+For every algorithm, it records the dominant inferred pitch and classifies the trajectory:
+
+- `lower_branch`
+- `middle_branch`
+- `upper_branch`
+- `mixed_branch`
+
+It also computes:
+
+```text
+variance_inferred_state = variance(dominant inferred pitch across algorithms)
+```
+
+Outputs:
+
+- `artifacts/07_pitch_trajectories.csv`
+- `artifacts/07_branch_map.csv`
+- `artifacts/07_state_disagreement.csv`
+- `artifacts/07_branch_switches.csv`
+- `artifacts/07_hysteresis_note.csv`
+- `artifacts/07_attractor_basin_map.png`
+
+This experiment focuses on where observer branches switch, split, or collapse. True hysteresis is not claimed yet because the current algorithm wrappers are stateless batch processors.
 
 ## Roadmap
 

@@ -1,0 +1,2 @@
+hysteresis_tested,reason,next_step
+False,The current algorithm wrappers are stateless batch processors and do not expose continuation state between delta values.,Add stateful continuation or warm-started observers before interpreting order-dependent hysteresis.

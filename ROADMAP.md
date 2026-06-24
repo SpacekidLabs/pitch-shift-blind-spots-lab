@@ -24,6 +24,7 @@
 - Test the Ambiguity Hypothesis with controlled oscillator and modulation sweeps
 - Zoom in on critical ambiguity zones and measure peak width
 - Map observer-state pitch trajectories over time
+- Map attractor basins and branch switches across ambiguity
 - Group failure modes by signal structure
 - Separate transient loss, timbral smear, and harmonic drift
 - Track which structures survive across representations
