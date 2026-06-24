@@ -1,0 +1,2 @@
+cases,fixed_danger_cases,adaptive_catastrophic_cases,avoided_fixed_danger_cases,missed_fixed_danger_cases,introduced_catastrophic_cases,safe_mode_count,avoidance_rate,selected_phase_vocoder_count,selected_psola_count,selected_rubberband_count,selected_wsola_count
+144,81,0,81,0,0,140,1.0,140,4,0,0

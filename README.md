@@ -447,6 +447,37 @@ Current result on the Experiment 11 grid:
 
 This suggests that the subtle modulation trap is detectable before pitch shifting, but only with a descriptor designed for coherent micro-motion. Broad pitch stability metrics alone miss it.
 
+## Experiment 13
+
+`experiments/13_preflight_adaptive_selector_v1.py` turns the micro-modulation detector into an adaptive routing rule.
+
+`Preflight Adaptive v1` is source-only:
+
+- compute modulation-aware preflight risk
+- if `micro_modulation_trap` is detected, avoid period-based routing
+- route to Phase Vocoder with a small dry guard
+- otherwise use a simple stable/noisy/transient risk policy
+
+It evaluates the selector on the Experiment 11 subtle-modulation grid.
+
+Outputs:
+
+- `artifacts/13_results.csv`
+- `artifacts/13_preflight_adaptive_cases.csv`
+- `artifacts/13_preflight_adaptive_summary.csv`
+- `artifacts/13_preflight_adaptive_v1_map.png`
+
+Current result:
+
+- fixed danger cases: `81`
+- adaptive catastrophic cases: `0`
+- avoided fixed-danger cases: `81`
+- missed fixed-danger cases: `0`
+- introduced catastrophic cases: `0`
+- avoidance rate: `1.000`
+
+This is the first prototype that uses a discovered blind spot to change routing behavior. It is deliberately conservative: on this grid, v1 selects Phase Vocoder for `140` of `144` cases. The next challenge is recovering selectivity without giving up safety.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.

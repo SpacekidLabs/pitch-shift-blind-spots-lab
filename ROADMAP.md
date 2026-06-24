@@ -43,3 +43,5 @@
 - Add WSOLA-specific preflight warnings for period-tracking fragility
 - Add micro-modulation-aware preflight scoring to adaptive selection
 - Separate coherent pitch micro-motion from broad unstable pitch motion
+- Measure adaptive-selector conservatism after adding preflight guards
+- Recover algorithm selectivity without reintroducing catastrophic failures
