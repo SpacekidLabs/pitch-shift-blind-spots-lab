@@ -23,6 +23,17 @@ The goal is to map where representations break:
 
 Experiment 01 creates a synthetic stress atlas and runs it through a single pitch-shifting path based on a phase vocoder.
 
+Experiment 02 runs the same atlas through four algorithm families:
+
+- Phase Vocoder
+- WSOLA
+- Rubber Band
+- PSOLA
+
+It asks a more interesting question than "which one wins?":
+
+- Do these algorithms fail on the same structures?
+
 ## Repository Layout
 
 - `signals/` synthetic signal generators
@@ -61,7 +72,22 @@ Outputs:
 - `artifacts/01_results.csv`
 - `artifacts/01_heatmap.png`
 
+## Experiment 02
+
+`experiments/02_algorithm_comparison.py` reuses the exact same synthetic atlas and metrics, then compares:
+
+- Phase Vocoder
+- WSOLA
+- Rubber Band
+- PSOLA
+
+Outputs:
+
+- `artifacts/02_results.csv`
+- `artifacts/02_heatmap.png`
+
+The comparison figure is arranged by algorithm and metric so the blind spots are easier to compare side by side.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including comparisons against WSOLA, PSOLA, Rubber Band, and neural pitch shifters.
-
