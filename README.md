@@ -655,7 +655,7 @@ Current result:
 - Rubber Band catastrophic cases: `7`
 - WSOLA catastrophic cases: `17`
 
-The v3 selector keeps the v2 routing policy, then applies a dry/wet fallback guard for large-shift unpitched or noise-like cases routed to Phase Vocoder. This removes the remaining broad-atlas adaptive catastrophe without turning the selector into a single fixed algorithm.
+The v3 selector keeps the v2 routing policy, then applies a dry/wet fallback guard for large-shift noise-like cases routed to Phase Vocoder, excluding sparse transients. This removes the remaining broad-atlas adaptive catastrophe without turning the selector into a single fixed algorithm.
 
 ## Experiment 19
 
@@ -692,11 +692,58 @@ Current result:
 - best compromise dry mix: `0.10`
 - catastrophic cases at `0.00` dry: `1`
 - catastrophic cases at `0.10` dry: `0`
-- mean stress at `0.10` dry: `0.101`
-- mean shift retention at `0.10` dry: `0.920`
-- guard audit score at `0.10` dry: `0.819`
+- mean stress at `0.10` dry: `0.222`
+- mean shift retention at `0.10` dry: `0.957`
+- guard audit score at `0.10` dry: `0.734`
 
 This refines the guard from Experiment 17. A heavy guard can reduce metrics by drifting toward the dry signal, but the more interesting behavior is the smallest guard that removes catastrophe while preserving the pitch-shift action. For the current atlas, that boundary is around `0.10` dry mix.
+
+## Experiment 20
+
+`experiments/20_guard_specificity_test.py` tests whether the v3 guard fires only where it should.
+
+Question:
+
+```text
+Does the guard help only where it should?
+```
+
+It compares guard policies on the same atlas:
+
+- no guard
+- current v3
+- noise only
+- noise plus transient
+- forced everywhere
+
+It measures:
+
+- catastrophic count
+- rescued catastrophe count
+- missed guard count
+- unnecessary guard count
+- mean stress
+- shift retention
+- guard specificity score
+
+Outputs:
+
+- `artifacts/20_guard_specificity_results.csv`
+- `artifacts/20_guard_policy_summary.csv`
+- `artifacts/20_guard_signal_summary.csv`
+- `artifacts/20_guard_specificity_plot.png`
+
+Current result:
+
+- current v3 guarded cases: `2 / 44`
+- current v3 catastrophic cases: `0`
+- current v3 rescued cases: `1`
+- current v3 unnecessary guards: `1`
+- current v3 mean shift retention: `0.998`
+- forced-everywhere unnecessary guards: `43`
+- no-guard catastrophic cases: `1`
+
+This changed the v3 rule. The earlier broad guard treated sparse transients as noise-like and guarded `6 / 44` cases. Experiment 20 showed that a noise-only guard rescues the same failure while avoiding unnecessary transient guards. The current v3 rule is now: guard large-shift Phase Vocoder fallback when the source is noise-like but not sparse-transient.
 
 ## Roadmap
 

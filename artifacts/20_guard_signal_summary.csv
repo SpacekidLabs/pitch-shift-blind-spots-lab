@@ -1,0 +1,56 @@
+signal_family,signal_name,signal_label,policy_label,guarded_count,catastrophic_count,mean_stress,mean_shift_retention
+harmonic,saw,harmonic / saw,Current v3,0,0,0.16698829706381235,1.0
+harmonic,saw,harmonic / saw,Forced Everywhere,4,0,0.12565219084914178,0.8028120229009753
+harmonic,saw,harmonic / saw,No Guard,0,0,0.16698829706381235,1.0
+harmonic,saw,harmonic / saw,Noise + Transient,0,0,0.16698829706381235,1.0
+harmonic,saw,harmonic / saw,Noise Only,0,0,0.16698829706381235,1.0
+harmonic,sine,harmonic / sine,Current v3,0,0,0.23128973922227158,1.0
+harmonic,sine,harmonic / sine,Forced Everywhere,4,0,0.20539358811198133,0.8689745317813131
+harmonic,sine,harmonic / sine,No Guard,0,0,0.23128973922227158,1.0
+harmonic,sine,harmonic / sine,Noise + Transient,0,0,0.23128973922227158,1.0
+harmonic,sine,harmonic / sine,Noise Only,0,0,0.23128973922227158,1.0
+harmonic,square,harmonic / square,Current v3,0,0,0.19693395947012335,1.0
+harmonic,square,harmonic / square,Forced Everywhere,4,0,0.16760758900656691,0.8775686581688211
+harmonic,square,harmonic / square,No Guard,0,0,0.19693395947012335,1.0
+harmonic,square,harmonic / square,Noise + Transient,0,0,0.19693395947012335,1.0
+harmonic,square,harmonic / square,Noise Only,0,0,0.19693395947012335,1.0
+inharmonic,bell_resonator,inharmonic / bell_resonator,Current v3,0,0,0.08061193238782915,1.0
+inharmonic,bell_resonator,inharmonic / bell_resonator,Forced Everywhere,4,0,0.06592834279555077,0.8644665691770703
+inharmonic,bell_resonator,inharmonic / bell_resonator,No Guard,0,0,0.08061193238782915,1.0
+inharmonic,bell_resonator,inharmonic / bell_resonator,Noise + Transient,0,0,0.08061193238782915,1.0
+inharmonic,bell_resonator,inharmonic / bell_resonator,Noise Only,0,0,0.08061193238782915,1.0
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,Current v3,0,0,0.1080257057834447,1.0
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,Forced Everywhere,4,0,0.08791005763280305,0.8459588594406979
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,No Guard,0,0,0.1080257057834447,1.0
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,Noise + Transient,0,0,0.1080257057834447,1.0
+inharmonic,random_modal_resonator,inharmonic / random_modal_resonator,Noise Only,0,0,0.1080257057834447,1.0
+modulated,fm_tone,modulated / fm_tone,Current v3,0,0,0.046720467203591035,1.0
+modulated,fm_tone,modulated / fm_tone,Forced Everywhere,4,0,0.030194681661791994,0.7889533782925916
+modulated,fm_tone,modulated / fm_tone,No Guard,0,0,0.046720467203591035,1.0
+modulated,fm_tone,modulated / fm_tone,Noise + Transient,0,0,0.046720467203591035,1.0
+modulated,fm_tone,modulated / fm_tone,Noise Only,0,0,0.046720467203591035,1.0
+modulated,vibrato_tone,modulated / vibrato_tone,Current v3,0,0,0.09529673518268042,1.0
+modulated,vibrato_tone,modulated / vibrato_tone,Forced Everywhere,4,0,0.06885840037221337,0.786304938614074
+modulated,vibrato_tone,modulated / vibrato_tone,No Guard,0,0,0.09529673518268042,1.0
+modulated,vibrato_tone,modulated / vibrato_tone,Noise + Transient,0,0,0.09529673518268042,1.0
+modulated,vibrato_tone,modulated / vibrato_tone,Noise Only,0,0,0.09529673518268042,1.0
+noise,pink_noise,noise / pink_noise,Current v3,0,0,0.13087458469919416,1.0
+noise,pink_noise,noise / pink_noise,Forced Everywhere,4,0,0.12456444400593367,1.0001400861781662
+noise,pink_noise,noise / pink_noise,No Guard,0,0,0.13087458469919416,1.0
+noise,pink_noise,noise / pink_noise,Noise + Transient,0,0,0.13087458469919416,1.0
+noise,pink_noise,noise / pink_noise,Noise Only,0,0,0.13087458469919416,1.0
+noise,white_noise,noise / white_noise,Current v3,2,0,0.16738908713625006,0.9783220573650806
+noise,white_noise,noise / white_noise,Forced Everywhere,4,0,0.16845149188046665,0.9879187671333269
+noise,white_noise,noise / white_noise,No Guard,0,1,0.18198431010416743,1.0
+noise,white_noise,noise / white_noise,Noise + Transient,2,0,0.16738908713625006,0.9783220573650806
+noise,white_noise,noise / white_noise,Noise Only,2,0,0.16738908713625006,0.9783220573650806
+transient,click_sequence,transient / click_sequence,Current v3,0,0,0.02191987620317027,1.0
+transient,click_sequence,transient / click_sequence,Forced Everywhere,4,0,0.016509138290693042,0.8886041209757247
+transient,click_sequence,transient / click_sequence,No Guard,0,0,0.02191987620317027,1.0
+transient,click_sequence,transient / click_sequence,Noise + Transient,2,0,0.017440760954859108,0.9291274050706124
+transient,click_sequence,transient / click_sequence,Noise Only,0,0,0.02191987620317027,1.0
+transient,impulse_train,transient / impulse_train,Current v3,0,0,0.08486056364790574,1.0
+transient,impulse_train,transient / impulse_train,Forced Everywhere,4,0,0.050533139951500154,0.9695390118923338
+transient,impulse_train,transient / impulse_train,No Guard,0,0,0.08486056364790574,1.0
+transient,impulse_train,transient / impulse_train,Noise + Transient,2,0,0.053391438716675274,0.9726947475672814
+transient,impulse_train,transient / impulse_train,Noise Only,0,0,0.08486056364790574,1.0

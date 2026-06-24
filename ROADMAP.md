@@ -57,3 +57,6 @@
 - Validate that guarded adaptive selectors avoid inherited fallback catastrophes
 - Audit fallback guards for over-conservative dry blending
 - Prefer the smallest effective guard that prevents catastrophe while retaining shift behavior
+- Test guard specificity against no-guard and forced-everywhere baselines
+- Penalize unnecessary guards separately from missed catastrophes
+- Distinguish noise fallback guards from transient fallback guards

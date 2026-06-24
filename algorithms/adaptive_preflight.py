@@ -152,7 +152,7 @@ def pitch_shift_preflight_adaptive_v2(y: np.ndarray, sr: int, n_steps: float) ->
 def analyze_guarded_preflight_adaptive_state(y: np.ndarray, sr: int, n_steps: float) -> PreflightAdaptiveAnalysis:
     base = analyze_selective_preflight_adaptive_state(y, sr=sr, n_steps=n_steps)
     reason_parts = [] if base.preflight_reasons == "stable_source" else base.preflight_reasons.split("|")
-    noise_like = "noise_like_spectrum" in reason_parts or "untracked_pitch" in reason_parts
+    noise_like = "noise_like_spectrum" in reason_parts and "sparse_transients" not in reason_parts
     large_shift = abs(n_steps) >= 12
     if noise_like and large_shift and base.selected_algorithm == "phase_vocoder":
         return PreflightAdaptiveAnalysis(
