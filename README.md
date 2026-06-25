@@ -795,6 +795,45 @@ Current result:
 
 This suggests that "use a different algorithm" is not automatically a safer guard. On the current guarded noise cases, reduced shift strength slightly outperforms dry/wet blending, while Rubber Band fallback and crossfade still miss the catastrophe. The case-level summary also shows that `white_noise +12` does not need a guard, while `white_noise -12` does. That points toward a future direction-specific guard trigger.
 
+## Experiment 22
+
+`experiments/22_drum_listening_test.py` creates a blinded listening test from a real drum loop sample.
+
+Question:
+
+```text
+Which pitch-shift render feels best on a real drum loop?
+```
+
+The current session uses:
+
+- source: `2023-01-02 - 002 - 121 bpm - crash-y tom-y.wav`
+- excerpt length: `8` seconds
+- sample rate: `48000`
+- channels: stereo
+- shifts: `+3`, `+7`, `-12` semitones
+- strategies: Phase Vocoder, WSOLA, Rubber Band, PSOLA, Adaptive v3
+
+Outputs:
+
+- `artifacts/22_drum_listening_test/README.md`
+- `artifacts/22_drum_listening_test/listening_sheet.csv`
+- `artifacts/22_drum_listening_test/blind_manifest.csv`
+- `artifacts/22_drum_listening_test/objective_metrics.csv`
+- `artifacts/22_drum_listening_test/objective_metrics_plot.png`
+- local-only audio files in `artifacts/22_drum_listening_test/audio/`
+- local-only answer key at `artifacts/22_drum_listening_test/private_answer_key.csv`
+
+Current result:
+
+- listening stimuli: `15`
+- reference file: `audio/REFERENCE_original_excerpt.wav`
+- level matched: `True`
+- Adaptive v3 collapses to Phase Vocoder on this drum loop
+- the adaptive/Phase Vocoder duplicate pairs act as blind consistency checks
+
+This is the first bridge from synthetic blind-spot mapping into actual listening. The objective metrics are included only as diagnostics; the real point is to score transient crispness, groove preservation, artifact severity, and overall usefulness by ear.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.

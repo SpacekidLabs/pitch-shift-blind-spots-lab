@@ -3,4 +3,5 @@ __pycache__/
 .DS_Store
 .pytest_cache/
 .venv/
-
+artifacts/22_drum_listening_test/audio/
+artifacts/22_drum_listening_test/private_answer_key.csv

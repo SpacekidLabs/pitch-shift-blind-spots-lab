@@ -63,3 +63,6 @@
 - Compare fallback guard action types, not just guard trigger rules
 - Penalize guard actions that overshoot shift retention
 - Test direction-specific fallback guards for asymmetric large shifts
+- Add real-audio listening tests after synthetic blind-spot discovery
+- Track human ratings for transient crispness, groove, artifacts, and overall usefulness
+- Use blind duplicate renders as listener-consistency checks

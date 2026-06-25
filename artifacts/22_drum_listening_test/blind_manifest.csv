@@ -1,0 +1,16 @@
+blind_id,wav_file,shift_semitones
+DLT_001,audio/DLT_001.wav,7
+DLT_002,audio/DLT_002.wav,3
+DLT_003,audio/DLT_003.wav,-12
+DLT_004,audio/DLT_004.wav,7
+DLT_005,audio/DLT_005.wav,-12
+DLT_006,audio/DLT_006.wav,7
+DLT_007,audio/DLT_007.wav,7
+DLT_008,audio/DLT_008.wav,-12
+DLT_009,audio/DLT_009.wav,-12
+DLT_010,audio/DLT_010.wav,3
+DLT_011,audio/DLT_011.wav,7
+DLT_012,audio/DLT_012.wav,-12
+DLT_013,audio/DLT_013.wav,3
+DLT_014,audio/DLT_014.wav,3
+DLT_015,audio/DLT_015.wav,3
