@@ -71,7 +71,13 @@ def _stimulus_card(row: pd.Series) -> str:
     """
 
 
-def save_blind_listening_session(manifest: pd.DataFrame, output_path: str | Path) -> None:
+def save_blind_listening_session(
+    manifest: pd.DataFrame,
+    output_path: str | Path,
+    title: str = "Experiment 22 Blind Drum Listening Session",
+    storage_key: str = "psbsl_exp22_scores_v1",
+    export_filename: str = "exp22_drum_listening_scores.csv",
+) -> None:
     output_path = Path(output_path)
     cards = "\n".join(_stimulus_card(row) for _, row in manifest.iterrows())
     html = f"""<!doctype html>
@@ -79,7 +85,7 @@ def save_blind_listening_session(manifest: pd.DataFrame, output_path: str | Path
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Experiment 22 Blind Drum Listening Session</title>
+  <title>{escape(title)}</title>
   <style>
     :root {{
       --paper: #f7f2e8;
@@ -321,7 +327,7 @@ def save_blind_listening_session(manifest: pd.DataFrame, output_path: str | Path
     <section class="hero">
       <div class="panel intro">
         <p class="eyebrow">Pitch Shift Blind Spots Lab</p>
-        <h1>Experiment 22 Blind Drum Listening Session</h1>
+        <h1>{escape(title)}</h1>
         <p>
           Score what you hear before opening the private answer key. The page saves your ratings in this browser
           and exports a CSV when you are done.
@@ -357,7 +363,7 @@ def save_blind_listening_session(manifest: pd.DataFrame, output_path: str | Path
   </main>
 
   <script>
-    const STORAGE_KEY = "psbsl_exp22_scores_v1";
+    const STORAGE_KEY = {json.dumps(storage_key)};
     const ratingFields = {json.dumps(RATING_FIELDS)}.map(item => item[0]);
     const cards = Array.from(document.querySelectorAll(".stimulus-card"));
 
@@ -449,7 +455,7 @@ def save_blind_listening_session(manifest: pd.DataFrame, output_path: str | Path
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = "exp22_drum_listening_scores.csv";
+      link.download = {json.dumps(export_filename)};
       document.body.appendChild(link);
       link.click();
       link.remove();

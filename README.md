@@ -962,6 +962,49 @@ Current result:
 
 This is the first prototype of a pitch shifter that checks whether its own output is alive. Normal Adaptive v4 chooses Phase Vocoder for this drum loop, so it does not need fallback. The forced-candidate probes show the safety mechanism: if a future selector chooses WSOLA or Rubber Band and the render collapses, post-render health rejects it and falls back before delivery.
 
+## Experiment 26
+
+`experiments/26_adaptive_v4_blind_listening_test.py` turns the Adaptive v4 observation into a blind listening test.
+
+Question:
+
+```text
+Does Adaptive v4 Normal remain preferred when compared blindly against rescue-path renders?
+```
+
+It compares:
+
+- Phase Vocoder
+- Adaptive v3
+- Adaptive v4 Normal
+- Adaptive v4 Rescue From WSOLA
+- Adaptive v4 Rescue From Rubber Band
+
+Outputs:
+
+- `artifacts/26_adaptive_v4_blind_listening_test/README.md`
+- `artifacts/26_adaptive_v4_blind_listening_test/blind_listening_session.html`
+- `artifacts/26_adaptive_v4_blind_listening_test/listening_sheet.csv`
+- `artifacts/26_adaptive_v4_blind_listening_test/blind_manifest.csv`
+- `artifacts/26_adaptive_v4_blind_listening_test/objective_metrics.csv`
+- `artifacts/26_adaptive_v4_blind_listening_test/objective_metrics_plot.png`
+- `artifacts/26_adaptive_v4_blind_listening_test/session_info.csv`
+
+Local-only outputs:
+
+- `artifacts/26_adaptive_v4_blind_listening_test/audio/`
+- `artifacts/26_adaptive_v4_blind_listening_test/private_answer_key.csv`
+
+Current result:
+
+- stimuli: `15`
+- shifts: `+3`, `+7`, `-12`
+- Adaptive v4 Normal selected Phase Vocoder directly
+- WSOLA and Rubber Band rescue probes were rejected by the render-health gate
+- all rescue probes fell back to Phase Vocoder
+
+This test is deliberately not a new "which algorithm is best" benchmark. It asks whether the adaptive safety path preserves the listening preference under blind scoring. Because multiple blind IDs collapse to the same final Phase Vocoder render, it also acts as a listener-stability check: if equivalent renders receive different scores, the blind test is exposing context effects and rating noise rather than algorithm differences.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.

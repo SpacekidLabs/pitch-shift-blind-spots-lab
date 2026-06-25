@@ -1,0 +1,2 @@
+source_file,sample_rate,source_channels,source_duration_seconds,excerpt_seconds,stimulus_count,reference_file,random_seed
+2023-01-02 - 002 - 121 bpm - crash-y tom-y.wav,48000,2,31.7355625,8.0,15,audio/REFERENCE_original_excerpt.wav,26026

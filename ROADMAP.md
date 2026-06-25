@@ -74,3 +74,6 @@
 - Trigger automatic fallback when a selected algorithm produces unusable output
 - Prototype Adaptive v4 with render-health fallback chains
 - Test fallback rescue behavior by forcing risky candidate algorithms
+- Run blind Adaptive v4 listening tests after unblinded preference notes
+- Compare normal adaptive paths against forced rescue paths
+- Use duplicate-equivalent renders to estimate listener stability and context effects

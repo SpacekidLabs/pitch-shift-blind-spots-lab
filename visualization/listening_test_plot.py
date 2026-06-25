@@ -14,7 +14,7 @@ def _font(size: int) -> ImageFont.ImageFont:
         return ImageFont.load_default()
 
 
-def save_listening_test_plot(metrics: pd.DataFrame, output_path: str | Path) -> None:
+def save_listening_test_plot(metrics: pd.DataFrame, output_path: str | Path, title: str = "Exp22 Drum Listening Test") -> None:
     output_path = Path(output_path)
     frame = metrics.sort_values(["shift_semitones", "blind_id"]).reset_index(drop=True)
     font = _font(11)
@@ -30,7 +30,7 @@ def save_listening_test_plot(metrics: pd.DataFrame, output_path: str | Path) -> 
     image = Image.new("RGB", (width, height), "white")
     draw = ImageDraw.Draw(image)
 
-    draw.text((margin, 18), "Exp22 Drum Listening Test", fill=(15, 15, 15), font=title_font)
+    draw.text((margin, 18), title, fill=(15, 15, 15), font=title_font)
     draw.text(
         (margin, 44),
         "Blinded render pack: lower metric bars are not automatically better, but they flag likely artifacts.",
