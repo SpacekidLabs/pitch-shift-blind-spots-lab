@@ -69,3 +69,6 @@
 - Compare objective stress metrics against human listening scores
 - Treat silence/unusable renders as practical catastrophic failures
 - Build listening-grounded guard rules for drum material
+- Add post-render health gates for adaptive pitch shifting
+- Reject renders with collapsed RMS or sparse active frames
+- Trigger automatic fallback when a selected algorithm produces unusable output

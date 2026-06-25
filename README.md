@@ -875,6 +875,45 @@ Current result:
 
 This is an important real-audio correction to the synthetic lab. The listener did not simply prefer the lowest composite stress. Several renders that looked plausible by objective summaries were perceived as silence or unusable. The listening test turns "algorithm stress" into a more product-relevant question: does the render preserve audible groove and transient identity?
 
+## Experiment 24
+
+`experiments/24_render_health_gate.py` tests whether simple post-render health metrics can detect the perceived silence failures from Experiment 23.
+
+Question:
+
+```text
+Can render health detect perceived silence failures?
+```
+
+It measures each rendered listening-test WAV against the reference:
+
+- relative RMS in dB
+- active frame fraction
+- median frame RMS
+- peak ratio
+- crest factor
+
+Outputs:
+
+- `artifacts/24_render_health_gate/24_render_health_results.csv`
+- `artifacts/24_render_health_gate/24_render_health_detection_summary.csv`
+- `artifacts/24_render_health_gate/24_render_health_strategy_summary.csv`
+- `artifacts/24_render_health_gate/24_render_health_plot.png`
+
+Current result:
+
+- listener silence flags: `6`
+- render-health flags: `6`
+- true positives: `6`
+- false positives: `0`
+- false negatives: `0`
+- silence precision: `1.00`
+- silence recall: `1.00`
+- WSOLA mean relative RMS: `-33.1 dB`
+- Rubber Band mean relative RMS: `-32.9 dB`
+
+The silence failures were real waveform-health failures, not just subjective dislike. WSOLA and Rubber Band renders had normal peak spikes but extremely low RMS and almost no active frames. This suggests the adaptive system needs a post-render health gate before listening or delivery: if a render collapses, automatically reject it and fall back.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.

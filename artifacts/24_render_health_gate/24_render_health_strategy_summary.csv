@@ -1,0 +1,6 @@
+strategy,strategy_label,case_count,listener_silence_count,health_flag_count,mean_relative_rms_db,mean_active_fraction,mean_overall_rating
+rubber_band,Rubber Band,3,3,3,-32.93130305076375,0.010638297872340425,1.0
+wsola,WSOLA,3,3,3,-33.124842020312705,0.005319148936170213,1.0
+psola,PSOLA,3,0,0,-1.8246450204698579,0.8297872340425533,1.6666666666666667
+adaptive_v3,Adaptive v3,3,0,0,-1.643497275841552,1.0,2.6666666666666665
+phase_vocoder,Phase Vocoder,3,0,0,-1.643497275841552,1.0,2.6666666666666665
