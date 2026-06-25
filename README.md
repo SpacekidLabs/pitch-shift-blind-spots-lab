@@ -836,6 +836,45 @@ Current result:
 
 This is the first bridge from synthetic blind-spot mapping into actual listening. The blind scoring page lets a listener play each file, rate it, save progress in the browser, and export scores before opening the private answer key. The objective metrics are included only as diagnostics; the real point is to score transient crispness, groove preservation, artifact severity, and overall usefulness by ear.
 
+## Experiment 23
+
+`experiments/23_listening_score_analysis.py` analyzes the completed Experiment 22 blind listening scores.
+
+Question:
+
+```text
+Do objective stress metrics agree with human drum-loop preference?
+```
+
+It combines:
+
+- blind listener scores
+- local private answer key
+- objective metrics from Experiment 22
+
+Outputs:
+
+- `artifacts/23_listening_score_analysis/23_decoded_listener_scores.csv`
+- `artifacts/23_listening_score_analysis/23_strategy_summary.csv`
+- `artifacts/23_listening_score_analysis/23_shift_summary.csv`
+- `artifacts/23_listening_score_analysis/23_metric_correlation_summary.csv`
+- `artifacts/23_listening_score_analysis/23_duplicate_consistency.csv`
+- `artifacts/23_listening_score_analysis/23_note_flags.csv`
+- `artifacts/23_listening_score_analysis/23_listening_score_plot.png`
+
+Current result:
+
+- best overall mean score: Phase Vocoder and Adaptive v3 tied at `2.67`
+- Adaptive v3 tied because it selected Phase Vocoder for this drum loop
+- WSOLA mean overall score: `1.00`
+- Rubber Band mean overall score: `1.00`
+- WSOLA silence flags: `3 / 3`
+- Rubber Band silence flags: `3 / 3`
+- composite-stress correlation with overall rating: `-0.01`
+- spectral-distance correlation with overall rating: `-0.74`
+
+This is an important real-audio correction to the synthetic lab. The listener did not simply prefer the lowest composite stress. Several renders that looked plausible by objective summaries were perceived as silence or unusable. The listening test turns "algorithm stress" into a more product-relevant question: does the render preserve audible groove and transient identity?
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.

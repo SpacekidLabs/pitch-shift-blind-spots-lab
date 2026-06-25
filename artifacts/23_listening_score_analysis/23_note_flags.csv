@@ -1,0 +1,9 @@
+blind_id,strategy_label,shift_semitones,overall_rating,silence_flag,notes
+DLT_005,Rubber Band,-12,1,True,silence
+DLT_010,Rubber Band,3,1,True,silence
+DLT_006,Rubber Band,7,1,True,silence
+DLT_003,WSOLA,-12,1,True,i cant hear anything just silence
+DLT_013,WSOLA,3,1,True,silence
+DLT_011,WSOLA,7,1,True,silence
+DLT_012,PSOLA,-12,1,False,sounds weird and slow
+DLT_007,PSOLA,7,1,False,sounds messy and not like the original groove

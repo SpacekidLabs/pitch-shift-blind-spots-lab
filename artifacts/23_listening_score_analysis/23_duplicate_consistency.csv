@@ -1,0 +1,4 @@
+blind_ids,strategy_labels,shift_semitones,overall_scores,overall_range,artifact_scores,artifact_range
+DLT_009|DLT_008,Adaptive v3|Phase Vocoder,-12,3|3,0.0,2|3,1.0
+DLT_002|DLT_015,Adaptive v3|Phase Vocoder,3,3|2,1.0,2|2,0.0
+DLT_001|DLT_004,Adaptive v3|Phase Vocoder,7,2|3,1.0,2|2,0.0

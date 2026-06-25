@@ -1,0 +1,4 @@
+shift_semitones,case_count,mean_artifact_rating,mean_transient_rating,mean_groove_rating,mean_overall_rating,silence_flags,mean_composite_stress
+-12,5,1.6,1.6,1.8,1.8,2,0.6327968606065328
+3,5,1.4,1.8,1.8,2.0,2,0.39772899794993616
+7,5,1.4,2.0,1.8,1.6,2,0.5558503478616739

@@ -1,0 +1,6 @@
+strategy,strategy_label,case_count,mean_artifact_rating,mean_transient_rating,mean_groove_rating,mean_overall_rating,silence_flags,mean_composite_stress
+adaptive_v3,Adaptive v3,3,2.0,2.0,3.0,2.6666666666666665,0,0.4333186972273049
+phase_vocoder,Phase Vocoder,3,2.3333333333333335,2.3333333333333335,2.6666666666666665,2.6666666666666665,0,0.4333186972273049
+psola,PSOLA,3,1.0,2.6666666666666665,1.3333333333333333,1.6666666666666667,0,0.8149629629088476
+rubber_band,Rubber Band,3,1.0,1.0,1.0,1.0,3,0.5030062272617921
+wsola,WSOLA,3,1.0,1.0,1.0,1.0,3,0.4593537594049884

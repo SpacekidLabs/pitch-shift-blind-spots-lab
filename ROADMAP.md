@@ -66,3 +66,6 @@
 - Add real-audio listening tests after synthetic blind-spot discovery
 - Track human ratings for transient crispness, groove, artifacts, and overall usefulness
 - Use blind duplicate renders as listener-consistency checks
+- Compare objective stress metrics against human listening scores
+- Treat silence/unusable renders as practical catastrophic failures
+- Build listening-grounded guard rules for drum material
