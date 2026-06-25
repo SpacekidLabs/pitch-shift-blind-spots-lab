@@ -817,6 +817,7 @@ The current session uses:
 Outputs:
 
 - `artifacts/22_drum_listening_test/README.md`
+- `artifacts/22_drum_listening_test/blind_listening_session.html`
 - `artifacts/22_drum_listening_test/listening_sheet.csv`
 - `artifacts/22_drum_listening_test/blind_manifest.csv`
 - `artifacts/22_drum_listening_test/objective_metrics.csv`
@@ -829,10 +830,11 @@ Current result:
 - listening stimuli: `15`
 - reference file: `audio/REFERENCE_original_excerpt.wav`
 - level matched: `True`
+- blind scoring page: `blind_listening_session.html`
 - Adaptive v3 collapses to Phase Vocoder on this drum loop
 - the adaptive/Phase Vocoder duplicate pairs act as blind consistency checks
 
-This is the first bridge from synthetic blind-spot mapping into actual listening. The objective metrics are included only as diagnostics; the real point is to score transient crispness, groove preservation, artifact severity, and overall usefulness by ear.
+This is the first bridge from synthetic blind-spot mapping into actual listening. The blind scoring page lets a listener play each file, rate it, save progress in the browser, and export scores before opening the private answer key. The objective metrics are included only as diagnostics; the real point is to score transient crispness, groove preservation, artifact severity, and overall usefulness by ear.
 
 ## Roadmap
 

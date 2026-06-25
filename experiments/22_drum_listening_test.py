@@ -16,6 +16,7 @@ from algorithms.adaptive_preflight import analyze_guarded_preflight_adaptive_sta
 from algorithms.registry import get_algorithm
 from metrics.audio_metrics import rms_error, spectral_centroid_difference, spectral_distance
 from signals.audio_io import read_wav, write_wav
+from visualization.listening_session_html import save_blind_listening_session
 from visualization.listening_test_plot import save_listening_test_plot
 
 
@@ -226,6 +227,16 @@ def run_experiment() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
             [
                 "# Experiment 22 Drum Listening Test",
                 "",
+                "Recommended:",
+                "",
+                "1. Open `blind_listening_session.html` in a browser.",
+                "2. Listen to the reference first.",
+                "3. Score every blind file in the page.",
+                "4. Export your scores as CSV.",
+                "5. Only then open `private_answer_key.csv`.",
+                "",
+                "Manual fallback:",
+                "",
                 "1. Listen to `audio/REFERENCE_original_excerpt.wav` first.",
                 "2. Listen through the blinded files listed in `listening_sheet.csv`.",
                 "3. Fill in the rating columns before opening `private_answer_key.csv`.",
@@ -237,6 +248,7 @@ def run_experiment() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
         ),
         encoding="utf-8",
     )
+    save_blind_listening_session(manifest, OUTPUT_DIR / "blind_listening_session.html")
     save_listening_test_plot(metrics, OUTPUT_DIR / "objective_metrics_plot.png")
     return manifest, answer_key, metrics
 
@@ -247,6 +259,7 @@ def main() -> None:
     print("Wrote artifacts/22_drum_listening_test/listening_sheet.csv")
     print("Wrote artifacts/22_drum_listening_test/blind_manifest.csv")
     print("Wrote artifacts/22_drum_listening_test/private_answer_key.csv")
+    print("Wrote artifacts/22_drum_listening_test/blind_listening_session.html")
     print("Wrote artifacts/22_drum_listening_test/objective_metrics.csv")
     print("Wrote artifacts/22_drum_listening_test/objective_metrics_plot.png")
     print("Question: Which pitch-shift render feels best on a real drum loop?")
