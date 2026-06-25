@@ -1,0 +1,9 @@
+render_policy,render_label,case_count,health_flag_count,fallback_used_count,mean_relative_rms_db,mean_active_fraction,mean_composite_stress,final_algorithms
+adaptive_v3,Adaptive v3,3,0,0,-1.6434964502534422,1.0,0.4333186972273049,Phase Vocoder
+adaptive_v4,Adaptive v4,3,0,0,-1.6434964502534422,1.0,0.4333186972273049,Phase Vocoder
+fixed_phase_vocoder,Fixed Phase Vocoder,3,0,0,-1.6434964502534422,1.0,0.4333186972273049,Phase Vocoder
+fixed_psola,Fixed PSOLA,3,0,0,-1.8246441975070316,0.8297872340425533,0.8149629629088476,PSOLA
+adaptive_v4_rubber_probe,Adaptive v4 from Rubber Band,3,0,3,-1.6434964502534422,1.0,0.4333186972273049,Phase Vocoder
+adaptive_v4_wsola_probe,Adaptive v4 from WSOLA,3,0,3,-1.6434964502534422,1.0,0.4333186972273049,Phase Vocoder
+fixed_wsola,Fixed WSOLA,3,3,0,-33.12484124711859,0.005319148936170213,0.4593537594049884,WSOLA
+fixed_rubber_band,Fixed Rubber Band,3,3,0,-32.93130244597815,0.010638297872340425,0.5030062272617921,Rubber Band

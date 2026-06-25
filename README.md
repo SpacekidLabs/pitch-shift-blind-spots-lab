@@ -914,6 +914,54 @@ Current result:
 
 The silence failures were real waveform-health failures, not just subjective dislike. WSOLA and Rubber Band renders had normal peak spikes but extremely low RMS and almost no active frames. This suggests the adaptive system needs a post-render health gate before listening or delivery: if a render collapses, automatically reject it and fall back.
 
+## Experiment 25
+
+`experiments/25_post_render_fallback_selector.py` prototypes `Adaptive v4`: a post-render health-gated selector.
+
+Question:
+
+```text
+Can a post-render health gate rescue collapsed candidate renders?
+```
+
+Architecture:
+
+```text
+preflight candidate
+render
+health gate
+if collapsed:
+    try fallback chain
+```
+
+It compares:
+
+- fixed Phase Vocoder
+- fixed WSOLA
+- fixed Rubber Band
+- fixed PSOLA
+- Adaptive v3
+- Adaptive v4
+- Adaptive v4 starting from a WSOLA candidate
+- Adaptive v4 starting from a Rubber Band candidate
+
+Outputs:
+
+- `artifacts/25_post_render_fallback_selector/25_post_render_fallback_results.csv`
+- `artifacts/25_post_render_fallback_selector/25_post_render_fallback_summary.csv`
+- `artifacts/25_post_render_fallback_selector/25_post_render_fallback_plot.png`
+
+Current result:
+
+- fixed WSOLA health flags: `3 / 3`
+- fixed Rubber Band health flags: `3 / 3`
+- Adaptive v4 health flags: `0 / 3`
+- Adaptive v4 from WSOLA fallback count: `3 / 3`
+- Adaptive v4 from Rubber Band fallback count: `3 / 3`
+- all v4 fallback probes resolved to Phase Vocoder
+
+This is the first prototype of a pitch shifter that checks whether its own output is alive. Normal Adaptive v4 chooses Phase Vocoder for this drum loop, so it does not need fallback. The forced-candidate probes show the safety mechanism: if a future selector chooses WSOLA or Rubber Band and the render collapses, post-render health rejects it and falls back before delivery.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.

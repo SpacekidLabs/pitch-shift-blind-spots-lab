@@ -72,3 +72,5 @@
 - Add post-render health gates for adaptive pitch shifting
 - Reject renders with collapsed RMS or sparse active frames
 - Trigger automatic fallback when a selected algorithm produces unusable output
+- Prototype Adaptive v4 with render-health fallback chains
+- Test fallback rescue behavior by forcing risky candidate algorithms
