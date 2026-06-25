@@ -745,6 +745,56 @@ Current result:
 
 This changed the v3 rule. The earlier broad guard treated sparse transients as noise-like and guarded `6 / 44` cases. Experiment 20 showed that a noise-only guard rescues the same failure while avoiding unnecessary transient guards. The current v3 rule is now: guard large-shift Phase Vocoder fallback when the source is noise-like but not sparse-transient.
 
+## Experiment 21
+
+`experiments/21_guard_type_comparison.py` compares different fallback actions on the same v3 guard-triggered cases.
+
+Question:
+
+```text
+What should the fallback guard do?
+```
+
+It compares:
+
+- no guard
+- dry/wet blend at `0.10`
+- dry/wet blend at `0.40`
+- reduced shift strength at `80%`
+- spectral smoothing
+- Rubber Band crossfade
+- Rubber Band fallback
+
+It measures:
+
+- catastrophic count
+- composite stress
+- shift retention
+- source similarity
+- peak preservation
+- guard type score
+
+Outputs:
+
+- `artifacts/21_guard_type_results.csv`
+- `artifacts/21_guard_type_summary.csv`
+- `artifacts/21_guard_type_case_summary.csv`
+- `artifacts/21_guard_type_plot.png`
+
+Current result:
+
+- best guard type: reduced shift strength at `80%`
+- reduced-shift catastrophic cases: `0`
+- reduced-shift mean stress: `0.226`
+- reduced-shift mean shift retention: `0.980`
+- dry/wet `0.10` catastrophic cases: `0`
+- dry/wet `0.10` mean stress: `0.222`
+- dry/wet `0.10` mean shift retention: `0.957`
+- Rubber Band fallback catastrophic cases: `1`
+- Rubber Band crossfade catastrophic cases: `1`
+
+This suggests that "use a different algorithm" is not automatically a safer guard. On the current guarded noise cases, reduced shift strength slightly outperforms dry/wet blending, while Rubber Band fallback and crossfade still miss the catastrophe. The case-level summary also shows that `white_noise +12` does not need a guard, while `white_noise -12` does. That points toward a future direction-specific guard trigger.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.

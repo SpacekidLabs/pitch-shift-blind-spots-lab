@@ -60,3 +60,6 @@
 - Test guard specificity against no-guard and forced-everywhere baselines
 - Penalize unnecessary guards separately from missed catastrophes
 - Distinguish noise fallback guards from transient fallback guards
+- Compare fallback guard action types, not just guard trigger rules
+- Penalize guard actions that overshoot shift retention
+- Test direction-specific fallback guards for asymmetric large shifts

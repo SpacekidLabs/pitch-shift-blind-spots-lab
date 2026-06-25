@@ -1,0 +1,3 @@
+case_label,best_guard_label,best_composite_stress,best_shift_retention,best_dry_similarity
+noise / white_noise +12,No Guard,0.09852065752348661,1.0,0.0
+noise / white_noise -12,Reduced Shift 80%,0.3490688369004846,0.9189147291899634,0.0
