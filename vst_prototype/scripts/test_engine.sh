@@ -3,6 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CMAKE_BIN="${CMAKE_BIN:-/Applications/CMake.app/Contents/bin/cmake}"
+JUCE_SOURCE_DIR="${JUCE_SOURCE_DIR:-/Users/user/Desktop/wavsynth/JUCE}"
 BUILD_DIR="${BUILD_DIR:-$ROOT_DIR/build/engine}"
 
 if [[ ! -x "$CMAKE_BIN" ]]; then
@@ -11,6 +12,6 @@ if [[ ! -x "$CMAKE_BIN" ]]; then
   exit 1
 fi
 
-"$CMAKE_BIN" -S "$ROOT_DIR" -B "$BUILD_DIR" -DPSBSL_BUILD_PLUGIN=OFF
+"$CMAKE_BIN" -S "$ROOT_DIR" -B "$BUILD_DIR" -DPSBSL_BUILD_PLUGIN=OFF -DJUCE_SOURCE_DIR="$JUCE_SOURCE_DIR"
 "$CMAKE_BIN" --build "$BUILD_DIR"
 "$BUILD_DIR/psbsl_engine_smoke_test"

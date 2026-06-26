@@ -91,8 +91,8 @@ void PitchShiftBlindSpotsAudioProcessorEditor::resized()
 void PitchShiftBlindSpotsAudioProcessorEditor::timerCallback()
 {
     stateLabel_.setText("State: " + processor_.getLastStateName(), juce::dontSendNotification);
-    strategyLabel_.setText("Strategy: " + processor_.getLastStrategyName(), juce::dontSendNotification);
-    backendLabel_.setText("Active backend: " + processor_.getLastBackendName(), juce::dontSendNotification);
+    strategyLabel_.setText("Observer wants: " + processor_.getLastStrategyName(), juce::dontSendNotification);
+    backendLabel_.setText("Using: " + processor_.getLastBackendName(), juce::dontSendNotification);
     disagreementLabel_.setText(
         "Observer disagreement: " + juce::String(processor_.getLastDisagreement(), 3)
             + (processor_.isSafeModeActive() ? "  | safe mode active" : ""),

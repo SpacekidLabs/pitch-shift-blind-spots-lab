@@ -106,10 +106,7 @@ void PitchShiftBlindSpotsAudioProcessor::processBlock(juce::AudioBuffer<float>& 
     if (std::abs(decision.effectiveShiftSemitones) < 0.01f)
         activeBackend = ActiveBackend::bypass;
 
-    lastBackend_.store(static_cast<int>(activeBackend));
-
     const auto wetAmount = juce::jlimit(0.0f, 1.0f, decision.effectiveDryWet);
-    const auto dryAmount = 1.0f - wetAmount;
     for (int channel = 0; channel < numChannels; ++channel)
     {
         if (activeBackend == ActiveBackend::bypass)
@@ -134,12 +131,34 @@ void PitchShiftBlindSpotsAudioProcessor::processBlock(juce::AudioBuffer<float>& 
                 channel,
                 decision.effectiveShiftSemitones);
         }
+    }
+
+    if (activeBackend == ActiveBackend::phaseVocoder && renderLooksCollapsed(dryScratch_, wetScratch_, numChannels, numSamples))
+    {
+        activeBackend = ActiveBackend::phaseVocoderRescuedByOverlap;
+        for (int channel = 0; channel < numChannels; ++channel)
+        {
+            pitchShifter_.processChannel(
+                dryScratch_.getReadPointer(channel),
+                wetScratch_.getWritePointer(channel),
+                numSamples,
+                channel,
+                decision.effectiveShiftSemitones);
+        }
+    }
+
+    lastBackend_.store(static_cast<int>(activeBackend));
+
+    for (int channel = 0; channel < numChannels; ++channel)
+    {
+        const auto localWetAmount = activeBackend == ActiveBackend::phaseVocoderRescuedByOverlap ? std::min(wetAmount, 0.75f) : wetAmount;
+        const auto localDryAmount = 1.0f - localWetAmount;
 
         auto* output = buffer.getWritePointer(channel);
         const auto* dry = dryScratch_.getReadPointer(channel);
         const auto* wet = wetScratch_.getReadPointer(channel);
         for (int i = 0; i < numSamples; ++i)
-            output[i] = dry[i] * dryAmount + wet[i] * wetAmount;
+            output[i] = dry[i] * localDryAmount + wet[i] * localWetAmount;
     }
 }
 
@@ -198,12 +217,51 @@ const char* PitchShiftBlindSpotsAudioProcessor::toString(ActiveBackend backend)
         case ActiveBackend::bypass:
             return "bypass";
         case ActiveBackend::phaseVocoder:
-            return "phase_vocoder_available_fallback";
+            return "phase_vocoder_fallback";
         case ActiveBackend::simpleOverlap:
             return "simple_overlap_legacy";
+        case ActiveBackend::phaseVocoderRescuedByOverlap:
+            return "phase_vocoder_collapsed_rescued_by_overlap";
     }
 
     return "unknown";
+}
+
+bool PitchShiftBlindSpotsAudioProcessor::renderLooksCollapsed(
+    const juce::AudioBuffer<float>& dry,
+    const juce::AudioBuffer<float>& wet,
+    int numChannels,
+    int numSamples)
+{
+    double drySquares = 0.0;
+    double wetSquares = 0.0;
+    auto dryActive = 0;
+    auto wetActive = 0;
+
+    for (int channel = 0; channel < numChannels; ++channel)
+    {
+        const auto* dryData = dry.getReadPointer(channel);
+        const auto* wetData = wet.getReadPointer(channel);
+        for (int i = 0; i < numSamples; ++i)
+        {
+            drySquares += static_cast<double>(dryData[i]) * dryData[i];
+            wetSquares += static_cast<double>(wetData[i]) * wetData[i];
+            if (std::abs(dryData[i]) > 1.0e-4f)
+                ++dryActive;
+            if (std::abs(wetData[i]) > 1.0e-4f)
+                ++wetActive;
+        }
+    }
+
+    const auto count = std::max(1, numChannels * numSamples);
+    const auto dryRms = std::sqrt(drySquares / static_cast<double>(count));
+    const auto wetRms = std::sqrt(wetSquares / static_cast<double>(count));
+    if (dryRms < 1.0e-5)
+        return false;
+
+    const auto rmsRatio = wetRms / dryRms;
+    const auto activeRatio = dryActive > 0 ? static_cast<double>(wetActive) / static_cast<double>(dryActive) : 1.0;
+    return rmsRatio < 0.18 || activeRatio < 0.25;
 }
 
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()

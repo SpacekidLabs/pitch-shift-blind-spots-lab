@@ -11,7 +11,7 @@ choose the safest behavior
 fall back when the render looks unhealthy
 ```
 
-This folder starts the real-time plugin path. It is not a finished pitch shifter yet. v0.1.2 contains the plugin shell, parameters, live signal-state analysis, adaptive strategy selection, and a built-in Phase Vocoder fallback backend.
+This folder starts the real-time plugin path. It is not a finished pitch shifter yet. v0.1.3 contains the plugin shell, parameters, live signal-state analysis, adaptive strategy selection, a built-in Phase Vocoder fallback backend, and a first block-level render-health rescue.
 
 ## Current Scope
 
@@ -25,6 +25,7 @@ Implemented:
 - adaptive router with separate intended strategy and active backend readouts
 - built-in real-time Phase Vocoder fallback backend
 - legacy overlap delay-line shifter kept for comparison
+- block-level health rescue if the Phase Vocoder fallback collapses
 - basic plugin UI showing current state and chosen strategy
 - standalone smoke test for the adaptive engine
 
@@ -85,6 +86,8 @@ Because Rubber Band, WSOLA, and PSOLA are not embedded yet, the plugin currently
 
 - `Strategy`: what the adaptive observer wanted
 - `Active backend`: what the installed prototype actually used
+
+If the Phase Vocoder fallback produces a collapsed block, the plugin temporarily rescues that block with the legacy overlap backend and lowers the wet blend. This is the real-time version of the post-render health gate discovered in Experiments 24 and 25.
 
 Safe mode currently:
 

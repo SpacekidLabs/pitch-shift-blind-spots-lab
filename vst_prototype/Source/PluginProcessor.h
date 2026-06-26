@@ -47,11 +47,13 @@ private:
     {
         bypass,
         phaseVocoder,
-        simpleOverlap
+        simpleOverlap,
+        phaseVocoderRescuedByOverlap
     };
 
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
     static const char* toString(ActiveBackend backend);
+    static bool renderLooksCollapsed(const juce::AudioBuffer<float>& dry, const juce::AudioBuffer<float>& wet, int numChannels, int numSamples);
 
     juce::AudioProcessorValueTreeState parameters_;
     psbsl::AdaptivePitchEngine engine_;
