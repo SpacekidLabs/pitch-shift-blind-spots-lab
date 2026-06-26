@@ -8,3 +8,5 @@ artifacts/22_drum_listening_test/private_answer_key.csv
 artifacts/25_post_render_fallback_selector/listening_audio/
 artifacts/26_adaptive_v4_blind_listening_test/audio/
 artifacts/26_adaptive_v4_blind_listening_test/private_answer_key.csv
+vst_prototype/build/
+*.vst3/

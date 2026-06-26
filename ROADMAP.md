@@ -80,3 +80,16 @@
 - Add duplicate controls to every future blind listening pack
 - Report preference-stability ranges before claiming algorithm differences
 - Separate safety validation from subjective preference ranking
+
+## Phase 5: VST Prototype
+
+- Start a JUCE VST3 prototype as the product-facing branch of the lab
+- Port adaptive selector rules into a pure C++ real-time engine
+- Expose shift, dry/wet, safe mode, inferred state, strategy, and disagreement in the plugin UI
+- Keep the first plugin milestone as pass-through plus live observer decisions
+- Add a backend interface for pitch-shift engines
+- Implement pass-through, Phase Vocoder, and Rubber Band backend adapters
+- Add real-time health monitoring for collapsed RMS and sparse active frames
+- Trigger streaming fallback when the active backend becomes unhealthy
+- Build DAW listening tests that mirror the Python blind listening packs
+- Preserve duplicate controls and listener-stability checks in product tests

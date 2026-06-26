@@ -1041,6 +1041,22 @@ Current result:
 
 The most important conclusion is not that Adaptive v4 "beat" Phase Vocoder. Since all Experiment 26 final renders resolved to Phase Vocoder, the decoded policy differences are partly listener/context effects among equivalent render paths. The practical result still supports Adaptive v4 as a safe behavior: the health gate rescued risky paths and avoided the silence failures from Experiment 22. The research result is that future listening tests need explicit duplicate controls and preference-stability analysis before treating small score gaps as algorithm differences.
 
+## VST Prototype
+
+`vst_prototype/` starts the real-time plugin path for the adaptive pitch shifter.
+
+Current scope:
+
+- JUCE VST3 scaffold
+- pure C++ adaptive selector engine
+- live block-level signal-state analysis
+- observer-disagreement proxy
+- safe-mode routing rules
+- plugin UI for shift, dry/wet, safe mode, state, strategy, and disagreement
+- standalone smoke test that builds without JUCE
+
+The first prototype is intentionally a control-plane plugin, not a production pitch shifter. It passes audio through while reporting the selected state and strategy. The next milestone is to add backend adapters for pass-through, Phase Vocoder, and Rubber Band so the selector can control real pitch-shift engines.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.
