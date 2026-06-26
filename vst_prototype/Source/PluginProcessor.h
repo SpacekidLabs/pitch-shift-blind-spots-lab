@@ -2,8 +2,11 @@
 
 #include <JuceHeader.h>
 
+#include <vector>
+
 #include "AdaptivePitchEngine.h"
 #include "PhaseVocoderPitchShifter.h"
+#include "RubberBandPitchShifter.h"
 #include "SimplePitchShifter.h"
 
 class PitchShiftBlindSpotsAudioProcessor final : public juce::AudioProcessor
@@ -50,6 +53,7 @@ private:
         phaseVocoder,
         wsolaLite,
         psolaLite,
+        rubberBand,
         rubberBandUnavailableUsingPhaseVocoder,
         phaseVocoderRescuedByWsolaLite
     };
@@ -72,6 +76,7 @@ private:
     juce::AudioProcessorValueTreeState parameters_;
     psbsl::AdaptivePitchEngine engine_;
     psbsl::PhaseVocoderPitchShifter phaseVocoder_;
+    psbsl::RubberBandPitchShifter rubberBand_;
     psbsl::SimplePitchShifter pitchShifter_;
 
     std::atomic<int> lastState_ { static_cast<int>(psbsl::SignalState::untracked) };
@@ -84,6 +89,8 @@ private:
     juce::AudioBuffer<float> monoScratch_;
     juce::AudioBuffer<float> dryScratch_;
     juce::AudioBuffer<float> wetScratch_;
+    std::vector<const float*> backendInputPointers_;
+    std::vector<float*> backendOutputPointers_;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PitchShiftBlindSpotsAudioProcessor)
 };

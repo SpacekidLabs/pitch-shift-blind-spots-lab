@@ -17,7 +17,7 @@ PitchShiftBlindSpotsAudioProcessorEditor::PitchShiftBlindSpotsAudioProcessorEdit
     dryWetSlider_.setNumDecimalPlacesToDisplay(2);
     addAndMakeVisible(dryWetSlider_);
 
-    backendModeBox_.addItemList(juce::StringArray { "Adaptive", "Phase Vocoder", "WSOLA-lite", "PSOLA-lite", "Rubber Band slot", "Bypass" }, 1);
+    backendModeBox_.addItemList(juce::StringArray { "Adaptive", "Phase Vocoder", "WSOLA-lite", "PSOLA-lite", "Rubber Band", "Bypass" }, 1);
     addAndMakeVisible(backendModeBox_);
 
     safeModeButton_.setButtonText("Safe mode");

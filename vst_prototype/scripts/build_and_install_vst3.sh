@@ -4,6 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CMAKE_BIN="${CMAKE_BIN:-/Applications/CMake.app/Contents/bin/cmake}"
 JUCE_SOURCE_DIR="${JUCE_SOURCE_DIR:-/Users/user/Desktop/wavsynth/JUCE}"
+RUBBERBAND_ROOT="${RUBBERBAND_ROOT:-$ROOT_DIR/local/rubberband}"
 BUILD_DIR="${BUILD_DIR:-$ROOT_DIR/build/plugin}"
 INSTALL_DIR="${INSTALL_DIR:-$HOME/Library/Audio/Plug-Ins/VST3}"
 CONFIG="${CONFIG:-Release}"
@@ -23,7 +24,8 @@ fi
 "$CMAKE_BIN" -S "$ROOT_DIR" -B "$BUILD_DIR" \
   -DPSBSL_BUILD_PLUGIN=ON \
   -DPSBSL_BUILD_ENGINE_SMOKE_TEST=ON \
-  -DJUCE_SOURCE_DIR="$JUCE_SOURCE_DIR"
+  -DJUCE_SOURCE_DIR="$JUCE_SOURCE_DIR" \
+  -DRUBBERBAND_ROOT="$RUBBERBAND_ROOT"
 
 "$CMAKE_BIN" --build "$BUILD_DIR" --config "$CONFIG"
 

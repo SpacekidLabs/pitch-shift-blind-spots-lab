@@ -1053,13 +1053,14 @@ Current scope:
 - observer-disagreement proxy
 - safe-mode routing rules
 - built-in Phase Vocoder fallback backend
-- manual backend mode for Adaptive, Phase Vocoder, WSOLA-lite, PSOLA-lite, Rubber Band slot, and Bypass
+- real Rubber Band backend when the local SDK/library is available
+- manual backend mode for Adaptive, Phase Vocoder, WSOLA-lite, PSOLA-lite, Rubber Band, and Bypass
 - separate UI readouts for intended adaptive strategy and active backend
 - block-level backend health rescue when the fallback output collapses
 - plugin UI for shift, dry/wet, safe mode, state, strategy, and disagreement
 - standalone smoke test that builds without JUCE
 
-The installed v0.2 prototype is intentionally simple, not a production-quality pitch shifter. It now follows the research architecture more closely: the adaptive selector chooses an intended strategy, manual mode can force each observer path, unavailable Rubber Band routes to a visible fallback, and collapsed fallback blocks are rescued. The next milestone is to replace WSOLA-lite/PSOLA-lite with stronger implementations and embed the real Rubber Band backend.
+The installed v0.3 prototype is intentionally simple, not a production-quality pitch shifter. It now follows the research architecture more closely: the adaptive selector chooses an intended strategy, manual mode can force each observer path, Rubber Band is a real backend when the local SDK/library is available, and collapsed fallback blocks are rescued. The next milestone is to replace WSOLA-lite/PSOLA-lite with stronger implementations and run a DAW listening test against the Python blind listening artifacts.
 
 Local install:
 

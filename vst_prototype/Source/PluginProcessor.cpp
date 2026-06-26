@@ -38,7 +38,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout PitchShiftBlindSpotsAudioPro
     params.push_back(std::make_unique<juce::AudioParameterChoice>(
         "backendMode",
         "Backend Mode",
-        juce::StringArray { "Adaptive", "Phase Vocoder", "WSOLA-lite", "PSOLA-lite", "Rubber Band slot", "Bypass" },
+        juce::StringArray { "Adaptive", "Phase Vocoder", "WSOLA-lite", "PSOLA-lite", "Rubber Band", "Bypass" },
         0));
     params.push_back(std::make_unique<juce::AudioParameterBool>("safeMode", "Safe Mode", true));
     return { params.begin(), params.end() };
@@ -48,6 +48,7 @@ void PitchShiftBlindSpotsAudioProcessor::prepareToPlay(double sampleRate, int sa
 {
     engine_.prepare(sampleRate, samplesPerBlock);
     phaseVocoder_.prepare(sampleRate, getTotalNumOutputChannels());
+    rubberBand_.prepare(sampleRate, getTotalNumOutputChannels());
     pitchShifter_.prepare(sampleRate, getTotalNumOutputChannels());
     monoScratch_.setSize(1, samplesPerBlock, false, false, true);
     dryScratch_.setSize(getTotalNumOutputChannels(), samplesPerBlock, false, false, true);
@@ -57,6 +58,7 @@ void PitchShiftBlindSpotsAudioProcessor::prepareToPlay(double sampleRate, int sa
 void PitchShiftBlindSpotsAudioProcessor::releaseResources()
 {
     phaseVocoder_.reset();
+    rubberBand_.reset();
     pitchShifter_.reset();
 }
 
@@ -83,6 +85,8 @@ void PitchShiftBlindSpotsAudioProcessor::processBlock(juce::AudioBuffer<float>& 
         dryScratch_.setSize(numChannels, numSamples, false, false, true);
     if (wetScratch_.getNumSamples() < numSamples || wetScratch_.getNumChannels() < numChannels)
         wetScratch_.setSize(numChannels, numSamples, false, false, true);
+    backendInputPointers_.resize(static_cast<std::size_t>(numChannels));
+    backendOutputPointers_.resize(static_cast<std::size_t>(numChannels));
 
     dryScratch_.makeCopyOf(buffer, true);
     auto* mono = monoScratch_.getWritePointer(0);
@@ -127,13 +131,15 @@ void PitchShiftBlindSpotsAudioProcessor::processBlock(juce::AudioBuffer<float>& 
                 activeBackend = ActiveBackend::psolaLite;
                 break;
             case BackendMode::rubberBand:
-                activeBackend = ActiveBackend::rubberBandUnavailableUsingPhaseVocoder;
+                activeBackend = rubberBand_.isAvailable() ? ActiveBackend::rubberBand : ActiveBackend::rubberBandUnavailableUsingPhaseVocoder;
                 break;
             case BackendMode::bypass:
                 activeBackend = ActiveBackend::bypass;
                 break;
         }
     }
+    if (activeBackend == ActiveBackend::rubberBand && !rubberBand_.isAvailable())
+        activeBackend = ActiveBackend::rubberBandUnavailableUsingPhaseVocoder;
 
     const auto wetAmount = juce::jlimit(0.0f, 1.0f, decision.effectiveDryWet);
     for (int channel = 0; channel < numChannels; ++channel)
@@ -152,6 +158,11 @@ void PitchShiftBlindSpotsAudioProcessor::processBlock(juce::AudioBuffer<float>& 
                 channel,
                 decision.effectiveShiftSemitones);
         }
+        else if (activeBackend == ActiveBackend::rubberBand)
+        {
+            backendInputPointers_[static_cast<std::size_t>(channel)] = dryScratch_.getReadPointer(channel);
+            backendOutputPointers_[static_cast<std::size_t>(channel)] = wetScratch_.getWritePointer(channel);
+        }
         else
         {
             pitchShifter_.processChannel(
@@ -161,6 +172,16 @@ void PitchShiftBlindSpotsAudioProcessor::processBlock(juce::AudioBuffer<float>& 
                 channel,
                 decision.effectiveShiftSemitones);
         }
+    }
+
+    if (activeBackend == ActiveBackend::rubberBand)
+    {
+        rubberBand_.processBlock(
+            backendInputPointers_.data(),
+            backendOutputPointers_.data(),
+            numChannels,
+            numSamples,
+            decision.effectiveShiftSemitones);
     }
 
     if (params.safeMode
@@ -255,6 +276,8 @@ const char* PitchShiftBlindSpotsAudioProcessor::toString(ActiveBackend backend)
             return "wsola_lite";
         case ActiveBackend::psolaLite:
             return "psola_lite";
+        case ActiveBackend::rubberBand:
+            return "rubber_band";
         case ActiveBackend::rubberBandUnavailableUsingPhaseVocoder:
             return "rubber_band_unavailable_using_phase_vocoder";
         case ActiveBackend::phaseVocoderRescuedByWsolaLite:
@@ -282,7 +305,7 @@ PitchShiftBlindSpotsAudioProcessor::ActiveBackend PitchShiftBlindSpotsAudioProce
         case psbsl::PitchStrategy::psola:
             return ActiveBackend::psolaLite;
         case psbsl::PitchStrategy::rubberBand:
-            return ActiveBackend::rubberBandUnavailableUsingPhaseVocoder;
+            return ActiveBackend::rubberBand;
     }
 
     return ActiveBackend::phaseVocoder;
@@ -336,6 +359,8 @@ juce::String PitchShiftBlindSpotsAudioProcessor::getBackendStatus() const
     {
         case ActiveBackend::rubberBandUnavailableUsingPhaseVocoder:
             return "rubber band SDK not embedded yet";
+        case ActiveBackend::rubberBand:
+            return "real rubber band backend";
         case ActiveBackend::phaseVocoderRescuedByWsolaLite:
             return "fallback health rescue active";
         case ActiveBackend::wsolaLite:

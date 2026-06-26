@@ -11,7 +11,7 @@ choose the safest behavior
 fall back when the render looks unhealthy
 ```
 
-This folder starts the real-time plugin path. It is not a finished pitch shifter yet. v0.2.0 contains the plugin shell, parameters, live signal-state analysis, adaptive strategy selection, manual observer/backend selection, a built-in Phase Vocoder backend, WSOLA-lite/PSOLA-lite prototype paths, a Rubber Band adapter slot, and block-level render-health rescue.
+This folder starts the real-time plugin path. It is not a finished pitch shifter yet. v0.3.0 contains the plugin shell, parameters, live signal-state analysis, adaptive strategy selection, manual observer/backend selection, a built-in Phase Vocoder backend, WSOLA-lite/PSOLA-lite prototype paths, a real Rubber Band backend when the SDK/library is available, and block-level render-health rescue.
 
 ## Current Scope
 
@@ -26,14 +26,14 @@ Implemented:
 - manual backend mode: Adaptive, Phase Vocoder, WSOLA-lite, PSOLA-lite, Rubber Band slot, Bypass
 - built-in real-time Phase Vocoder fallback backend
 - WSOLA-lite and PSOLA-lite prototype paths based on the current overlap engine
-- Rubber Band slot that reports unavailable until the SDK/library is embedded
+- real Rubber Band backend when `RUBBERBAND_ROOT` points at a local install
+- honest Rubber Band fallback status when the SDK/library is missing
 - block-level health rescue if the Phase Vocoder fallback collapses
 - basic plugin UI showing current state and chosen strategy
 - standalone smoke test for the adaptive engine
 
 Not implemented yet:
 
-- Rubber Band SDK integration
 - PSOLA/WSOLA real-time backends
 - post-render health gate for streaming audio
 - artifact repair or transient reconstruction
@@ -91,7 +91,13 @@ The UI shows both:
 
 If the Phase Vocoder fallback produces a collapsed block, the plugin temporarily rescues that block with WSOLA-lite and lowers the wet blend. This is the real-time version of the post-render health gate discovered in Experiments 24 and 25.
 
-Rubber Band is represented as a real routing slot, but it is not a real Rubber Band backend until the Rubber Band SDK/library is embedded. In manual `Rubber Band slot` mode, the plugin reports that status and uses the available Phase Vocoder fallback.
+On this machine, Rubber Band was built locally from source into:
+
+```text
+vst_prototype/local/rubberband
+```
+
+That folder is intentionally ignored by git. The build scripts pass it to CMake as `RUBBERBAND_ROOT`, and the installed plugin statically links the Rubber Band backend. If that local folder is missing on another machine, the plugin still builds and clearly reports that Rubber Band is unavailable.
 
 Safe mode currently:
 
@@ -119,6 +125,7 @@ This repo can build against a local JUCE checkout. On this machine the default s
 Build and install into the user VST3 folder:
 
 ```sh
+vst_prototype/scripts/build_local_rubberband.sh
 vst_prototype/scripts/build_and_install_vst3.sh
 ```
 
@@ -149,9 +156,9 @@ Pitch Shift Blind Spots.vst3
 The next useful milestone is not fancy UI. It is a real backend slot:
 
 1. Replace WSOLA-lite and PSOLA-lite with stronger real implementations.
-2. Embed the Rubber Band SDK/library and connect the Rubber Band slot to the real backend.
-3. Add per-backend health telemetry to the UI.
-4. Add a small DAW listening test using the same drum loop.
-5. Compare the installed plugin against the Python blind listening artifacts.
+2. Add per-backend health telemetry to the UI.
+3. Add a small DAW listening test using the same drum loop.
+4. Compare the installed plugin against the Python blind listening artifacts.
+5. Decide whether Rubber Band should remain a local SDK dependency or become a documented external install step.
 
 The point is not to make the loudest pitch shifter. The point is to make one that knows when not to trust itself.
