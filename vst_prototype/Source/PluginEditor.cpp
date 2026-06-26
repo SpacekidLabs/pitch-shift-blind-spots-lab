@@ -17,12 +17,16 @@ PitchShiftBlindSpotsAudioProcessorEditor::PitchShiftBlindSpotsAudioProcessorEdit
     dryWetSlider_.setNumDecimalPlacesToDisplay(2);
     addAndMakeVisible(dryWetSlider_);
 
+    backendModeBox_.addItemList(juce::StringArray { "Adaptive", "Phase Vocoder", "WSOLA-lite", "PSOLA-lite", "Rubber Band slot", "Bypass" }, 1);
+    addAndMakeVisible(backendModeBox_);
+
     safeModeButton_.setButtonText("Safe mode");
     addAndMakeVisible(safeModeButton_);
 
     shiftLabel_.setText("Shift", juce::dontSendNotification);
     dryWetLabel_.setText("Dry/Wet", juce::dontSendNotification);
-    for (auto* label : { &shiftLabel_, &dryWetLabel_, &stateLabel_, &strategyLabel_, &backendLabel_, &disagreementLabel_ })
+    backendModeLabel_.setText("Backend", juce::dontSendNotification);
+    for (auto* label : { &shiftLabel_, &dryWetLabel_, &backendModeLabel_, &stateLabel_, &strategyLabel_, &backendLabel_, &backendStatusLabel_, &disagreementLabel_ })
     {
         label->setJustificationType(juce::Justification::centred);
         label->setColour(juce::Label::textColourId, juce::Colours::whitesmoke);
@@ -31,9 +35,10 @@ PitchShiftBlindSpotsAudioProcessorEditor::PitchShiftBlindSpotsAudioProcessorEdit
 
     shiftAttachment_ = std::make_unique<SliderAttachment>(state, "shift", shiftSlider_);
     dryWetAttachment_ = std::make_unique<SliderAttachment>(state, "dryWet", dryWetSlider_);
+    backendModeAttachment_ = std::make_unique<ComboBoxAttachment>(state, "backendMode", backendModeBox_);
     safeModeAttachment_ = std::make_unique<ButtonAttachment>(state, "safeMode", safeModeButton_);
 
-    setSize(520, 360);
+    setSize(580, 420);
     startTimerHz(20);
     timerCallback();
 }
@@ -68,10 +73,10 @@ void PitchShiftBlindSpotsAudioProcessorEditor::resized()
     auto bounds = getLocalBounds().reduced(30);
     bounds.removeFromTop(74);
 
-    auto controls = bounds.removeFromTop(154);
+    auto controls = bounds.removeFromTop(190);
     auto shiftArea = controls.removeFromLeft(160);
     auto dryWetArea = controls.removeFromLeft(160);
-    controls.removeFromLeft(12);
+    auto backendArea = controls.removeFromLeft(190);
 
     shiftLabel_.setBounds(shiftArea.removeFromTop(24));
     shiftSlider_.setBounds(shiftArea.reduced(10));
@@ -79,12 +84,16 @@ void PitchShiftBlindSpotsAudioProcessorEditor::resized()
     dryWetLabel_.setBounds(dryWetArea.removeFromTop(24));
     dryWetSlider_.setBounds(dryWetArea.reduced(10));
 
-    safeModeButton_.setBounds(controls.removeFromTop(34));
+    backendModeLabel_.setBounds(backendArea.removeFromTop(24));
+    backendModeBox_.setBounds(backendArea.removeFromTop(32).reduced(6, 0));
+    backendArea.removeFromTop(12);
+    safeModeButton_.setBounds(backendArea.removeFromTop(34).reduced(6, 0));
 
     bounds.removeFromTop(16);
     stateLabel_.setBounds(bounds.removeFromTop(30));
     strategyLabel_.setBounds(bounds.removeFromTop(30));
     backendLabel_.setBounds(bounds.removeFromTop(30));
+    backendStatusLabel_.setBounds(bounds.removeFromTop(30));
     disagreementLabel_.setBounds(bounds.removeFromTop(30));
 }
 
@@ -93,6 +102,7 @@ void PitchShiftBlindSpotsAudioProcessorEditor::timerCallback()
     stateLabel_.setText("State: " + processor_.getLastStateName(), juce::dontSendNotification);
     strategyLabel_.setText("Observer wants: " + processor_.getLastStrategyName(), juce::dontSendNotification);
     backendLabel_.setText("Using: " + processor_.getLastBackendName(), juce::dontSendNotification);
+    backendStatusLabel_.setText("Status: " + processor_.getBackendStatus(), juce::dontSendNotification);
     disagreementLabel_.setText(
         "Observer disagreement: " + juce::String(processor_.getLastDisagreement(), 3)
             + (processor_.isSafeModeActive() ? "  | safe mode active" : ""),

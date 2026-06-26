@@ -35,6 +35,11 @@ juce::AudioProcessorValueTreeState::ParameterLayout PitchShiftBlindSpotsAudioPro
         "Dry/Wet",
         juce::NormalisableRange<float>(0.0f, 1.0f, 0.001f),
         1.0f));
+    params.push_back(std::make_unique<juce::AudioParameterChoice>(
+        "backendMode",
+        "Backend Mode",
+        juce::StringArray { "Adaptive", "Phase Vocoder", "WSOLA-lite", "PSOLA-lite", "Rubber Band slot", "Bypass" },
+        0));
     params.push_back(std::make_unique<juce::AudioParameterBool>("safeMode", "Safe Mode", true));
     return { params.begin(), params.end() };
 }
@@ -93,18 +98,42 @@ void PitchShiftBlindSpotsAudioProcessor::processBlock(juce::AudioBuffer<float>& 
     params.shiftSemitones = *parameters_.getRawParameterValue("shift");
     params.dryWet = *parameters_.getRawParameterValue("dryWet");
     params.safeMode = parameters_.getRawParameterValue("safeMode")->load() > 0.5f;
+    const auto backendMode = static_cast<BackendMode>(static_cast<int>(parameters_.getRawParameterValue("backendMode")->load()));
 
     const auto features = engine_.analyzeBlock(mono, numSamples);
     const auto decision = engine_.decide(features, params);
 
     lastState_.store(static_cast<int>(decision.state));
     lastStrategy_.store(static_cast<int>(decision.strategy));
+    lastBackendMode_.store(static_cast<int>(backendMode));
     lastDisagreement_.store(features.observerDisagreement);
     lastSafeModeActive_.store(decision.safeModeActive);
 
-    auto activeBackend = ActiveBackend::phaseVocoder;
-    if (std::abs(decision.effectiveShiftSemitones) < 0.01f)
-        activeBackend = ActiveBackend::bypass;
+    auto activeBackend = ActiveBackend::bypass;
+    if (std::abs(decision.effectiveShiftSemitones) >= 0.01f)
+    {
+        switch (backendMode)
+        {
+            case BackendMode::adaptive:
+                activeBackend = chooseAdaptiveBackend(decision.strategy, decision.effectiveShiftSemitones);
+                break;
+            case BackendMode::phaseVocoder:
+                activeBackend = ActiveBackend::phaseVocoder;
+                break;
+            case BackendMode::wsolaLite:
+                activeBackend = ActiveBackend::wsolaLite;
+                break;
+            case BackendMode::psolaLite:
+                activeBackend = ActiveBackend::psolaLite;
+                break;
+            case BackendMode::rubberBand:
+                activeBackend = ActiveBackend::rubberBandUnavailableUsingPhaseVocoder;
+                break;
+            case BackendMode::bypass:
+                activeBackend = ActiveBackend::bypass;
+                break;
+        }
+    }
 
     const auto wetAmount = juce::jlimit(0.0f, 1.0f, decision.effectiveDryWet);
     for (int channel = 0; channel < numChannels; ++channel)
@@ -113,7 +142,8 @@ void PitchShiftBlindSpotsAudioProcessor::processBlock(juce::AudioBuffer<float>& 
         {
             wetScratch_.copyFrom(channel, 0, dryScratch_, channel, 0, numSamples);
         }
-        else if (activeBackend == ActiveBackend::phaseVocoder)
+        else if (activeBackend == ActiveBackend::phaseVocoder
+                 || activeBackend == ActiveBackend::rubberBandUnavailableUsingPhaseVocoder)
         {
             phaseVocoder_.processChannel(
                 dryScratch_.getReadPointer(channel),
@@ -133,9 +163,12 @@ void PitchShiftBlindSpotsAudioProcessor::processBlock(juce::AudioBuffer<float>& 
         }
     }
 
-    if (activeBackend == ActiveBackend::phaseVocoder && renderLooksCollapsed(dryScratch_, wetScratch_, numChannels, numSamples))
+    if (params.safeMode
+        && (activeBackend == ActiveBackend::phaseVocoder
+            || activeBackend == ActiveBackend::rubberBandUnavailableUsingPhaseVocoder)
+        && renderLooksCollapsed(dryScratch_, wetScratch_, numChannels, numSamples))
     {
-        activeBackend = ActiveBackend::phaseVocoderRescuedByOverlap;
+        activeBackend = ActiveBackend::phaseVocoderRescuedByWsolaLite;
         for (int channel = 0; channel < numChannels; ++channel)
         {
             pitchShifter_.processChannel(
@@ -151,7 +184,7 @@ void PitchShiftBlindSpotsAudioProcessor::processBlock(juce::AudioBuffer<float>& 
 
     for (int channel = 0; channel < numChannels; ++channel)
     {
-        const auto localWetAmount = activeBackend == ActiveBackend::phaseVocoderRescuedByOverlap ? std::min(wetAmount, 0.75f) : wetAmount;
+        const auto localWetAmount = activeBackend == ActiveBackend::phaseVocoderRescuedByWsolaLite ? std::min(wetAmount, 0.75f) : wetAmount;
         const auto localDryAmount = 1.0f - localWetAmount;
 
         auto* output = buffer.getWritePointer(channel);
@@ -217,14 +250,42 @@ const char* PitchShiftBlindSpotsAudioProcessor::toString(ActiveBackend backend)
         case ActiveBackend::bypass:
             return "bypass";
         case ActiveBackend::phaseVocoder:
-            return "phase_vocoder_fallback";
-        case ActiveBackend::simpleOverlap:
-            return "simple_overlap_legacy";
-        case ActiveBackend::phaseVocoderRescuedByOverlap:
-            return "phase_vocoder_collapsed_rescued_by_overlap";
+            return "phase_vocoder";
+        case ActiveBackend::wsolaLite:
+            return "wsola_lite";
+        case ActiveBackend::psolaLite:
+            return "psola_lite";
+        case ActiveBackend::rubberBandUnavailableUsingPhaseVocoder:
+            return "rubber_band_unavailable_using_phase_vocoder";
+        case ActiveBackend::phaseVocoderRescuedByWsolaLite:
+            return "phase_vocoder_collapsed_rescued_by_wsola_lite";
     }
 
     return "unknown";
+}
+
+PitchShiftBlindSpotsAudioProcessor::ActiveBackend PitchShiftBlindSpotsAudioProcessor::chooseAdaptiveBackend(
+    psbsl::PitchStrategy strategy,
+    float shiftSemitones)
+{
+    if (std::abs(shiftSemitones) < 0.01f)
+        return ActiveBackend::bypass;
+
+    switch (strategy)
+    {
+        case psbsl::PitchStrategy::phaseVocoder:
+        case psbsl::PitchStrategy::spectralFallback:
+        case psbsl::PitchStrategy::dryWetSafety:
+            return ActiveBackend::phaseVocoder;
+        case psbsl::PitchStrategy::wsola:
+            return ActiveBackend::wsolaLite;
+        case psbsl::PitchStrategy::psola:
+            return ActiveBackend::psolaLite;
+        case psbsl::PitchStrategy::rubberBand:
+            return ActiveBackend::rubberBandUnavailableUsingPhaseVocoder;
+    }
+
+    return ActiveBackend::phaseVocoder;
 }
 
 bool PitchShiftBlindSpotsAudioProcessor::renderLooksCollapsed(
@@ -261,7 +322,33 @@ bool PitchShiftBlindSpotsAudioProcessor::renderLooksCollapsed(
 
     const auto rmsRatio = wetRms / dryRms;
     const auto activeRatio = dryActive > 0 ? static_cast<double>(wetActive) / static_cast<double>(dryActive) : 1.0;
-    return rmsRatio < 0.18 || activeRatio < 0.25;
+    return rmsRatio < 0.30 || activeRatio < 0.55;
+}
+
+juce::String PitchShiftBlindSpotsAudioProcessor::getBackendStatus() const
+{
+    const auto mode = enumFromAtomic(lastBackendMode_, BackendMode::adaptive);
+    if (mode != BackendMode::adaptive)
+        return "manual backend mode";
+
+    const auto backend = enumFromAtomic(lastBackend_, ActiveBackend::bypass);
+    switch (backend)
+    {
+        case ActiveBackend::rubberBandUnavailableUsingPhaseVocoder:
+            return "rubber band SDK not embedded yet";
+        case ActiveBackend::phaseVocoderRescuedByWsolaLite:
+            return "fallback health rescue active";
+        case ActiveBackend::wsolaLite:
+            return "prototype WSOLA approximation";
+        case ActiveBackend::psolaLite:
+            return "prototype PSOLA approximation";
+        case ActiveBackend::phaseVocoder:
+            return "available spectral backend";
+        case ActiveBackend::bypass:
+            return "no pitch shift";
+    }
+
+    return "unknown backend status";
 }
 
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
