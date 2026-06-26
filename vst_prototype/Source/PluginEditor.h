@@ -25,6 +25,7 @@ private:
     juce::Label dryWetLabel_;
     juce::Label stateLabel_;
     juce::Label strategyLabel_;
+    juce::Label backendLabel_;
     juce::Label disagreementLabel_;
 
     using SliderAttachment = juce::AudioProcessorValueTreeState::SliderAttachment;

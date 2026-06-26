@@ -42,6 +42,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout PitchShiftBlindSpotsAudioPro
 void PitchShiftBlindSpotsAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
 {
     engine_.prepare(sampleRate, samplesPerBlock);
+    phaseVocoder_.prepare(sampleRate, getTotalNumOutputChannels());
     pitchShifter_.prepare(sampleRate, getTotalNumOutputChannels());
     monoScratch_.setSize(1, samplesPerBlock, false, false, true);
     dryScratch_.setSize(getTotalNumOutputChannels(), samplesPerBlock, false, false, true);
@@ -50,6 +51,7 @@ void PitchShiftBlindSpotsAudioProcessor::prepareToPlay(double sampleRate, int sa
 
 void PitchShiftBlindSpotsAudioProcessor::releaseResources()
 {
+    phaseVocoder_.reset();
     pitchShifter_.reset();
 }
 
@@ -100,16 +102,38 @@ void PitchShiftBlindSpotsAudioProcessor::processBlock(juce::AudioBuffer<float>& 
     lastDisagreement_.store(features.observerDisagreement);
     lastSafeModeActive_.store(decision.safeModeActive);
 
+    auto activeBackend = ActiveBackend::phaseVocoder;
+    if (std::abs(decision.effectiveShiftSemitones) < 0.01f)
+        activeBackend = ActiveBackend::bypass;
+
+    lastBackend_.store(static_cast<int>(activeBackend));
+
     const auto wetAmount = juce::jlimit(0.0f, 1.0f, decision.effectiveDryWet);
     const auto dryAmount = 1.0f - wetAmount;
     for (int channel = 0; channel < numChannels; ++channel)
     {
-        pitchShifter_.processChannel(
-            dryScratch_.getReadPointer(channel),
-            wetScratch_.getWritePointer(channel),
-            numSamples,
-            channel,
-            decision.effectiveShiftSemitones);
+        if (activeBackend == ActiveBackend::bypass)
+        {
+            wetScratch_.copyFrom(channel, 0, dryScratch_, channel, 0, numSamples);
+        }
+        else if (activeBackend == ActiveBackend::phaseVocoder)
+        {
+            phaseVocoder_.processChannel(
+                dryScratch_.getReadPointer(channel),
+                wetScratch_.getWritePointer(channel),
+                numSamples,
+                channel,
+                decision.effectiveShiftSemitones);
+        }
+        else
+        {
+            pitchShifter_.processChannel(
+                dryScratch_.getReadPointer(channel),
+                wetScratch_.getWritePointer(channel),
+                numSamples,
+                channel,
+                decision.effectiveShiftSemitones);
+        }
 
         auto* output = buffer.getWritePointer(channel);
         const auto* dry = dryScratch_.getReadPointer(channel);
@@ -160,6 +184,26 @@ juce::String PitchShiftBlindSpotsAudioProcessor::getLastStateName() const
 juce::String PitchShiftBlindSpotsAudioProcessor::getLastStrategyName() const
 {
     return psbsl::AdaptivePitchEngine::toString(enumFromAtomic(lastStrategy_, psbsl::PitchStrategy::rubberBand));
+}
+
+juce::String PitchShiftBlindSpotsAudioProcessor::getLastBackendName() const
+{
+    return toString(enumFromAtomic(lastBackend_, ActiveBackend::bypass));
+}
+
+const char* PitchShiftBlindSpotsAudioProcessor::toString(ActiveBackend backend)
+{
+    switch (backend)
+    {
+        case ActiveBackend::bypass:
+            return "bypass";
+        case ActiveBackend::phaseVocoder:
+            return "phase_vocoder_available_fallback";
+        case ActiveBackend::simpleOverlap:
+            return "simple_overlap_legacy";
+    }
+
+    return "unknown";
 }
 
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()

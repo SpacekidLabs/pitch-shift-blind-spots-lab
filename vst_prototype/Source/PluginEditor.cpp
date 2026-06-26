@@ -22,7 +22,7 @@ PitchShiftBlindSpotsAudioProcessorEditor::PitchShiftBlindSpotsAudioProcessorEdit
 
     shiftLabel_.setText("Shift", juce::dontSendNotification);
     dryWetLabel_.setText("Dry/Wet", juce::dontSendNotification);
-    for (auto* label : { &shiftLabel_, &dryWetLabel_, &stateLabel_, &strategyLabel_, &disagreementLabel_ })
+    for (auto* label : { &shiftLabel_, &dryWetLabel_, &stateLabel_, &strategyLabel_, &backendLabel_, &disagreementLabel_ })
     {
         label->setJustificationType(juce::Justification::centred);
         label->setColour(juce::Label::textColourId, juce::Colours::whitesmoke);
@@ -84,6 +84,7 @@ void PitchShiftBlindSpotsAudioProcessorEditor::resized()
     bounds.removeFromTop(16);
     stateLabel_.setBounds(bounds.removeFromTop(30));
     strategyLabel_.setBounds(bounds.removeFromTop(30));
+    backendLabel_.setBounds(bounds.removeFromTop(30));
     disagreementLabel_.setBounds(bounds.removeFromTop(30));
 }
 
@@ -91,6 +92,7 @@ void PitchShiftBlindSpotsAudioProcessorEditor::timerCallback()
 {
     stateLabel_.setText("State: " + processor_.getLastStateName(), juce::dontSendNotification);
     strategyLabel_.setText("Strategy: " + processor_.getLastStrategyName(), juce::dontSendNotification);
+    backendLabel_.setText("Active backend: " + processor_.getLastBackendName(), juce::dontSendNotification);
     disagreementLabel_.setText(
         "Observer disagreement: " + juce::String(processor_.getLastDisagreement(), 3)
             + (processor_.isSafeModeActive() ? "  | safe mode active" : ""),

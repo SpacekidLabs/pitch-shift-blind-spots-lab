@@ -3,6 +3,7 @@
 #include <JuceHeader.h>
 
 #include "AdaptivePitchEngine.h"
+#include "PhaseVocoderPitchShifter.h"
 #include "SimplePitchShifter.h"
 
 class PitchShiftBlindSpotsAudioProcessor final : public juce::AudioProcessor
@@ -37,18 +38,29 @@ public:
     juce::AudioProcessorValueTreeState& getValueTreeState() { return parameters_; }
     juce::String getLastStateName() const;
     juce::String getLastStrategyName() const;
+    juce::String getLastBackendName() const;
     float getLastDisagreement() const { return lastDisagreement_.load(); }
     bool isSafeModeActive() const { return lastSafeModeActive_.load(); }
 
 private:
+    enum class ActiveBackend
+    {
+        bypass,
+        phaseVocoder,
+        simpleOverlap
+    };
+
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+    static const char* toString(ActiveBackend backend);
 
     juce::AudioProcessorValueTreeState parameters_;
     psbsl::AdaptivePitchEngine engine_;
+    psbsl::PhaseVocoderPitchShifter phaseVocoder_;
     psbsl::SimplePitchShifter pitchShifter_;
 
     std::atomic<int> lastState_ { static_cast<int>(psbsl::SignalState::untracked) };
     std::atomic<int> lastStrategy_ { static_cast<int>(psbsl::PitchStrategy::rubberBand) };
+    std::atomic<int> lastBackend_ { static_cast<int>(ActiveBackend::bypass) };
     std::atomic<float> lastDisagreement_ { 0.0f };
     std::atomic<bool> lastSafeModeActive_ { false };
 
