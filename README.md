@@ -1052,10 +1052,11 @@ Current scope:
 - live block-level signal-state analysis
 - observer-disagreement proxy
 - safe-mode routing rules
+- simple audible real-time pitch-shift backend
 - plugin UI for shift, dry/wet, safe mode, state, strategy, and disagreement
 - standalone smoke test that builds without JUCE
 
-The first prototype is intentionally a control-plane plugin, not a production pitch shifter. It passes audio through while reporting the selected state and strategy. The next milestone is to add backend adapters for pass-through, Phase Vocoder, and Rubber Band so the selector can control real pitch-shift engines.
+The first installed prototype is intentionally simple, not a production-quality pitch shifter. It now performs audible pitch shifting with a lightweight overlap delay-line backend while reporting the selected state and strategy. The next milestone is to add backend adapters for pass-through, Phase Vocoder, and Rubber Band so the selector can control real pitch-shift engines.
 
 Local install:
 

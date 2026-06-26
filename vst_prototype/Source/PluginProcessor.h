@@ -3,6 +3,7 @@
 #include <JuceHeader.h>
 
 #include "AdaptivePitchEngine.h"
+#include "SimplePitchShifter.h"
 
 class PitchShiftBlindSpotsAudioProcessor final : public juce::AudioProcessor
 {
@@ -44,6 +45,7 @@ private:
 
     juce::AudioProcessorValueTreeState parameters_;
     psbsl::AdaptivePitchEngine engine_;
+    psbsl::SimplePitchShifter pitchShifter_;
 
     std::atomic<int> lastState_ { static_cast<int>(psbsl::SignalState::untracked) };
     std::atomic<int> lastStrategy_ { static_cast<int>(psbsl::PitchStrategy::rubberBand) };
@@ -51,6 +53,8 @@ private:
     std::atomic<bool> lastSafeModeActive_ { false };
 
     juce::AudioBuffer<float> monoScratch_;
+    juce::AudioBuffer<float> dryScratch_;
+    juce::AudioBuffer<float> wetScratch_;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PitchShiftBlindSpotsAudioProcessor)
 };

@@ -1,4 +1,5 @@
 #include "AdaptivePitchEngine.h"
+#include "SimplePitchShifter.h"
 
 #include <cmath>
 #include <iostream>
@@ -66,6 +67,20 @@ int main()
     printDecision("sine", engine, makeSine(sampleRate, blockSize, 440.0f));
     printDecision("transient", engine, makeTransient(blockSize));
     printDecision("noise", engine, makeNoise(blockSize));
+
+    psbsl::SimplePitchShifter shifter;
+    shifter.prepare(sampleRate, 1);
+    std::vector<float> shifted(static_cast<std::size_t>(blockSize), 0.0f);
+    for (int block = 0; block < 12; ++block)
+    {
+        const auto sine = makeSine(sampleRate, blockSize, 440.0f);
+        shifter.processChannel(sine.data(), shifted.data(), static_cast<int>(shifted.size()), 0, 12.0f);
+    }
+
+    double wetEnergy = 0.0;
+    for (const auto sample : shifted)
+        wetEnergy += static_cast<double>(sample) * sample;
+    std::cout << "pitch_backend rms=" << std::sqrt(wetEnergy / static_cast<double>(shifted.size())) << "\n";
 
     return 0;
 }

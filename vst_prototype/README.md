@@ -11,7 +11,7 @@ choose the safest behavior
 fall back when the render looks unhealthy
 ```
 
-This folder starts the real-time plugin path. It is not a finished pitch shifter yet. v0 contains the plugin shell, parameters, live signal-state analysis, and adaptive strategy selection. Pitch-shift backends attach after the selector is stable.
+This folder starts the real-time plugin path. It is not a finished pitch shifter yet. v0.1.1 contains the plugin shell, parameters, live signal-state analysis, adaptive strategy selection, and a simple audible pitch-shift backend.
 
 ## Current Scope
 
@@ -22,12 +22,13 @@ Implemented:
 - signal-state vocabulary from the research experiments
 - observer-disagreement proxy
 - safe-mode routing rules
+- simple real-time overlap delay-line pitch shifter
 - basic plugin UI showing current state and chosen strategy
 - standalone smoke test for the adaptive engine
 
 Not implemented yet:
 
-- production pitch shifting
+- production-quality pitch shifting
 - Rubber Band SDK integration
 - PSOLA/WSOLA real-time backends
 - post-render health gate for streaming audio
@@ -48,7 +49,7 @@ signal-state classifier
 adaptive strategy selector
   |
   v
-pitch-shift backend slot
+simple pitch-shift backend
   |
   v
 safe-mode dry/wet and shift guards
@@ -135,7 +136,7 @@ Pitch Shift Blind Spots.vst3
 The next useful milestone is not fancy UI. It is a real backend slot:
 
 1. Add a `PitchBackend` interface.
-2. Implement pass-through, phase-vocoder, and Rubber Band backend adapters.
+2. Replace the simple shifter with pass-through, phase-vocoder, and Rubber Band backend adapters.
 3. Let the selector choose among backend adapters.
 4. Add a streaming render-health guard.
 5. Add a small DAW listening test using the same drum loop.

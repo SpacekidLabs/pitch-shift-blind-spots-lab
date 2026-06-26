@@ -42,11 +42,15 @@ juce::AudioProcessorValueTreeState::ParameterLayout PitchShiftBlindSpotsAudioPro
 void PitchShiftBlindSpotsAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
 {
     engine_.prepare(sampleRate, samplesPerBlock);
+    pitchShifter_.prepare(sampleRate, getTotalNumOutputChannels());
     monoScratch_.setSize(1, samplesPerBlock, false, false, true);
+    dryScratch_.setSize(getTotalNumOutputChannels(), samplesPerBlock, false, false, true);
+    wetScratch_.setSize(getTotalNumOutputChannels(), samplesPerBlock, false, false, true);
 }
 
 void PitchShiftBlindSpotsAudioProcessor::releaseResources()
 {
+    pitchShifter_.reset();
 }
 
 bool PitchShiftBlindSpotsAudioProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
@@ -68,7 +72,12 @@ void PitchShiftBlindSpotsAudioProcessor::processBlock(juce::AudioBuffer<float>& 
 
     if (monoScratch_.getNumSamples() < numSamples)
         monoScratch_.setSize(1, numSamples, false, false, true);
+    if (dryScratch_.getNumSamples() < numSamples || dryScratch_.getNumChannels() < numChannels)
+        dryScratch_.setSize(numChannels, numSamples, false, false, true);
+    if (wetScratch_.getNumSamples() < numSamples || wetScratch_.getNumChannels() < numChannels)
+        wetScratch_.setSize(numChannels, numSamples, false, false, true);
 
+    dryScratch_.makeCopyOf(buffer, true);
     auto* mono = monoScratch_.getWritePointer(0);
     std::fill(mono, mono + numSamples, 0.0f);
     for (int channel = 0; channel < numChannels; ++channel)
@@ -91,9 +100,23 @@ void PitchShiftBlindSpotsAudioProcessor::processBlock(juce::AudioBuffer<float>& 
     lastDisagreement_.store(features.observerDisagreement);
     lastSafeModeActive_.store(decision.safeModeActive);
 
-    // v0 is intentionally pass-through. The selector state is live; pitch-shift backends attach here next.
+    const auto wetAmount = juce::jlimit(0.0f, 1.0f, decision.effectiveDryWet);
+    const auto dryAmount = 1.0f - wetAmount;
     for (int channel = 0; channel < numChannels; ++channel)
-        buffer.applyGain(channel, 0, numSamples, juce::jlimit(0.0f, 1.0f, decision.effectiveDryWet));
+    {
+        pitchShifter_.processChannel(
+            dryScratch_.getReadPointer(channel),
+            wetScratch_.getWritePointer(channel),
+            numSamples,
+            channel,
+            decision.effectiveShiftSemitones);
+
+        auto* output = buffer.getWritePointer(channel);
+        const auto* dry = dryScratch_.getReadPointer(channel);
+        const auto* wet = wetScratch_.getReadPointer(channel);
+        for (int i = 0; i < numSamples; ++i)
+            output[i] = dry[i] * dryAmount + wet[i] * wetAmount;
+    }
 }
 
 juce::AudioProcessorEditor* PitchShiftBlindSpotsAudioProcessor::createEditor()

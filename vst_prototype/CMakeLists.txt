@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.22)
 
-project(PitchShiftBlindSpotsVST VERSION 0.1.0 LANGUAGES C CXX)
+project(PitchShiftBlindSpotsVST VERSION 0.1.1 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -12,6 +12,7 @@ set(JUCE_SOURCE_DIR "" CACHE PATH "Path to a local JUCE source checkout")
 
 add_library(psbsl_adaptive_engine
     Source/AdaptivePitchEngine.cpp
+    Source/SimplePitchShifter.cpp
 )
 target_include_directories(psbsl_adaptive_engine PUBLIC Source)
 
