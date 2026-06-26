@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.22)
 
-project(PitchShiftBlindSpotsVST VERSION 0.1.0 LANGUAGES CXX)
+project(PitchShiftBlindSpotsVST VERSION 0.1.0 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -8,6 +8,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 option(PSBSL_BUILD_PLUGIN "Build the JUCE VST3 plugin target" ON)
 option(PSBSL_BUILD_ENGINE_SMOKE_TEST "Build the standalone adaptive-engine smoke test" ON)
+set(JUCE_SOURCE_DIR "" CACHE PATH "Path to a local JUCE source checkout")
 
 add_library(psbsl_adaptive_engine
     Source/AdaptivePitchEngine.cpp
@@ -22,7 +23,11 @@ if(PSBSL_BUILD_ENGINE_SMOKE_TEST)
 endif()
 
 if(PSBSL_BUILD_PLUGIN)
-    find_package(JUCE CONFIG REQUIRED)
+    if(JUCE_SOURCE_DIR)
+        add_subdirectory("${JUCE_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/JUCE")
+    else()
+        find_package(JUCE CONFIG REQUIRED)
+    endif()
 
     juce_add_plugin(PitchShiftBlindSpots
         COMPANY_NAME "SpaceKidLabs"
@@ -37,6 +42,7 @@ if(PSBSL_BUILD_PLUGIN)
         FORMATS VST3
         PRODUCT_NAME "Pitch Shift Blind Spots"
     )
+    juce_generate_juce_header(PitchShiftBlindSpots)
 
     target_sources(PitchShiftBlindSpots PRIVATE
         Source/PluginEditor.cpp
@@ -46,6 +52,7 @@ if(PSBSL_BUILD_PLUGIN)
     target_compile_definitions(PitchShiftBlindSpots PRIVATE
         JUCE_WEB_BROWSER=0
         JUCE_USE_CURL=0
+        JUCE_VST3_CAN_REPLACE_VST2=0
     )
 
     target_link_libraries(PitchShiftBlindSpots PRIVATE

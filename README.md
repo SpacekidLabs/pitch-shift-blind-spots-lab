@@ -1057,6 +1057,18 @@ Current scope:
 
 The first prototype is intentionally a control-plane plugin, not a production pitch shifter. It passes audio through while reporting the selected state and strategy. The next milestone is to add backend adapters for pass-through, Phase Vocoder, and Rubber Band so the selector can control real pitch-shift engines.
 
+Local install:
+
+```sh
+vst_prototype/scripts/build_and_install_vst3.sh
+```
+
+Installed path:
+
+```text
+~/Library/Audio/Plug-Ins/VST3/Pitch Shift Blind Spots.vst3
+```
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.

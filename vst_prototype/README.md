@@ -90,18 +90,38 @@ Safe mode currently:
 The adaptive engine can be compiled without JUCE:
 
 ```sh
-cmake -S vst_prototype -B vst_prototype/build -DPSBSL_BUILD_PLUGIN=OFF
-cmake --build vst_prototype/build
-./vst_prototype/build/psbsl_engine_smoke_test
+vst_prototype/scripts/test_engine.sh
 ```
 
 ## Build: VST3 Plugin
 
-Install JUCE and make it available to CMake, then run:
+This repo can build against a local JUCE checkout. On this machine the default script uses:
+
+```text
+/Applications/CMake.app/Contents/bin/cmake
+/Users/user/Desktop/wavsynth/JUCE
+```
+
+Build and install into the user VST3 folder:
 
 ```sh
-cmake -S vst_prototype -B vst_prototype/build -DPSBSL_BUILD_PLUGIN=ON
-cmake --build vst_prototype/build --config Release
+vst_prototype/scripts/build_and_install_vst3.sh
+```
+
+The installed plugin path is:
+
+```text
+~/Library/Audio/Plug-Ins/VST3/Pitch Shift Blind Spots.vst3
+```
+
+If your DAW is open, restart it or rescan plugins.
+
+You can override local paths:
+
+```sh
+CMAKE_BIN=/path/to/cmake \
+JUCE_SOURCE_DIR=/path/to/JUCE \
+vst_prototype/scripts/build_and_install_vst3.sh
 ```
 
 The plugin target is:
