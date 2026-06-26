@@ -1005,6 +1005,42 @@ Current result:
 
 This test is deliberately not a new "which algorithm is best" benchmark. It asks whether the adaptive safety path preserves the listening preference under blind scoring. Because multiple blind IDs collapse to the same final Phase Vocoder render, it also acts as a listener-stability check: if equivalent renders receive different scores, the blind test is exposing context effects and rating noise rather than algorithm differences.
 
+## Experiment 27
+
+`experiments/27_adaptive_v4_score_analysis.py` decodes the Experiment 26 blind scores.
+
+Question:
+
+```text
+Did the unblinded Adaptive v4 Normal preference survive blind scoring?
+```
+
+Outputs:
+
+- `artifacts/27_adaptive_v4_score_analysis/README.md`
+- `artifacts/27_adaptive_v4_score_analysis/27_listener_scores.csv`
+- `artifacts/27_adaptive_v4_score_analysis/27_decoded_listener_scores.csv`
+- `artifacts/27_adaptive_v4_score_analysis/27_policy_summary.csv`
+- `artifacts/27_adaptive_v4_score_analysis/27_shift_summary.csv`
+- `artifacts/27_adaptive_v4_score_analysis/27_fallback_summary.csv`
+- `artifacts/27_adaptive_v4_score_analysis/27_equivalent_render_summary.csv`
+- `artifacts/27_adaptive_v4_score_analysis/27_metric_correlation_summary.csv`
+- `artifacts/27_adaptive_v4_score_analysis/27_adaptive_v4_score_plot.png`
+
+Current result:
+
+- Adaptive v4 Normal mean overall score: `3.33`
+- Adaptive v3 mean overall score: `3.33`
+- Adaptive v4 Rescue From WSOLA mean overall score: `3.00`
+- Adaptive v4 Rescue From Rubber Band mean overall score: `2.67`
+- Phase Vocoder mean overall score: `2.33`
+- all final renders resolved to Phase Vocoder
+- no blind file was reported as silence
+- composite-stress correlation with overall rating: `0.12`
+- widest equivalent-render overall-score range: `2.0`
+
+The most important conclusion is not that Adaptive v4 "beat" Phase Vocoder. Since all Experiment 26 final renders resolved to Phase Vocoder, the decoded policy differences are partly listener/context effects among equivalent render paths. The practical result still supports Adaptive v4 as a safe behavior: the health gate rescued risky paths and avoided the silence failures from Experiment 22. The research result is that future listening tests need explicit duplicate controls and preference-stability analysis before treating small score gaps as algorithm differences.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md) for the next steps, including deeper blind spot taxonomy and neural pitch shifter comparisons.

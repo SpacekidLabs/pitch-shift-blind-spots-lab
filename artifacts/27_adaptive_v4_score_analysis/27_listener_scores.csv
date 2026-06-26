@@ -1,0 +1,16 @@
+blind_id,wav_file,shift_semitones,artifact_rating_1_bad_5_clean,transient_rating_1_smeared_5_crisp,groove_rating_1_bad_5_good,overall_rating_1_bad_5_good,notes,artifact_rating,transient_rating,groove_rating,overall_rating
+V4LT_001,audio/V4LT_001.wav,-12,3,2,4,4,,3,2,4,4
+V4LT_002,audio/V4LT_002.wav,-12,3,2,3,2,,3,2,3,2
+V4LT_003,audio/V4LT_003.wav,3,3,3,3,3,,3,3,3,3
+V4LT_004,audio/V4LT_004.wav,3,4,3,3,2,,4,3,3,2
+V4LT_005,audio/V4LT_005.wav,7,3,2,3,2,,3,2,3,2
+V4LT_006,audio/V4LT_006.wav,-12,3,2,3,3,,3,2,3,3
+V4LT_007,audio/V4LT_007.wav,7,3,3,3,3,,3,3,3,3
+V4LT_008,audio/V4LT_008.wav,7,2,3,3,4,,2,3,3,4
+V4LT_009,audio/V4LT_009.wav,7,3,3,3,4,,3,3,3,4
+V4LT_010,audio/V4LT_010.wav,3,2,3,3,3,,2,3,3,3
+V4LT_011,audio/V4LT_011.wav,7,2,2,3,2,,2,2,3,2
+V4LT_012,audio/V4LT_012.wav,3,3,3,3,3,,3,3,3,3
+V4LT_013,audio/V4LT_013.wav,-12,3,2,3,2,,3,2,3,2
+V4LT_014,audio/V4LT_014.wav,3,3,3,3,3,,3,3,3,3
+V4LT_015,audio/V4LT_015.wav,-12,4,3,3,4,,4,3,3,4

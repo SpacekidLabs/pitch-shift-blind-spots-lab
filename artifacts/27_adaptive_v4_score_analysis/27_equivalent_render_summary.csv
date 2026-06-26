@@ -1,0 +1,4 @@
+final_algorithm_label,shift_semitones,case_count,blind_ids,render_labels,overall_scores,overall_mean,overall_std,overall_range,artifact_scores,artifact_range
+Phase Vocoder,-12,5,V4LT_001|V4LT_002|V4LT_006|V4LT_013|V4LT_015,Adaptive v4 Normal|Adaptive v4 Rescue From Rubber Band|Adaptive v3|Phase Vocoder|Adaptive v4 Rescue From WSOLA,4|2|3|2|4,3.0,0.8944271909999159,2.0,3|3|3|3|4,1.0
+Phase Vocoder,7,5,V4LT_005|V4LT_007|V4LT_008|V4LT_009|V4LT_011,Adaptive v4 Rescue From WSOLA|Adaptive v4 Normal|Adaptive v4 Rescue From Rubber Band|Adaptive v3|Phase Vocoder,2|3|4|4|2,3.0,0.8944271909999159,2.0,3|3|2|3|2,1.0
+Phase Vocoder,3,5,V4LT_003|V4LT_004|V4LT_010|V4LT_012|V4LT_014,Phase Vocoder|Adaptive v4 Rescue From Rubber Band|Adaptive v4 Rescue From WSOLA|Adaptive v4 Normal|Adaptive v3,3|2|3|3|3,2.8,0.39999999999999997,1.0,3|4|2|3|3,2.0

@@ -1,0 +1,4 @@
+shift_semitones,case_count,mean_artifact_rating,mean_transient_rating,mean_groove_rating,mean_overall_rating,overall_std,overall_min,overall_max,overall_range,fallback_count,mean_composite_stress
+-12,5,3.2,2.2,3.2,3.0,1.0,2,4,2.0,2,1.0
+3,5,3.0,3.0,3.0,2.8,0.447213595499958,2,3,1.0,2,0.0
+7,5,2.6,2.6,3.0,3.0,1.0,2,4,2.0,2,0.725078339988217

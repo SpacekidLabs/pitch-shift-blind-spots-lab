@@ -77,3 +77,6 @@
 - Run blind Adaptive v4 listening tests after unblinded preference notes
 - Compare normal adaptive paths against forced rescue paths
 - Use duplicate-equivalent renders to estimate listener stability and context effects
+- Add duplicate controls to every future blind listening pack
+- Report preference-stability ranges before claiming algorithm differences
+- Separate safety validation from subjective preference ranking
