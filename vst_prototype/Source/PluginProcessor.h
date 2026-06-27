@@ -72,6 +72,8 @@ private:
     static const char* toString(ActiveBackend backend);
     static ActiveBackend chooseAdaptiveBackend(psbsl::PitchStrategy strategy, float shiftSemitones);
     static bool renderLooksCollapsed(const juce::AudioBuffer<float>& dry, const juce::AudioBuffer<float>& wet, int numChannels, int numSamples);
+    ActiveBackend stabilizeAdaptiveBackend(ActiveBackend requestedBackend);
+    void resetAdaptiveRouter();
 
     juce::AudioProcessorValueTreeState parameters_;
     psbsl::AdaptivePitchEngine engine_;
@@ -91,6 +93,12 @@ private:
     juce::AudioBuffer<float> wetScratch_;
     std::vector<const float*> backendInputPointers_;
     std::vector<float*> backendOutputPointers_;
+    bool adaptiveRouterInitialized_ = false;
+    ActiveBackend heldAdaptiveBackend_ = ActiveBackend::bypass;
+    ActiveBackend pendingAdaptiveBackend_ = ActiveBackend::bypass;
+    int pendingAdaptiveBackendBlocks_ = 0;
+    int adaptiveBackendHoldBlocksRemaining_ = 0;
+    int adaptiveBackendTransitionBlocksRemaining_ = 0;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PitchShiftBlindSpotsAudioProcessor)
 };

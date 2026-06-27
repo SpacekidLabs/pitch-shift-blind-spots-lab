@@ -11,7 +11,7 @@ choose the safest behavior
 fall back when the render looks unhealthy
 ```
 
-This folder starts the real-time plugin path. It is not a finished pitch shifter yet. v0.3.0 contains the plugin shell, parameters, live signal-state analysis, adaptive strategy selection, manual observer/backend selection, a built-in Phase Vocoder backend, WSOLA-lite/PSOLA-lite prototype paths, a real Rubber Band backend when the SDK/library is available, and block-level render-health rescue.
+This folder starts the real-time plugin path. It is not a finished pitch shifter yet. v0.3.2 contains the plugin shell, parameters, live signal-state analysis, adaptive strategy selection, manual observer/backend selection, a built-in Phase Vocoder backend, WSOLA-lite/PSOLA-lite prototype paths, a real Rubber Band backend when the SDK/library is available, block-level render-health rescue, and adaptive-router smoothing to prevent rapid mode chatter.
 
 ## Current Scope
 
@@ -23,6 +23,7 @@ Implemented:
 - observer-disagreement proxy
 - safe-mode routing rules
 - adaptive router with separate intended strategy and active backend readouts
+- adaptive-router hysteresis so Adaptive mode holds a backend before trusting a new decision
 - manual backend mode: Adaptive, Phase Vocoder, WSOLA-lite, PSOLA-lite, Rubber Band slot, Bypass
 - built-in real-time Phase Vocoder fallback backend
 - WSOLA-lite and PSOLA-lite prototype paths based on the current overlap engine
@@ -90,6 +91,8 @@ The UI shows both:
 - `Active backend`: what the installed prototype actually used
 
 If the Phase Vocoder fallback produces a collapsed block, the plugin temporarily rescues that block with WSOLA-lite and lowers the wet blend. This is the real-time version of the post-render health gate discovered in Experiments 24 and 25.
+
+Adaptive mode also has a small anti-chatter guard. The observer can still change its mind, but the audio renderer waits for a new backend choice to remain stable for a few blocks, holds each selected backend briefly, and softens the dry/wet blend during backend transitions. Manual backend modes remain immediate for debugging.
 
 On this machine, Rubber Band was built locally from source into:
 
