@@ -21,6 +21,8 @@ The goal is to map where representations break:
 - transients
 - modulated tones
 
+The research pipeline also builds adaptive pitch-shifting selectors and validates them through synthetic stress testing, real-audio listening tests, and a JUCE plugin prototype.
+
 Experiment 01 creates a synthetic stress atlas and runs it through a single pitch-shifting path based on a phase vocoder.
 
 Experiment 02 runs the same atlas through four algorithm families and measures where they disagree:
@@ -57,6 +59,21 @@ Experiment 08 tests the Observer Bias Hypothesis directly: every pitch shifter c
 - `experiments/` runnable studies
 - `artifacts/` generated results and figures
 - `data/` future source data and notes
+
+## Adaptive Selector Version Map
+
+| Version | Name | Introduced In | Core Idea |
+|---------|------|---------------|-----------|
+| v0 | Observer Probe | Exp 09 | Uses all four algorithm observers to select one after the fact |
+| v1 | Preflight Adaptive v1 | Exp 13 | Source-only risk detection + avoids period-based routing on micro-modulation |
+| v2 | Preflight Adaptive v2 | Exp 15 | Selective safe policy: Phase Vocoder for risk, PSOLA for light safe shifts, Rubber Band for large safe shifts |
+| v3 | Preflight Adaptive v3 | Exp 18 | Adds dry/wet noise fallback guard when v2 routes large-shift noise-like material to Phase Vocoder |
+| v4 | Adaptive v4 | Exp 25 | Adds post-render health gate + rescue fallback chain to v3 policy |
+
+**Selector behavior:**
+- `safe_mode` activates when state is noise-like, untracked, or observer disagreement exceeds thresholds
+- `guard` actions include dry/wet blend, reduced shift strength, or full fallback algorithm
+- Each version preserves catastrophic-failure avoidance from the previous version; expanded versions add safety layers without widening the failure envelope
 
 ## Experiment 01
 
@@ -1073,6 +1090,21 @@ Installed path:
 ```text
 ~/Library/Audio/Plug-Ins/VST3/Pitch Shift Blind Spots.vst3
 ```
+
+## Implementation Status vs Roadmap
+
+### Implemented
+- Phases 1–4 synthetic and adaptive research pipeline through Experiment 27
+- Listening tests and score analysis (Experiments 22–27)
+- JUCE VST3 plugin scaffold with adaptive selector engine (Phase Vocoder + live Rubber Band, post-render fallback, safe UI)
+
+### Partially Implemented
+- JUCE plugin: WSOLA-lite and PSOLA-lite stubs are present, but stronger real-time implementations are pending
+
+### Planned / Not Yet Implemented
+- Neural pitch shifter integration and comparison (listed in ROADMAP but not yet present in experiments)
+- Expanded real-world audio corpus for listening tests beyond the initial drum loop
+- Full product-quality plugin release (DAW listening pack, installer polish)
 
 ## Roadmap
 
